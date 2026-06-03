@@ -346,7 +346,67 @@ search_queries:
 
 tracked_companies:
 
+  # ============================================================
+  # -- HIGH-PRIORITY SOURCES (LinkedIn · Indeed · Handshake) --
+  # ============================================================
+
+  # LinkedIn — scanned first, multiple searches for maximum coverage
+  - name: LinkedIn — MIS Intern Minneapolis
+    provider: linkedin
+    careers_url: "https://www.linkedin.com/jobs/search/?keywords=MIS+intern&location=Minneapolis%2C+Minnesota"
+
+  - name: LinkedIn — Business Analytics Intern Minneapolis
+    provider: linkedin
+    careers_url: "https://www.linkedin.com/jobs/search/?keywords=business+analytics+intern&location=Minneapolis%2C+Minnesota"
+
+  - name: LinkedIn — Data Analyst Intern Minneapolis
+    provider: linkedin
+    careers_url: "https://www.linkedin.com/jobs/search/?keywords=data+analyst+intern&location=Minneapolis%2C+Minnesota"
+
+  - name: LinkedIn — MIS Intern Remote
+    provider: linkedin
+    careers_url: "https://www.linkedin.com/jobs/search/?keywords=MIS+internship&location=United+States"
+
+  - name: LinkedIn — Business Analytics Intern Remote
+    provider: linkedin
+    careers_url: "https://www.linkedin.com/jobs/search/?keywords=business+analytics+internship&location=United+States"
+
+  - name: LinkedIn — Information Systems Intern Remote
+    provider: linkedin
+    careers_url: "https://www.linkedin.com/jobs/search/?keywords=information+systems+intern&location=United+States"
+
+  # Indeed — RSS feeds, scanned alongside LinkedIn
+  - name: Indeed — MIS Intern Minneapolis
+    provider: indeed
+    careers_url: "https://www.indeed.com/rss?q=MIS+internship&l=Minneapolis%2C+MN&radius=25&sort=date"
+
+  - name: Indeed — Business Analytics Intern MN
+    provider: indeed
+    careers_url: "https://www.indeed.com/rss?q=business+analytics+internship&l=Minnesota&radius=25&sort=date"
+
+  - name: Indeed — Data Analyst Intern Minneapolis
+    provider: indeed
+    careers_url: "https://www.indeed.com/rss?q=data+analyst+internship&l=Minneapolis%2C+MN&radius=25&sort=date"
+
+  - name: Indeed — MIS Intern Remote
+    provider: indeed
+    careers_url: "https://www.indeed.com/rss?q=MIS+internship&l=remote&sort=date"
+
+  - name: Indeed — Business Analyst Intern Remote
+    provider: indeed
+    careers_url: "https://www.indeed.com/rss?q=business+analyst+internship&l=remote&sort=date"
+
+  - name: Indeed — Information Systems Intern Remote
+    provider: indeed
+    careers_url: "https://www.indeed.com/rss?q=information+systems+internship&l=remote&sort=date"
+
+  # Handshake — requires school login at minneapolis.joinhandshake.com
+  # Bookmark: https://minneapolis.joinhandshake.com/job-search/11094094
+  # Cannot be auto-scanned (authentication required). Check manually.
+
+  # ============================================================
   # -- Consumer & Brand companies (strong analytics programs) --
+  # ============================================================
 
   - name: Spotify
     careers_url: https://job-boards.greenhouse.io/spotify
