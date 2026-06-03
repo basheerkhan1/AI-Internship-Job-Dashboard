@@ -2,8 +2,8 @@ name: Daily Job Scan
 
 on:
   schedule:
-    - cron: '0 */4 * * *'  # every 4 hours
-  workflow_dispatch:       # Manual trigger from GitHub UI
+    - cron: '0 */4 * * *'   # every 4 hours automatically
+  workflow_dispatch:          # manual trigger from GitHub UI
 
 permissions:
   contents: write
@@ -17,25 +17,18 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-python@v5
         with:
-          node-version: '20'
+          python-version: '3.11'
 
-      - name: Install dependencies
-        run: npm install js-yaml
+      - name: Install Python dependencies
+        run: pip install requests openpyxl
 
-      - name: Initialize data files
-        run: |
-          mkdir -p data
-          [ -f data/pipeline.md ] || printf '# Pipeline\n\n## Pendientes\n\n## Procesadas\n' > data/pipeline.md
-          [ -f data/applications.md ] || printf '# Applications Tracker\n\n| # | Date | Company | Role | Score | Status | PDF | Report | Notes |\n|---|------|---------|------|-------|--------|-----|--------|-------|\n' > data/applications.md
-          [ -f data/scan-history.tsv ] || printf 'date\turl\tcompany\trole\tlocation\tsource\tstatus\n' > data/scan-history.tsv
+      - name: Run internship scanner (MN + Remote)
+        run: python scan_jobs.py
 
-      - name: Run job scanner
-        run: node scan.mjs
-
-      - name: Generate jobs.json
-        run: node gen-jobs-json.mjs
+      - name: Check job liveness (remove closed listings)
+        run: python check_liveness.py
 
       - name: Push jobs.json to gh-pages
         run: |
@@ -46,4 +39,7 @@ jobs:
           cp jobs.json /tmp/gh-pages-deploy/jobs.json
           cd /tmp/gh-pages-deploy
           git add jobs.json
-          git diff --staged --quiet && echo "No new jobs found" || (git commit -m "scan: update jobs $(date -u +%Y-%m-%d)" && git push origin gh-pages)
+          git diff --staged --quiet \
+            && echo "No changes to jobs.json" \
+            || (git commit -m "scan: refresh jobs $(date -u +'%Y-%m-%d %H:%M UTC')" \
+                && git push origin gh-pages)
