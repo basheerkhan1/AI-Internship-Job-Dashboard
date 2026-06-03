@@ -236,7 +236,32 @@ td a:hover{color:#93c5fd;text-decoration:underline;}
 .src-lever     {background:rgba(251,191,36,.1);color:#fbbf24;}
 .src-indeed    {background:rgba(59,130,246,.1);color:#60a5fa;}
 .src-linkedin  {background:rgba(14,165,233,.1);color:#38bdf8;}
+.src-handshake {background:rgba(236,72,153,.1);color:#f472b6;}
+.src-excel     {background:rgba(21,128,61,.15);color:#4ade80;}
 .src-saved     {background:rgba(245,158,11,.1);color:#f59e0b;}
+
+/* ── Pipeline stats ── */
+.pipe-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px;}
+.ps{
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:14px 12px;text-align:center;position:relative;overflow:hidden;
+  transition:transform .2s,box-shadow .2s;cursor:default;
+}
+.ps:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.4);}
+.ps::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.ps-tot::after{background:linear-gradient(90deg,var(--blue),var(--purple));}
+.ps-int::after{background:var(--purple);}
+.ps-mn ::after{background:var(--blue);}
+.ps-rem::after{background:var(--green);}
+.ps-app::after{background:var(--amber);}
+.ps-n{font-size:26px;font-weight:900;line-height:1;margin-bottom:3px;font-variant-numeric:tabular-nums;}
+.ps-l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;}
+.ps-tot .ps-n{background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ps-int .ps-n{color:var(--purple);}
+.ps-mn  .ps-n{color:#60a5fa;}
+.ps-rem .ps-n{color:var(--green);}
+.ps-app .ps-n{color:var(--amber);}
+@media(max-width:900px){.pipe-stats{grid-template-columns:repeat(3,1fr);}}
 
 /* ── Section rows ── */
 .sec-row td{
@@ -394,8 +419,8 @@ select option{background:#111827;}
     </p>
   </div>
   <div class="hdr-r">
-    <a class="btn btn-blue"  href="basheer-khan-carlson.pdf"  target="_blank">&#8659; Carlson Resume</a>
-    <a class="btn btn-slate" href="basheer-khan-augsburg.pdf" target="_blank">&#8659; Augsburg Resume</a>
+    <a class="btn btn-blue"  href="basheer-khan-augsburg.pdf" download="Basheer_Khan_Resume.pdf">&#8659; Resume</a>
+    <a class="btn btn-slate" href="basheer-khan-augsburg.pdf" target="_blank">&#128065; Preview</a>
     <button class="btn btn-scan" onclick="openScan()">&#9711; Scan Now</button>
   </div>
   <div class="hdr-shine"></div>
@@ -416,18 +441,25 @@ select option{background:#111827;}
 <!-- ════ PIPELINE PANEL ════ -->
 <div class="panel on" id="panel-pipeline">
 
-  <!-- Resume downloads -->
+  <!-- Resume download -->
   <div class="resume-card au">
     <div>
-      <div class="resume-title">My Resumes</div>
-      <div class="resume-sub">Download and send directly to employers</div>
+      <div class="resume-title">Basheer Khan — Resume</div>
+      <div class="resume-sub">Augsburg University &bull; MIS &amp; Data Analytics &bull; basheerkhan.43135@gmail.com</div>
     </div>
     <div class="resume-btns">
-      <a href="basheer-khan-carlson.pdf"  download="Basheer_Khan_Carlson_Resume.pdf"  class="btn btn-blue">&#8659; Carlson Resume</a>
-      <a href="basheer-khan-augsburg.pdf" download="Basheer_Khan_Augsburg_Resume.pdf" class="btn btn-slate">&#8659; Augsburg Resume</a>
-      <a href="basheer-khan-carlson.pdf"  target="_blank" class="btn btn-slate">&#128065; Preview Carlson</a>
-      <a href="basheer-khan-augsburg.pdf" target="_blank" class="btn btn-slate">&#128065; Preview Augsburg</a>
+      <a href="basheer-khan-augsburg.pdf" download="Basheer_Khan_Resume.pdf" class="btn btn-blue">&#8659; Download Resume</a>
+      <a href="basheer-khan-augsburg.pdf" target="_blank" class="btn btn-slate">&#128065; Preview Resume</a>
     </div>
+  </div>
+
+  <!-- Pipeline stats -->
+  <div class="pipe-stats au au-1" id="pipe-stats-row">
+    <div class="ps ps-tot"><div class="ps-n" id="ps-tot">—</div><div class="ps-l">Total Jobs</div></div>
+    <div class="ps ps-int"><div class="ps-n" id="ps-int">—</div><div class="ps-l">Internships</div></div>
+    <div class="ps ps-mn" ><div class="ps-n" id="ps-mn">—</div><div class="ps-l">MN Jobs</div></div>
+    <div class="ps ps-rem"><div class="ps-n" id="ps-rem">—</div><div class="ps-l">Remote</div></div>
+    <div class="ps ps-app"><div class="ps-n" id="ps-app-c">—</div><div class="ps-l">Applied</div></div>
   </div>
 
   <!-- Toolbar -->
@@ -600,10 +632,35 @@ function srcBadge(src) {
     lever:     ['Lever',     'src-lever'],
     indeed:    ['Indeed',    'src-indeed'],
     linkedin:  ['LinkedIn',  'src-linkedin'],
+    handshake: ['Handshake', 'src-handshake'],
+    excel:     ['Excel List','src-excel'],
     saved:     ['Saved',     'src-saved'],
   };
   const [label,cls] = map[src] || [src,'src-greenhouse'];
   return `<span class="src-badge ${cls}">${label}</span>`;
+}
+
+function renderPipeStats(all) {
+  const mnKw  = ['minnesota','minneapolis','st. paul','saint paul','twin cities',', mn',/\bmn\b/];
+  const remKw = ['remote','anywhere','wfh','work from home'];
+  const isMN  = loc => mnKw.some(k => k instanceof RegExp ? k.test(loc) : loc.includes(k));
+  const isRem = loc => remKw.some(k => loc.includes(k));
+
+  let tot=all.length, intern=0, mn=0, rem=0;
+  all.forEach(j => {
+    const loc=(j.location||'').toLowerCase();
+    if (isIntern(j)) intern++;
+    if (isMN(loc))   mn++;
+    if (isRem(loc))  rem++;
+  });
+  const applied = apps.filter(a=>a.status==='Applied').length;
+
+  const set=(id,v)=>{ const el=document.getElementById(id); if(el) el.textContent=v; };
+  set('ps-tot', tot);
+  set('ps-int', intern);
+  set('ps-mn',  mn);
+  set('ps-rem', rem);
+  set('ps-app-c', applied);
 }
 
 const isIntern = j => {
@@ -634,6 +691,12 @@ async function loadPipeline(force=false) {
   }
 }
 
+function allVisibleJobs() {
+  const savedJobs = SAVED.map(j=>({...j,_saved:true}));
+  const pipeOnly  = pipeJobs.filter(j=>!SAVED_URLS.has(j.url));
+  return [...savedJobs, ...pipeOnly];
+}
+
 function setPF(f, btn) {
   pipeF = f;
   document.querySelectorAll('[id^="pf-"]').forEach(b=>b.classList.remove('on'));
@@ -644,11 +707,10 @@ function setPF(f, btn) {
 function renderPipeline() {
   const q = (document.getElementById('pipe-search').value||'').toLowerCase();
 
-  const savedJobs = SAVED.map(j=>({...j, _saved:true}));
-  const pipeOnly  = pipeJobs.filter(j=>!SAVED_URLS.has(j.url));
-  const all       = [...savedJobs, ...pipeOnly];
+  const allJobs = allVisibleJobs();
+  renderPipeStats(allJobs);
 
-  const filtered  = all.filter(j => {
+  const filtered  = allJobs.filter(j => {
     if (q && !(j.company||'').toLowerCase().includes(q) && !(j.role||'').toLowerCase().includes(q)) return false;
     const loc = (j.location||'').toLowerCase();
     if (pipeF==='rec')    return !!j._saved;
