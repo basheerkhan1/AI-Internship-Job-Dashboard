@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Tracker — Basheer Khan</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg: #f0f4f8;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --text: #1e293b;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --green: #16a34a;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --amber: #d97706;
+  --navy: #0f172a;
+}
+body { font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:var(--bg); color:var(--text); font-size:14px; min-height:100vh; }
+
+/* HEADER */
+.hdr { background:var(--navy); color:#fff; padding:16px 28px; display:flex; justify-content:space-between; align-items:center; }
+.hdr-l h1 { font-size:17px; font-weight:700; letter-spacing:-0.02em; }
+.hdr-l p  { font-size:11px; color:#94a3b8; margin-top:2px; }
+.hdr-r    { display:flex; gap:8px; align-items:center; }
+.btn-dl   { padding:6px 14px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:5px; }
+.btn-dl:hover { opacity:.85; }
+.btn-blue  { background:var(--blue); color:#fff; }
+.btn-slate { background:#334155; color:#fff; }
+
+/* TABS */
+.tabs-bar { background:var(--surface); border-bottom:1px solid var(--border); padding:0 28px; display:flex; gap:0; }
+.tab { padding:12px 18px; font-size:13px; font-weight:600; color:var(--muted); border-bottom:2px solid transparent; cursor:pointer; display:flex; align-items:center; gap:6px; }
+.tab:hover { color:var(--text); }
+.tab.on { color:var(--blue); border-bottom-color:var(--blue); }
+.tab-count { background:#f1f5f9; border-radius:20px; padding:1px 7px; font-size:10px; font-weight:700; }
+
+/* MAIN */
+.main { max-width:1360px; margin:0 auto; padding:20px 24px; }
+.panel { display:none; }
+.panel.on { display:block; }
+
+/* STATS ROW */
+.stats { display:grid; grid-template-columns:repeat(6,1fr); gap:10px; margin-bottom:18px; }
+.stat { background:var(--surface); border-radius:10px; padding:12px 10px; text-align:center; border:1px solid var(--border); }
+.stat-n { font-size:26px; font-weight:800; line-height:1; }
+.stat-l { font-size:10px; color:var(--muted); margin-top:3px; text-transform:uppercase; letter-spacing:.06em; font-weight:600; }
+.s-tot .stat-n { color:var(--navy); }
+.s-app .stat-n { color:var(--blue); }
+.s-int .stat-n { color:var(--purple); }
+.s-off .stat-n { color:var(--green); }
+.s-rej .stat-n { color:var(--red); }
+.s-eva .stat-n { color:var(--amber); }
+
+/* CARD */
+.card { background:var(--surface); border-radius:10px; border:1px solid var(--border); margin-bottom:16px; overflow:hidden; }
+.card-hdr { padding:14px 18px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); }
+.card-title { font-size:14px; font-weight:700; color:var(--navy); display:flex; align-items:center; gap:8px; }
+
+/* TOOLBAR */
+.toolbar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.search-box { padding:6px 12px; border:1px solid var(--border); border-radius:6px; font-size:13px; background:#f8fafc; width:220px; outline:none; }
+.search-box:focus { border-color:var(--blue); background:#fff; }
+.ftab { padding:4px 12px; border-radius:20px; border:1px solid var(--border); font-size:12px; font-weight:600; cursor:pointer; background:#fff; color:var(--muted); }
+.ftab:hover { border-color:var(--blue); color:var(--blue); }
+.ftab.on { background:var(--blue); color:#fff; border-color:var(--blue); }
+
+/* REFRESH BTN */
+.btn-refresh { padding:6px 14px; background:#0f172a; color:#fff; border:none; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; }
+.btn-refresh:hover { background:#1e293b; }
+.btn-refresh:disabled { opacity:.5; cursor:not-allowed; }
+.spin { display:inline-block; animation:spin .8s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+.last-scan { font-size:11px; color:var(--muted); }
+
+/* TABLE */
+.tbl-wrap { overflow-x:auto; }
+table { width:100%; border-collapse:collapse; }
+thead { background:#f8fafc; }
+th { padding:8px 14px; text-align:left; font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; border-bottom:1px solid var(--border); white-space:nowrap; }
+td { padding:9px 14px; font-size:13px; border-bottom:1px solid #f1f5f9; vertical-align:middle; }
+tr:last-child td { border-bottom:none; }
+tbody tr:hover td { background:#f8fafc; }
+.co { font-weight:700; color:var(--navy); }
+.ro { color:#334155; }
+td a { color:var(--blue); text-decoration:none; }
+td a:hover { text-decoration:underline; }
+.loc { font-size:11px; color:var(--muted); }
+
+/* STAR */
+.star { color:#f59e0b; font-size:14px; }
+.star-empty { color:#e2e8f0; font-size:14px; }
+
+/* BADGE */
+.badge { display:inline-block; padding:2px 8px; border-radius:12px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; white-space:nowrap; }
+.b-Applied   { background:#dbeafe; color:#1d4ed8; }
+.b-Interview { background:#ede9fe; color:#7c3aed; }
+.b-Offer     { background:#dcfce7; color:#16a34a; }
+.b-Rejected  { background:#fee2e2; color:#dc2626; }
+.b-Discarded { background:#f1f5f9; color:#64748b; }
+.b-Evaluated { background:#fef3c7; color:#d97706; }
+.b-SKIP      { background:#f1f5f9; color:#94a3b8; }
+.b-Remote    { background:#dcfce7; color:#15803d; }
+.b-MN        { background:#dbeafe; color:#1e40af; }
+
+/* ACTION BTNS */
+.btn-apply { padding:4px 10px; background:var(--blue); color:#fff; border:none; border-radius:5px; font-size:11px; font-weight:600; cursor:pointer; }
+.btn-apply:hover { background:#1d4ed8; }
+.btn-skip  { padding:4px 10px; background:#f1f5f9; color:var(--muted); border:none; border-radius:5px; font-size:11px; font-weight:600; cursor:pointer; }
+.btn-skip:hover { background:#e2e8f0; }
+.btn-del   { background:none; border:none; color:#cbd5e1; cursor:pointer; padding:3px 7px; border-radius:4px; font-size:13px; }
+.btn-del:hover { background:#fee2e2; color:var(--red); }
+
+/* FORM */
+.form-row { display:grid; grid-template-columns:1.4fr 1.4fr 2fr 1fr 1.2fr 1.8fr auto; gap:10px; align-items:end; padding:16px 18px; }
+.fg label { display:block; font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:4px; }
+input, select { width:100%; padding:7px 10px; border:1px solid var(--border); border-radius:6px; font-size:13px; color:var(--text); background:#f8fafc; outline:none; }
+input:focus, select:focus { border-color:var(--blue); background:#fff; }
+.btn-add { padding:7px 18px; background:var(--blue); color:#fff; border:none; border-radius:6px; font-size:13px; font-weight:700; cursor:pointer; height:35px; }
+.btn-add:hover { background:#1d4ed8; }
+
+/* STATUS SELECT */
+.st-sel { font-size:11px; padding:3px 6px; border-radius:6px; border:1px solid var(--border); background:#fff; cursor:pointer; max-width:110px; }
+
+/* EMPTY */
+.empty { text-align:center; padding:48px 24px; color:var(--muted); }
+.empty .ico { font-size:36px; margin-bottom:10px; }
+
+/* RECOMMENDED SECTION */
+.rec-label { font-size:10px; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:.08em; padding:8px 14px 4px; background:#fffbeb; border-bottom:1px solid #fef3c7; }
+
+/* LOCATION TAG */
+.loc-tag { display:inline-block; padding:1px 6px; border-radius:4px; font-size:10px; font-weight:600; }
+.loc-remote { background:#dcfce7; color:#15803d; }
+.loc-mn     { background:#dbeafe; color:#1e40af; }
+.loc-other  { background:#f1f5f9; color:#475569; }
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-l">
+    <h1>Basheer Khan — Job Tracker</h1>
+    <p>Pipeline auto-refreshes every 10 min &bull; Location filter: Remote US &amp; MN in-person</p>
+  </div>
+  <div class="hdr-r">
+    <a class="btn-dl btn-blue"  href="basheer-khan-carlson.pdf"  target="_blank">&#8659; Carlson Resume</a>
+    <a class="btn-dl btn-slate" href="basheer-khan-augsburg.pdf" target="_blank">&#8659; Augsburg Resume</a>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-bar">
+  <div class="tab on" id="t-pipeline" onclick="showTab('pipeline')">
+    Job Pipeline <span class="tab-count" id="tc-pipeline">—</span>
+  </div>
+  <div class="tab" id="t-apps" onclick="showTab('apps')">
+    My Applications <span class="tab-count" id="tc-apps">0</span>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- ══ PIPELINE PANEL ══ -->
+  <div class="panel on" id="panel-pipeline">
+
+    <!-- resume downloads -->
+    <div class="card" style="padding:16px 20px; margin-bottom:16px; background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%); border:none;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+        <div>
+          <div style="font-size:14px; font-weight:700; color:#fff; margin-bottom:3px;">My Resumes</div>
+          <div style="font-size:12px; color:#94a3b8;">Download and send directly to employers</div>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a href="basheer-khan-carlson.pdf" download="Basheer_Khan_Carlson_Resume.pdf"
+             style="padding:9px 18px; background:#2563eb; color:#fff; border-radius:7px; text-decoration:none; font-size:13px; font-weight:700; display:inline-flex; align-items:center; gap:6px;">
+            &#8659; Carlson Resume
+          </a>
+          <a href="basheer-khan-augsburg.pdf" download="Basheer_Khan_Augsburg_Resume.pdf"
+             style="padding:9px 18px; background:#334155; color:#fff; border-radius:7px; text-decoration:none; font-size:13px; font-weight:700; display:inline-flex; align-items:center; gap:6px;">
+            &#8659; Augsburg Resume
+          </a>
+          <a href="basheer-khan-carlson.pdf" target="_blank"
+             style="padding:9px 18px; background:rgba(255,255,255,0.1); color:#e2e8f0; border-radius:7px; text-decoration:none; font-size:13px; font-weight:600; display:inline-flex; align-items:center; gap:6px; border:1px solid rgba(255,255,255,0.2);">
+            &#128065; Preview Carlson
+          </a>
+          <a href="basheer-khan-augsburg.pdf" target="_blank"
+             style="padding:9px 18px; background:rgba(255,255,255,0.1); color:#e2e8f0; border-radius:7px; text-decoration:none; font-size:13px; font-weight:600; display:inline-flex; align-items:center; gap:6px; border:1px solid rgba(255,255,255,0.2);">
+            &#128065; Preview Augsburg
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- toolbar -->
+    <div class="card" style="padding:14px 18px; margin-bottom:16px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+        <div class="toolbar">
+          <input class="search-box" id="pipe-search" placeholder="Search company or role…" oninput="renderPipeline()">
+          <button class="ftab"    id="pf-intern" onclick="setPFilter('intern',this)">🎓 Internships</button>
+          <button class="ftab on" id="pf-all"    onclick="setPFilter('all',this)">All</button>
+          <button class="ftab"    id="pf-remote" onclick="setPFilter('remote',this)">Remote</button>
+          <button class="ftab"    id="pf-mn"     onclick="setPFilter('mn',this)">MN / Nearby</button>
+          <button class="ftab"    id="pf-rec"    onclick="setPFilter('rec',this)">⭐ Recommended</button>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="last-scan" id="last-scan-label"></span>
+          <button class="btn-refresh" id="btn-refresh" onclick="doRefresh()">
+            <span id="refresh-ico">&#8635;</span> Refresh Jobs
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- pipeline table -->
+    <div class="card">
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Company</th>
+              <th>Role</th>
+              <th>Location</th>
+              <th>Link</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="pipe-body"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="pipe-empty" style="display:none">
+        <div class="ico">&#128203;</div>
+        <p>No jobs match. Try refreshing or changing the filter.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MY APPLICATIONS PANEL ══ -->
+  <div class="panel" id="panel-apps">
+
+    <!-- stats -->
+    <div class="stats">
+      <div class="stat s-tot"><div class="stat-n" id="sn-tot">0</div><div class="stat-l">Total</div></div>
+      <div class="stat s-app"><div class="stat-n" id="sn-app">0</div><div class="stat-l">Applied</div></div>
+      <div class="stat s-int"><div class="stat-n" id="sn-int">0</div><div class="stat-l">Interview</div></div>
+      <div class="stat s-off"><div class="stat-n" id="sn-off">0</div><div class="stat-l">Offer</div></div>
+      <div class="stat s-rej"><div class="stat-n" id="sn-rej">0</div><div class="stat-l">Rejected</div></div>
+      <div class="stat s-eva"><div class="stat-n" id="sn-eva">0</div><div class="stat-l">Evaluated</div></div>
+    </div>
+
+    <!-- add form -->
+    <div class="card">
+      <div class="card-hdr"><div class="card-title">+ Add Application</div></div>
+      <div class="form-row">
+        <div class="fg"><label>Company</label><input id="fc" placeholder="e.g. Google"></div>
+        <div class="fg"><label>Role</label><input id="fr" placeholder="e.g. Data Analyst"></div>
+        <div class="fg"><label>Job URL</label><input id="fu" type="url" placeholder="https://…"></div>
+        <div class="fg"><label>Date</label><input id="fd" type="date"></div>
+        <div class="fg"><label>Status</label>
+          <select id="fs">
+            <option>Applied</option><option>Evaluated</option><option>Interview</option>
+            <option>Offer</option><option>Rejected</option><option>Discarded</option><option>SKIP</option>
+          </select>
+        </div>
+        <div class="fg"><label>Notes</label><input id="fn" placeholder="Any notes…"></div>
+        <button class="btn-add" onclick="addApp()">Add</button>
+      </div>
+    </div>
+
+    <!-- apps table -->
+    <div class="card" style="overflow:hidden;">
+      <div class="card-hdr">
+        <div class="toolbar" id="app-filters">
+          <button class="ftab on" onclick="setAFilter('All',this)">All</button>
+          <button class="ftab" onclick="setAFilter('Applied',this)">Applied</button>
+          <button class="ftab" onclick="setAFilter('Interview',this)">Interview</button>
+          <button class="ftab" onclick="setAFilter('Offer',this)">Offer &#127881;</button>
+          <button class="ftab" onclick="setAFilter('Evaluated',this)">Evaluated</button>
+          <button class="ftab" onclick="setAFilter('Rejected',this)">Rejected</button>
+        </div>
+        <span class="last-scan" id="app-count-label"></span>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>#</th><th>Date</th><th>Company</th><th>Role</th><th>Link</th><th>Status</th><th>Notes</th><th></th></tr>
+          </thead>
+          <tbody id="app-body"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="app-empty" style="display:none">
+        <div class="ico">&#128203;</div>
+        <p>No applications yet — add your first above or click Apply on a pipeline job.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── RECOMMENDED JOBS ────────────────────────────────────────────────
+const RECOMMENDED = [
+  // ── Internships (MIS / Analytics aligned) ──
+  { company:"Double Good",  role:"Data Analyst Intern",              location:"Elmhurst, IL",   url:"https://job-boards.greenhouse.io/doublegood/jobs/5832697004" },
+  { company:"Voltus",       role:"Data Analyst Intern",              location:"Remote (US)",    url:"https://jobs.lever.co/voltus/d30b5349-1023-497f-a5e5-264204071235" },
+  { company:"Rackner",      role:"Business Analyst Intern",          location:"Remote (US)",    url:"https://job-boards.greenhouse.io/rackner/jobs/4323514005" },
+  { company:"Robyn AI",     role:"Data Analyst Intern",              location:"Remote (US)",    url:"https://jobs.ashbyhq.com/m13/2ed7a1e6-ff5b-412d-8006-c5b0edb7f304" },
+  // ── Full-time / Other ──
+  { company:"Resend",    role:"Data Analyst, Trust & Safety",          location:"Remote (Americas)", url:"https://jobs.ashbyhq.com/resend/7c0abe7b-04a4-4876-9803-7c07acc869d1" },
+  { company:"Clay Labs", role:"Data Analyst",                           location:"New York, NY",       url:"https://jobs.ashbyhq.com/claylabs/31d3597f-400e-4c12-9692-a5fb6f5e0d03" },
+  { company:"Hightouch", role:"AI Operations, GTM",                     location:"Remote (US)",        url:"https://job-boards.greenhouse.io/hightouch/jobs/5823552004" },
+  { company:"Legora",    role:"Data Analyst – GTM & Customer Success",  location:"New York City",      url:"https://jobs.ashbyhq.com/legora/acb1e41e-606d-44e1-a7d9-8486b416dabd" },
+  { company:"Hootsuite", role:"Associate Product Manager",              location:"Toronto / London",   url:"https://careers.hootsuite.com/job/?gh_jid=7800234" },
+  { company:"Klaviyo",   role:"Compliance Operations Analyst",          location:"Denver, CO",         url:"https://www.klaviyo.com/careers/jobs?gh_jid=7723889003" },
+  { company:"Decagon",   role:"Revenue Operations & Systems Associate", location:"San Francisco, CA",  url:"https://jobs.ashbyhq.com/decagon/846db0ad-5a77-4993-b409-763aef27b68d" },
+  { company:"Intercom",  role:"Senior GTM Data Analyst",               location:"Chicago, IL",        url:"https://job-boards.greenhouse.io/intercom/jobs/7851785" },
+];
+const REC_URLS = new Set(RECOMMENDED.map(j => j.url));
+
+// ── STATE ────────────────────────────────────────────────────────────
+const STATUSES = ['Applied','Evaluated','Interview','Offer','Rejected','Discarded','SKIP'];
+let pipelineJobs = [];
+let pipeFilter   = 'all';
+let appFilter    = 'All';
+let apps         = JSON.parse(localStorage.getItem('bk-jobs') || '[]');
+let lastScan     = localStorage.getItem('bk-last-scan') || null;
+
+// ── UTILS ────────────────────────────────────────────────────────────
+const today = () => new Date().toISOString().slice(0,10);
+const save  = () => localStorage.setItem('bk-jobs', JSON.stringify(apps));
+const esc   = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+function locTag(loc) {
+  if (!loc) return '';
+  const l = loc.toLowerCase();
+  if (l.includes('remote'))                              return `<span class="loc-tag loc-remote">Remote</span>`;
+  if (l.includes('minnesota')||l.includes('minneapolis')||l.includes('st. paul')||l.includes('twin cities'))
+                                                         return `<span class="loc-tag loc-mn">MN</span>`;
+  return `<span class="loc-tag loc-other">${esc(loc)}</span>`;
+}
+
+function inferLoc(job) {
+  // Try to infer location from role/company text heuristics
+  const r = (job.role||'').toLowerCase();
+  const c = (job.company||'').toLowerCase();
+  if (r.includes('remote')||c.includes('remote')) return 'Remote';
+  return '';
+}
+
+// ── TABS ─────────────────────────────────────────────────────────────
+function showTab(t) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
+  document.getElementById('panel-'+t).classList.add('on');
+  document.getElementById('t-'+t).classList.add('on');
+}
+
+// ── PIPELINE ─────────────────────────────────────────────────────────
+async function loadPipeline() {
+  try {
+    const res = await fetch('/api/jobs');
+    if (!res.ok) throw new Error();
+    pipelineJobs = await res.json();
+    document.getElementById('tc-pipeline').textContent = pipelineJobs.length;
+    renderPipeline();
+  } catch {
+    // Server not running — show recommended only
+    pipelineJobs = [];
+    renderPipeline();
+  }
+}
+
+function setPFilter(f, btn) {
+  pipeFilter = f;
+  document.querySelectorAll('[id^="pf-"]').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  renderPipeline();
+}
+
+const isInternship = j => {
+  const r = (j.role||'').toLowerCase();
+  return r.includes('intern') || r.includes('extern') || r.includes('co-op') || r.includes('coop') || r.includes('fellowship');
+};
+
+function renderPipeline() {
+  const q = (document.getElementById('pipe-search').value||'').toLowerCase();
+
+  // Build the full job list: internships → recommended → pipeline (deduped)
+  const recJobs  = RECOMMENDED.map(j => ({ ...j, _rec: true }));
+  const pipeOnly = pipelineJobs.filter(j => !REC_URLS.has(j.url));
+  const allJobs  = [...recJobs, ...pipeOnly];
+
+  // Filter
+  const filtered = allJobs.filter(j => {
+    if (q && !j.company.toLowerCase().includes(q) && !j.role.toLowerCase().includes(q)) return false;
+    if (pipeFilter === 'rec')    return !!j._rec;
+    if (pipeFilter === 'intern') return isInternship(j);
+    if (pipeFilter === 'remote') {
+      const loc = (j.location||'').toLowerCase();
+      return loc.includes('remote') || loc.includes('anywhere') || loc.includes('us');
+    }
+    if (pipeFilter === 'mn') {
+      const loc = (j.location||'').toLowerCase();
+      return loc.includes('minnesota')||loc.includes('minneapolis')||loc.includes('st. paul')||
+             loc.includes('twin cities')||loc.includes('chicago')||loc.includes('milwaukee');
+    }
+    return true;
+  });
+
+  // Sort: internships always first, then recommended, then others
+  filtered.sort((a, b) => {
+    const ai = isInternship(a) ? 0 : (a._rec ? 1 : 2);
+    const bi = isInternship(b) ? 0 : (b._rec ? 1 : 2);
+    return ai - bi;
+  });
+
+  const tbody = document.getElementById('pipe-body');
+  const empty = document.getElementById('pipe-empty');
+
+  if (filtered.length === 0) { tbody.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display = 'none';
+
+  let html = '';
+  let section = null;
+
+  filtered.forEach((j) => {
+    const jSection = isInternship(j) ? 'intern' : (j._rec ? 'rec' : 'pipe');
+    if (jSection !== section) {
+      section = jSection;
+      if (jSection === 'intern') {
+        html += `<tr><td colspan="6" style="padding:8px 14px 4px; font-size:10px; font-weight:700; color:#7c3aed; text-transform:uppercase; letter-spacing:.08em; background:#ede9fe; border-bottom:1px solid #ddd6fe;">🎓 Internships &amp; Externships — Apply First</td></tr>`;
+      } else if (jSection === 'rec') {
+        html += `<tr><td colspan="6" class="rec-label">⭐ Recommended — Apply to these first</td></tr>`;
+      } else {
+        html += `<tr><td colspan="6" style="padding:6px 14px 3px; font-size:10px; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:.08em; background:#f8fafc; border-bottom:1px solid #e2e8f0;">All Pipeline Jobs</td></tr>`;
+      }
+    }
+
+    const star = isInternship(j) ? '<span style="color:#7c3aed;font-size:14px">🎓</span>' : (j._rec ? '<span class="star">★</span>' : '<span class="star-empty">★</span>');
+    const loc  = j.location || inferLoc(j);
+    const isApplied = apps.some(a => a.url === j.url);
+
+    html += `<tr>
+      <td style="width:28px">${star}</td>
+      <td class="co">${esc(j.company)}</td>
+      <td class="ro">${esc(j.role)}</td>
+      <td>${locTag(loc)}</td>
+      <td><a href="${esc(j.url)}" target="_blank" rel="noopener">↗ View</a></td>
+      <td style="white-space:nowrap">
+        ${isApplied
+          ? `<span class="badge b-Applied">Applied ✓</span>`
+          : `<button class="btn-apply" onclick="quickApply(${JSON.stringify(esc(j.company))},${JSON.stringify(esc(j.role))},${JSON.stringify(esc(j.url))})">Mark Applied</button>
+             <button class="btn-skip" onclick="quickSkip(${JSON.stringify(esc(j.url))})" style="margin-left:4px">Skip</button>`
+        }
+      </td>
+    </tr>`;
+  });
+
+  tbody.innerHTML = html;
+  if (lastScan) {
+    const ago = Math.round((Date.now() - new Date(lastScan)) / 60000);
+    document.getElementById('last-scan-label').textContent = `Last scan: ${ago < 1 ? 'just now' : ago+'m ago'}`;
+  }
+}
+
+async function doRefresh() {
+  const btn = document.getElementById('btn-refresh');
+  const ico = document.getElementById('refresh-ico');
+  btn.disabled = true;
+  ico.innerHTML = '<span class="spin">⟳</span>';
+  btn.childNodes[1].textContent = ' Scanning…';
+
+  try {
+    const res = await fetch('/api/refresh', { method: 'POST' });
+    const data = await res.json();
+    if (data.ok) {
+      pipelineJobs = data.jobs;
+      lastScan = new Date().toISOString();
+      localStorage.setItem('bk-last-scan', lastScan);
+      document.getElementById('tc-pipeline').textContent = pipelineJobs.length;
+      renderPipeline();
+    }
+  } catch(e) {
+    alert('Could not connect to the server. Make sure it\'s running:\nbun ~/career-ops/server.mjs');
+  } finally {
+    btn.disabled = false;
+    ico.innerHTML = '&#8635;';
+    btn.childNodes[1].textContent = ' Refresh Jobs';
+  }
+}
+
+function quickApply(company, role, url) {
+  apps.unshift({ id:Date.now(), company, role, url, date:today(), status:'Applied', notes:'' });
+  save(); renderApps(); renderPipeline();
+  showTab('apps');
+}
+
+function quickSkip(url) {
+  apps.unshift({ id:Date.now(), company:'', role:'', url, date:today(), status:'SKIP', notes:'Skipped from pipeline' });
+  save(); renderPipeline();
+}
+
+// ── MY APPLICATIONS ──────────────────────────────────────────────────
+document.getElementById('fd').value = today();
+
+function addApp() {
+  const co = document.getElementById('fc').value.trim();
+  const ro = document.getElementById('fr').value.trim();
+  if (!co||!ro) { alert('Company and Role required.'); return; }
+  apps.unshift({ id:Date.now(), company:co, role:ro, url:document.getElementById('fu').value.trim(),
+    date:document.getElementById('fd').value||today(), status:document.getElementById('fs').value,
+    notes:document.getElementById('fn').value.trim() });
+  save(); renderApps(); renderPipeline();
+  ['fc','fr','fu','fn'].forEach(id => document.getElementById(id).value='');
+  document.getElementById('fd').value=today();
+  document.getElementById('fs').value='Applied';
+}
+
+function deleteApp(id) {
+  if (!confirm('Remove?')) return;
+  apps=apps.filter(a=>a.id!==id); save(); renderApps(); renderPipeline();
+}
+
+function updateStatus(id, s) {
+  const a=apps.find(a=>a.id===id); if(a){a.status=s; save(); renderApps();}
+}
+
+function setAFilter(f, btn) {
+  appFilter=f;
+  document.querySelectorAll('#app-filters .ftab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderApps();
+}
+
+function renderApps() {
+  const counts={Applied:0,Interview:0,Offer:0,Rejected:0,Evaluated:0};
+  apps.forEach(a=>{if(counts[a.status]!==undefined)counts[a.status]++;});
+  document.getElementById('sn-tot').textContent=apps.length;
+  document.getElementById('sn-app').textContent=counts.Applied;
+  document.getElementById('sn-int').textContent=counts.Interview;
+  document.getElementById('sn-off').textContent=counts.Offer;
+  document.getElementById('sn-rej').textContent=counts.Rejected;
+  document.getElementById('sn-eva').textContent=counts.Evaluated;
+  document.getElementById('tc-apps').textContent=apps.length;
+
+  const list = appFilter==='All' ? apps : apps.filter(a=>a.status===appFilter);
+  document.getElementById('app-count-label').textContent=`${list.length} application${list.length!==1?'s':''}`;
+
+  const tbody=document.getElementById('app-body');
+  const empty=document.getElementById('app-empty');
+  if(!list.length){tbody.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+
+  tbody.innerHTML=list.map((a,i)=>{
+    const opts=STATUSES.map(s=>`<option value="${s}"${s===a.status?' selected':''}>${s}</option>`).join('');
+    const link=a.url?`<a href="${esc(a.url)}" target="_blank" rel="noopener">↗ View</a>`:`<span style="color:#e2e8f0">—</span>`;
+    return `<tr>
+      <td style="color:#94a3b8;font-size:11px;width:28px">${i+1}</td>
+      <td style="white-space:nowrap;font-size:11px;color:#64748b">${a.date}</td>
+      <td class="co">${esc(a.company)}</td>
+      <td class="ro">${esc(a.role)}</td>
+      <td>${link}</td>
+      <td><select class="st-sel" onchange="updateStatus(${a.id},this.value)">${opts}</select></td>
+      <td class="loc" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(a.notes)||'<span style="color:#e2e8f0">—</span>'}</td>
+      <td><button class="btn-del" onclick="deleteApp(${a.id})">✕</button></td>
+    </tr>`;
+  }).join('');
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────
+loadPipeline();
+renderApps();
+</script>
+</body>
+</html>
