@@ -56,9 +56,9 @@ location_filter:
     - "Anywhere"
     - "Minnesota"
     - "Minneapolis"
-    - "Chicago"      # close enough, 6h drive
-    - "Milwaukee"
-    - "Madison"
+    - "St. Paul"
+    - "Saint Paul"
+    - "Twin Cities"
   block:
     - "India"
     - "Bengaluru"
@@ -101,40 +101,19 @@ location_filter:
 
 title_filter:
   positive:
-    # -- Internships & Entry Level --
+    # -- Internships (primary focus) --
     - "Intern"
     - "Internship"
+    - "Co-op"
+    - "Coop"
+    # -- Entry Level / Junior (MN or Remote only) --
     - "Entry Level"
     - "Entry-Level"
     - "Junior Analyst"
     - "Analyst I"
     - "Associate Analyst"
-    # -- Analytics & Data --
-    - "Data Analyst"
-    - "Business Analyst"
-    - "Product Analyst"
-    - "Analytics Analyst"
-    - "Marketing Analyst"
-    - "Operations Analyst"
-    - "Consumer Insights"
-    - "Insights Analyst"
-    - "Reporting Analyst"
-    - "BI Analyst"
-    - "Business Intelligence"
-    - "Data Specialist"
     - "Analytics Associate"
     - "Data Associate"
-    # -- Product --
-    - "Product Manager"
-    - "Associate Product Manager"
-    - "APM"
-    - "Product Operations"
-    # -- Strategy & Ops --
-    - "Strategy Analyst"
-    - "Operations Associate"
-    - "Business Operations"
-    - "Revenue Operations"
-    - "Sales Operations"
     # -- MIS & Business Analytics --
     - "Management Information Systems"
     - "MIS"
@@ -143,10 +122,15 @@ title_filter:
     - "Information Systems"
     - "IT Analyst"
     - "Technology Analyst"
-    - "Digital Analyst"
-    # -- AI / Tech adjacent --
-    - "AI Analyst"
-    - "AI Operations"
+    # -- Analytics & Data --
+    - "Data Analyst"
+    - "Business Analyst"
+    - "Business Intelligence"
+    - "BI Analyst"
+    - "Reporting Analyst"
+    - "Marketing Analyst"
+    - "Operations Analyst"
+    - "Insights Analyst"
     - "Data & Analytics"
   negative:
     - ".NET"
