@@ -361,7 +361,7 @@ function showTab(t) {
 // ── PIPELINE ─────────────────────────────────────────────────────────
 async function loadPipeline() {
   try {
-    const res = await fetch('/api/jobs');
+    const res = await fetch('./jobs.json');
     if (!res.ok) throw new Error();
     pipelineJobs = await res.json();
     document.getElementById('tc-pipeline').textContent = pipelineJobs.length;
@@ -467,29 +467,7 @@ function renderPipeline() {
 }
 
 async function doRefresh() {
-  const btn = document.getElementById('btn-refresh');
-  const ico = document.getElementById('refresh-ico');
-  btn.disabled = true;
-  ico.innerHTML = '<span class="spin">⟳</span>';
-  btn.childNodes[1].textContent = ' Scanning…';
-
-  try {
-    const res = await fetch('/api/refresh', { method: 'POST' });
-    const data = await res.json();
-    if (data.ok) {
-      pipelineJobs = data.jobs;
-      lastScan = new Date().toISOString();
-      localStorage.setItem('bk-last-scan', lastScan);
-      document.getElementById('tc-pipeline').textContent = pipelineJobs.length;
-      renderPipeline();
-    }
-  } catch(e) {
-    alert('Could not connect to the server. Make sure it\'s running:\nbun ~/career-ops/server.mjs');
-  } finally {
-    btn.disabled = false;
-    ico.innerHTML = '&#8635;';
-    btn.childNodes[1].textContent = ' Refresh Jobs';
-  }
+  alert('Auto-scan runs daily via GitHub Actions. New jobs appear here automatically each morning.');
 }
 
 function quickApply(company, role, url) {
