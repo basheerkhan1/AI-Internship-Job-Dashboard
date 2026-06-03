@@ -71,9 +71,15 @@ def is_mn_or_remote(loc: str) -> bool:
     return any(k in l for k in MN_KEYWORDS) or any(k in l for k in REMOTE_KEYWORDS)
 
 
+_INTERN_RE = re.compile(
+    r'\b(intern(?:ship)?|co[\s\-]?op|extern(?:ship)?|fellowship|'
+    r'summer\s+analyst|spring\s+analyst|winter\s+analyst|'
+    r'summer\s+associate|student\s+(worker|analyst)|practicum|apprentice)\b',
+    re.IGNORECASE
+)
+
 def is_internship(title: str) -> bool:
-    t = title.lower()
-    return any(k in t for k in INTERN_KEYWORDS)
+    return bool(_INTERN_RE.search(title or ''))
 
 
 def log(msg: str):
@@ -141,8 +147,8 @@ def scan_excel() -> list:
                 skipped_expired += 1
             continue
 
-        # Filter: internship type only (also include full-time from MN if relevant)
-        if 'internship' not in job_type and 'intern' not in title.lower():
+        # Filter: must be internship type OR title clearly says intern
+        if job_type.lower() not in ('internship', 'intern') and not is_internship(title):
             continue
 
         # Filter: MN or Remote

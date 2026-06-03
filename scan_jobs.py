@@ -1,81 +1,79 @@
 #!/usr/bin/env python3
 """
-scan_jobs.py — Minnesota & Remote Internship Scanner
-Searches Greenhouse, Ashby, Lever APIs + Indeed RSS + LinkedIn guest API
-Focuses exclusively on Minnesota (Twin Cities + state) and Remote US internships
-Includes small AND large companies
+scan_jobs.py — MN + Remote Internship Scanner for MIS / Business Analytics
+Sources: Greenhouse API, Ashby API, Lever API, Workday API, LinkedIn guest API
+Focus: Internships matching Basheer's major (MIS, Business Analytics, Data Analytics)
+       in Minnesota (Twin Cities area) and Remote US
 """
 
 import json
 import re
 import sys
 import time
-import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from urllib.parse import urlencode
+
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 JOBS_OUTPUT = "jobs.json"
 
-# ── Keyword filters ────────────────────────────────────────────────────────────
+# ── Internship filter (word-boundary regex — no false matches on "internal/external/international") ──
 
-INTERN_KEYWORDS = [
-    'intern', 'internship', 'co-op', 'coop', 'co op', 'extern', 'externship',
-    'fellowship', 'summer analyst', 'winter analyst', 'spring analyst',
-    'summer associate', 'student worker', 'practicum', 'apprentice'
-]
-
-MN_KEYWORDS = [
-    'minnesota', 'minneapolis', 'st. paul', 'saint paul', 'twin cities',
-    'duluth', 'rochester, mn', 'eden prairie', 'bloomington, mn', 'bloomington mn',
-    'plymouth, mn', 'maple grove', 'burnsville', 'woodbury', 'brooklyn park',
-    'eagan', 'blaine', 'lakeville', 'coon rapids', 'apple valley', ' mn ',
-    ', mn', ' mn,', 'minnetonka', 'richfield', 'st paul', 'maplewood mn',
-    'roseville mn', 'cottage grove', 'stillwater mn', 'shakopee', 'mankato',
-    'st cloud', 'golden valley', 'hopkins mn', 'inver grove'
-]
-
-REMOTE_KEYWORDS = [
-    'remote', 'work from home', 'wfh', 'distributed', 'anywhere in the us',
-    'anywhere in us', 'us remote', 'remote us', 'remote - us', 'remote (us)',
-    'remote, us', 'remote united states', 'fully remote', 'telecommute',
-    'remote / hybrid', 'hybrid remote', 'remote first', 'virtual'
-]
-
-# Block non-US international
-BLOCK_KEYWORDS = [
-    'india', 'bengaluru', 'hyderabad', 'pune', 'mumbai', 'delhi', 'chennai',
-    'united kingdom', 'london', 'germany', 'berlin', 'munich', 'france', 'paris',
-    'spain', 'barcelona', 'madrid', 'netherlands', 'amsterdam', 'sweden',
-    'stockholm', 'singapore', 'japan', 'tokyo', 'brazil', 'australia', 'sydney',
-    'philippines', 'manila', 'poland', 'warsaw', 'canada only', 'toronto',
-    'ontario', 'british columbia',
-]
-
-
-def is_mn_or_remote(location: str) -> bool:
-    if not location:
-        return True  # no location = don't exclude
-    loc = location.lower()
-    if any(kw in loc for kw in BLOCK_KEYWORDS):
-        return False
-    return any(kw in loc for kw in MN_KEYWORDS) or any(kw in loc for kw in REMOTE_KEYWORDS)
-
+_INTERN_RE = re.compile(
+    r'\b(intern(?:ship)?|co[\s\-]?op|extern(?:ship)?|fellowship|'
+    r'summer\s+analyst|spring\s+analyst|winter\s+analyst|'
+    r'summer\s+associate|student\s+(worker|analyst)|practicum|apprentice)\b',
+    re.IGNORECASE
+)
 
 def is_internship(title: str) -> bool:
-    t = title.lower()
-    return any(kw in t for kw in INTERN_KEYWORDS)
+    return bool(_INTERN_RE.search(title or ''))
 
+# ── Location filter ──────────────────────────────────────────────────────────
 
-# ── HTTP Session ───────────────────────────────────────────────────────────────
+MN_TERMS = [
+    'minnesota', 'minneapolis', 'st. paul', 'saint paul', 'twin cities',
+    'eden prairie', 'bloomington, mn', 'maple grove', 'burnsville',
+    'woodbury', 'brooklyn park', 'eagan', 'lakeville', 'apple valley',
+    ', mn', ' mn,', ' mn ', 'minnetonka', 'richfield', 'st paul',
+    'maplewood', 'roseville', 'golden valley', 'plymouth, mn',
+    'shoreview', 'wayzata', 'arden hills', 'inver grove', 'shakopee',
+    'brooklyn center', 'fridley', 'mendota', 'blaine', 'medina, mn',
+    'bayport, mn', 'duluth, mn',
+]
+REMOTE_TERMS = [
+    'remote', 'work from home', 'wfh', 'distributed', 'anywhere in the us',
+    'us remote', 'remote us', 'remote - us', 'remote (us)',
+    'remote, us', 'remote united states', 'fully remote', 'telecommute',
+    'virtual', 'remote / hybrid', 'hybrid remote', 'remote first',
+]
+BLOCK_TERMS = [
+    'india', 'bengaluru', 'hyderabad', 'pune', 'mumbai',
+    'united kingdom', 'london', 'germany', 'berlin', 'munich',
+    'france', 'paris', 'spain', 'netherlands', 'amsterdam',
+    'singapore', 'japan', 'tokyo', 'brazil', 'australia', 'sydney',
+    'philippines', 'poland', 'warsaw', 'canada only',
+]
+
+def is_mn_or_remote(loc: str) -> bool:
+    if not loc:
+        return True
+    l = loc.lower()
+    if any(b in l for b in BLOCK_TERMS):
+        return False
+    return any(t in l for t in MN_TERMS) or any(t in l for t in REMOTE_TERMS)
+
+def log(msg: str):
+    print(msg, flush=True)
+
+# ── HTTP session ─────────────────────────────────────────────────────────────
 
 def make_session():
     s = requests.Session()
-    retry = Retry(total=3, backoff_factor=0.4, status_forcelist=[429, 500, 502, 503, 504])
+    retry = Retry(total=2, backoff_factor=0.4, status_forcelist=[500, 502, 503, 504])
     s.mount('https://', HTTPAdapter(max_retries=retry))
-    s.mount('http://',  HTTPAdapter(max_retries=retry))
     s.headers.update({
         'User-Agent': (
             'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) '
@@ -87,431 +85,463 @@ def make_session():
 
 SESSION = make_session()
 
+def _now():
+    return datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 
-# ── Company lists ──────────────────────────────────────────────────────────────
+def _job(company, role, location, url, source):
+    return {
+        'company':  company.strip(),
+        'role':     role.strip(),
+        'location': location.strip() if location else '',
+        'url':      url.strip(),
+        'applied':  False,
+        'source':   source,
+        'scanned':  _now(),
+    }
 
-# Greenhouse ATS slugs — large + small companies that post MN and/or remote internships
+# ── Greenhouse ───────────────────────────────────────────────────────────────
+
 GREENHOUSE_SLUGS = [
-    # MN-headquartered / large MN presence
-    'target', 'bestbuy', 'generalmills', 'landolakes', 'jamf',
-    'arcticwolfnetworks', 'spscommerce', 'digitalriver', 'cargill',
-    'securian', 'ameriprise', 'healthcatalyst', 'wellbeam',
-    # National / remote-friendly tech
-    'figma', 'notion', 'stripe', 'brex', 'rippling', 'gusto', 'lattice',
-    'hightouch', 'doublegood', 'rackner', 'databricks', 'klaviyo', 'hubspot',
-    'amplitude', 'mixpanel', 'fullstory', 'alteryx', 'fivetran', 'airbyte',
-    'intercom', 'cockroachlabs', 'matillion', 'dbtlabs', 'dagsterlabs',
-    'montecarlodata', 'zapier', 'airtable', 'miro', 'mercury', 'pilot',
-    'deel', 'workos', 'datadog', 'cloudflare', 'confluent', 'elastic',
-    'splunk', 'pagerduty', 'atlassian', 'zendesk', 'freshworks',
-    'gong', 'outreach', 'salesloft', 'clari', 'chorus', 'mindtickle',
-    'heap', 'segment', 'drift', 'intercom', 'hotjar',
-    # AI/ML companies (many post remote internships)
-    'anthropic', 'cohere', 'scaleai', 'huggingface',
-    'weights-biases', 'arize', 'whylabs', 'gretel',
-    # Data/Analytics tools
-    'prefect', 'astronomer', 'meltano', 'dremio', 'starburst',
-    'paradime', 'transform', 'y42', 'datacoves',
-    # Finance tech
-    'plaid', 'carta', 'affirm', 'marqeta', 'brex',
-    # Healthcare tech (some MN)
-    'optum', 'wellbeam', 'wellskyhealth', 'healthcatalyst',
-    # Small/startup
-    'ramp', 'puzzle', 'replit', 'railway', 'modal',
-    'novu', 'trigger', 'inngest', 'liveblocks',
-    # MN small/mid companies
-    'logicgate', 'smartcare', 'daiohs', 'brightplan',
-    # Retail/Consumer (MN)
-    'target', 'mybella', 'caribou', 'dairyqueen',
+    # ── MN-headquartered / strong MN presence ──
+    'generalmills',       # General Mills, Golden Valley MN
+    'landolakes',         # Land O'Lakes, Arden Hills MN
+    'jamf',               # Jamf, Minneapolis MN
+    'arcticwolfnetworks', # Arctic Wolf, Eden Prairie MN
+    'spscommerce',        # SPS Commerce, Minneapolis MN
+    'digitalriver',       # Digital River, Minnetonka MN
+    'healthcatalyst',     # Health Catalyst, Minneapolis MN
+    'cariboucoffee',      # Caribou Coffee, Brooklyn Center MN
+    'securian',           # Securian Financial, St. Paul MN
+    'cargill',            # Cargill, Wayzata MN
+    'andersencorporation',# Andersen Windows, Bayport MN
+    'chsinc',             # CHS Inc., Inver Grove Heights MN
+    'allianzlife',        # Allianz Life, Minneapolis MN
+    'donaldson',          # Donaldson Company, Minneapolis MN
+    'graco',              # Graco, Minneapolis MN
+    # ── National analytics / data / MIS companies (remote-friendly) ──
+    'amplitude',          # Product analytics
+    'mixpanel',           # Product analytics
+    'heap',               # Product analytics
+    'fullstory',          # Digital experience analytics
+    'alteryx',            # Analytics platform
+    'databricks',         # Data lakehouse
+    'dbtlabs',            # dbt Labs, data transformation
+    'fivetran',           # ELT / data pipelines
+    'confluent',          # Kafka / data streaming
+    'elastic',            # Search & analytics
+    'datadog',            # Observability + analytics
+    'hashicorp',          # Infrastructure / data tooling
+    'starburst',          # Query engine / analytics
+    'dremio',             # Data lakehouse
+    'thoughtspot',        # Analytics
+    'sigma',              # Cloud analytics
+    'matillion',          # Data integration
+    'montecarlodata',     # Data observability
+    'atlan',              # Data catalog
+    # ── Business / ops / finance analytics (remote-friendly) ──
+    'stripe',             # Fintech
+    'brex',               # Corporate finance
+    'rippling',           # HR/Payroll/Analytics
+    'gusto',              # HR/Payroll analytics
+    'lattice',            # HR analytics
+    'carta',              # Cap table / finance analytics
+    'mercury',            # Business banking
+    'pilot',              # Finance ops
+    'ramp',               # Spend analytics
+    'workos',             # Auth / SaaS
+    'hubspot',            # CRM / marketing analytics
+    'klaviyo',            # Email analytics
+    'gong',               # Revenue analytics
+    'outreach',           # Sales analytics
+    'salesloft',          # Sales analytics
+    'clari',              # Revenue analytics
+    'hightouch',          # Reverse ETL / analytics
+    'rackner',            # Consulting, remote
+    'doublegood',         # Analytics internship poster
+    'cohere',             # AI / data
+    'anthropic',          # AI research
+    'scaleai',            # Data labeling / AI
+    # ── MN companies that sometimes post on Greenhouse ──
+    'bestbuy',            # Best Buy, Richfield MN
+    'target',             # Target, Minneapolis MN
+    'polaris',            # Polaris Industries, Medina MN
+    'sleepnumber',        # Sleep Number, Minneapolis MN
 ]
-
-# Remove duplicates while preserving order
-_seen = set()
-GREENHOUSE_SLUGS = [x for x in GREENHOUSE_SLUGS if not (x in _seen or _seen.add(x))]
-
-# Ashby ATS slugs
-ASHBY_SLUGS = [
-    'm13', 'resend', 'claylabs', 'legora', 'decagon', 'perplexityai',
-    'anysphere', 'hex', 'baseten', 'vanta', 'watershed', 'retool',
-    'loom', 'chargebee', 'census', 'brainfish', 'orb',
-    'temporal', 'humanloop', 'whylabs', 'gretel', 'trifacta',
-    'motherduck', 'evidence', 'hyperquery', 'lightdash',
-    'notdiamond', 'hatchet', 'trigger', 'resend', 'infisical',
-    'cortex', 'incident', 'fireworks', 'together', 'comet',
-    'neptune', 'apideck', 'prismatic', 'knock', 'courier',
-]
-
-# Remove duplicates
-_seen2 = set()
-ASHBY_SLUGS = [x for x in ASHBY_SLUGS if not (x in _seen2 or _seen2.add(x))]
-
-# Lever ATS slugs
-LEVER_SLUGS = [
-    'voltus', 'grammarly', 'coursera', 'duolingo', 'reddit',
-    'pinterest', 'carta', 'plaid', 'chime', 'robinhood',
-    'box', 'dropbox', 'docusign', 'postman',
-    'zendesk', 'intercom', 'drift',
-    'springhealth', 'cerebral', 'brightline',
-]
-
-# Indeed RSS feeds — MN and Remote specifically
-INDEED_FEEDS = [
-    ('https://www.indeed.com/rss?q=data+analyst+intern&l=Minnesota&sort=date&limit=25', 'MN'),
-    ('https://www.indeed.com/rss?q=business+analyst+intern&l=Minnesota&sort=date&limit=25', 'MN'),
-    ('https://www.indeed.com/rss?q=MIS+intern&l=Minnesota&sort=date&limit=25', 'MN'),
-    ('https://www.indeed.com/rss?q=information+systems+intern&l=Minnesota&sort=date&limit=25', 'MN'),
-    ('https://www.indeed.com/rss?q=business+intelligence+intern&l=Minnesota&sort=date&limit=25', 'MN'),
-    ('https://www.indeed.com/rss?q=data+analytics+intern&l=Minnesota&sort=date&limit=25', 'MN'),
-    ('https://www.indeed.com/rss?q=operations+analyst+intern&l=Minnesota&sort=date&limit=25', 'MN'),
-    ('https://www.indeed.com/rss?q=systems+analyst+intern&l=Minnesota&sort=date&limit=25', 'MN'),
-    ('https://www.indeed.com/rss?q=data+analyst+intern&l=Remote&sort=date&limit=25', 'Remote'),
-    ('https://www.indeed.com/rss?q=business+analyst+intern&l=Remote&sort=date&limit=25', 'Remote'),
-    ('https://www.indeed.com/rss?q=data+analytics+intern&l=Remote&sort=date&limit=25', 'Remote'),
-    ('https://www.indeed.com/rss?q=MIS+internship&l=Remote&sort=date&limit=25', 'Remote'),
-    ('https://www.indeed.com/rss?q=business+intelligence+internship&l=Remote&sort=date&limit=25', 'Remote'),
-]
-
-# LinkedIn guest API search configurations
-LINKEDIN_SEARCHES = [
-    {'keywords': 'data analyst intern', 'location': 'Minneapolis, Minnesota, United States'},
-    {'keywords': 'business analyst intern', 'location': 'Minneapolis, Minnesota, United States'},
-    {'keywords': 'data analytics internship', 'location': 'Minnesota, United States'},
-    {'keywords': 'MIS intern', 'location': 'Minnesota, United States'},
-    {'keywords': 'information systems intern', 'location': 'Minnesota, United States'},
-    {'keywords': 'business intelligence intern', 'location': 'Minnesota, United States'},
-    {'keywords': 'data analyst internship remote', 'location': 'United States', 'f_WT': '2'},
-    {'keywords': 'business analyst intern remote', 'location': 'United States', 'f_WT': '2'},
-    {'keywords': 'data analytics intern remote', 'location': 'United States', 'f_WT': '2'},
-    {'keywords': 'MIS business analytics intern', 'location': 'United States', 'f_WT': '2'},
-]
-
-
-# ── Fetchers ───────────────────────────────────────────────────────────────────
 
 def fetch_greenhouse(slug: str) -> list:
     try:
-        url = f'https://boards-api.greenhouse.io/v1/boards/{slug}/jobs'
-        resp = SESSION.get(url, timeout=10)
-        if resp.status_code != 200:
+        r = SESSION.get(
+            f'https://boards-api.greenhouse.io/v1/boards/{slug}/jobs',
+            timeout=10
+        )
+        if r.status_code != 200:
             return []
-        data = resp.json()
-        company_name = data.get('company', {}).get('name', slug.replace('-', ' ').title())
-        jobs = data.get('jobs', [])
+        data = r.json()
+        company_name = (data.get('company') or {}).get('name') or slug.replace('-', ' ').title()
         results = []
-        for j in jobs:
+        for j in (data.get('jobs') or []):
             title = j.get('title', '')
             if not is_internship(title):
                 continue
-            offices = j.get('offices', [])
+            offices = j.get('offices') or []
             loc = ', '.join(o.get('name', '') for o in offices if o.get('name'))
             if not loc:
-                loc = j.get('location', {}).get('name', '') if isinstance(j.get('location'), dict) else ''
+                loc_obj = j.get('location') or {}
+                loc = loc_obj.get('name', '') if isinstance(loc_obj, dict) else ''
             if not is_mn_or_remote(loc):
                 continue
-            job_url = j.get('absolute_url', '')
-            if not job_url:
+            url = j.get('absolute_url', '')
+            if not url:
                 continue
-            results.append({
-                'company': company_name,
-                'role': title,
-                'location': loc or 'Remote',
-                'url': job_url,
-                'source': 'greenhouse',
-            })
+            results.append(_job(company_name, title, loc or 'Remote', url, 'greenhouse'))
         return results
     except Exception as e:
-        print(f'  [greenhouse] {slug}: {e}', file=sys.stderr)
+        log(f'  [greenhouse] {slug}: {e}')
         return []
 
+# ── Ashby ────────────────────────────────────────────────────────────────────
+
+ASHBY_SLUGS = [
+    'm13',          # M13 / Robyn AI — data analyst intern
+    'resend',       # Resend — email infra analytics
+    'claylabs',     # Clay Labs — data analytics
+    'legora',       # Legora — data analytics
+    'decagon',      # Decagon — ops/analytics
+    'perplexityai', # Perplexity AI
+    'anysphere',    # Cursor / AI
+    'hex',          # Hex — collaborative analytics notebooks
+    'baseten',      # Baseten — ML infra
+    'vanta',        # Vanta — compliance analytics
+    'watershed',    # Watershed — climate analytics
+    'retool',       # Retool — internal tools
+    'lightdash',    # Lightdash — BI / analytics
+    'motherduck',   # MotherDuck — data warehouse
+    'evidence',     # Evidence — analytics dashboards
+    'hyperquery',   # HyperQuery — analytics
+    'cortex',       # Cortex — platform analytics
+    'hatchet',      # Hatchet — workflow engine
+    'fireworks',    # Fireworks AI
+    'together',     # Together AI
+    'comet',        # Comet — ML experiment tracking
+    'whylabs',      # WhyLabs — data observability
+    'gretel',       # Gretel — synthetic data
+    'modal',        # Modal — cloud compute
+    'prefect',      # Prefect — data workflows
+    'astronomer',   # Astronomer — Airflow
+    'census',       # Census — reverse ETL
+    'chargebee',    # Chargebee — subscription analytics
+]
 
 def fetch_ashby(slug: str) -> list:
     try:
-        url = f'https://api.ashbyhq.com/posting-api/job-board/{slug}'
-        resp = SESSION.get(url, timeout=10)
-        if resp.status_code != 200:
+        r = SESSION.get(
+            f'https://api.ashbyhq.com/posting-api/job-board/{slug}',
+            timeout=10
+        )
+        if r.status_code != 200:
             return []
-        data = resp.json()
-        company_name = data.get('organization', {}).get('name', slug.replace('-', ' ').title())
-        postings = data.get('jobPostings', [])
+        data = r.json()
+        company_name = (data.get('organization') or {}).get('name') or slug.title()
+        results = []
+        for j in (data.get('jobPostings') or []):
+            title = j.get('title', '')
+            if not is_internship(title):
+                continue
+            loc = j.get('location') or j.get('locationName') or ''
+            if not is_mn_or_remote(loc):
+                continue
+            url = j.get('jobUrl') or j.get('applyUrl') or ''
+            if not url:
+                continue
+            results.append(_job(company_name, title, loc or 'Remote', url, 'ashby'))
+        return results
+    except Exception as e:
+        log(f'  [ashby] {slug}: {e}')
+        return []
+
+# ── Lever ────────────────────────────────────────────────────────────────────
+
+LEVER_SLUGS = [
+    'voltus',       # Energy data analytics
+    'grammarly',    # Writing analytics
+    'coursera',     # EdTech analytics
+    'duolingo',     # EdTech analytics
+    'reddit',       # Data analytics
+    'pinterest',    # Data analytics
+    'carta',        # Finance analytics
+    'plaid',        # Fintech analytics
+    'chime',        # Fintech
+    'robinhood',    # Fintech analytics
+    'box',          # Cloud storage analytics
+    'dropbox',      # Cloud storage
+    'postman',      # API analytics
+    'springhealth', # Mental health
+    'cerebral',     # Healthcare analytics
+    'quora',        # Knowledge analytics
+    'mparticle',    # Customer data platform
+    'surveymonkey', # Survey analytics
+    'zendesk',      # CX analytics
+    'intercom',     # Customer messaging analytics
+    'driftt',       # Conversational marketing
+    'lob',          # Direct mail analytics
+]
+
+def fetch_lever(slug: str) -> list:
+    try:
+        r = SESSION.get(
+            f'https://api.lever.co/v0/postings/{slug}?mode=json&limit=500',
+            timeout=10
+        )
+        if r.status_code != 200:
+            return []
+        results = []
+        for j in (r.json() or []):
+            title = j.get('text', '')
+            if not is_internship(title):
+                continue
+            cats = j.get('categories') or {}
+            locs = cats.get('allLocations') or []
+            loc = locs[0] if locs else cats.get('location', '')
+            if not is_mn_or_remote(loc):
+                continue
+            url = j.get('hostedUrl') or j.get('applyUrl') or ''
+            if not url:
+                continue
+            company = j.get('company') or slug.replace('-', ' ').title()
+            results.append(_job(company, title, loc or 'Remote', url, 'lever'))
+        return results
+    except Exception as e:
+        log(f'  [lever] {slug}: {e}')
+        return []
+
+# ── Workday (major MN employers) ─────────────────────────────────────────────
+# These are the big MN companies that don't use Greenhouse/Ashby/Lever
+
+WORKDAY_COMPANIES = [
+    # (display_name, tenant, wd_host, career_path)
+    ('Target',           'target',        'wd5', 'targetcareers'),
+    ('Best Buy',         'bestbuy',       'wd5', 'bestbuy_careers'),
+    ('Medtronic',        'medtronic',     'wd1', 'medtronic_careers'),
+    ('US Bank',          'usbank',        'wd5', 'US_Bank_Careers'),
+    ('3M',               '3m',            'wd1', '3M'),
+    ('Ameriprise',       'ameriprise',    'wd5', 'ameriprise_careers'),
+    ('Piper Sandler',    'pipersandler',  'wd501','Piper_Sandler_Careers'),
+    ('Allianz Life',     'allianzlife',   'wd3', 'Allianz_External_Careers'),
+    ('Polaris',          'polarisinc',    'wd5', 'Polaris_Careers'),
+    ('Toro Company',     'thetorocompany','wd5', 'thetorocompany'),
+    ('Andersen Windows', 'andersenwindows','wd5','Andersen_External_Careers'),
+    ('Sleep Number',     'sleepnumber',   'wd5', 'sleepnumber_careers'),
+    ('Wells Fargo',      'wellsfargo',    'wd5', 'Wells_Fargo_External'),
+    ('UnitedHealth',     'uhg',           'wd5', 'corporateUHC'),
+    ('Optum',            'uhg',           'wd5', 'Optum'),
+    ('Ecolab',           'ecolab',        'wd5', 'ecolab_careers'),
+    ('Xcel Energy',      'xcelenergy',    'wd5', 'XcelEnergy'),
+    ('CHS Inc.',         'chsinc',        'wd5', 'CHS'),
+]
+
+def fetch_workday(display_name: str, tenant: str, wd_host: str, career_path: str) -> list:
+    """Query Workday's internal JSON API for intern postings."""
+    api_url = f'https://{tenant}.{wd_host}.myworkdayjobs.com/wday/cxs/{tenant}/{career_path}/jobs'
+    payload = {
+        'appliedFacets': {},
+        'limit': 20,
+        'offset': 0,
+        'searchText': 'intern',
+    }
+    headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'X-Calypso-CSRF-Token': '1',
+    }
+    try:
+        r = SESSION.post(api_url, json=payload, headers=headers, timeout=12)
+        if r.status_code not in (200, 201):
+            return []
+        data = r.json()
+        postings = data.get('jobPostings') or []
         results = []
         for j in postings:
             title = j.get('title', '')
             if not is_internship(title):
                 continue
-            loc = j.get('location', '') or j.get('locationName', '') or ''
+            loc = j.get('locationsText') or j.get('locations') or ''
+            if isinstance(loc, list):
+                loc = ', '.join(loc)
             if not is_mn_or_remote(loc):
                 continue
-            job_url = j.get('jobUrl', '') or j.get('applyUrl', '')
-            if not job_url:
-                continue
-            results.append({
-                'company': company_name,
-                'role': title,
-                'location': loc or 'Remote',
-                'url': job_url,
-                'source': 'ashby',
-            })
+            ext_path = j.get('externalPath') or ''
+            url = f'https://{tenant}.{wd_host}.myworkdayjobs.com/{career_path}{ext_path}' if ext_path else api_url
+            results.append(_job(display_name, title, loc or 'Minnesota', url, 'workday'))
         return results
     except Exception as e:
-        print(f'  [ashby] {slug}: {e}', file=sys.stderr)
+        log(f'  [workday] {display_name}: {e}')
         return []
 
+# ── LinkedIn guest API ───────────────────────────────────────────────────────
+# Targeted at MIS / Business Analytics / Data Analytics
 
-def fetch_lever(slug: str) -> list:
+LINKEDIN_SEARCHES = [
+    # ── MN in-person ──
+    {'keywords': 'data analyst intern',           'location': 'Minneapolis, Minnesota, United States'},
+    {'keywords': 'business analyst intern',        'location': 'Minneapolis, Minnesota, United States'},
+    {'keywords': 'business analytics internship',  'location': 'Minnesota, United States'},
+    {'keywords': 'data analytics intern',          'location': 'Minnesota, United States'},
+    {'keywords': 'MIS intern',                     'location': 'Minnesota, United States'},
+    {'keywords': 'information systems intern',     'location': 'Minnesota, United States'},
+    {'keywords': 'business intelligence intern',   'location': 'Minnesota, United States'},
+    {'keywords': 'IT intern',                      'location': 'Minneapolis, Minnesota, United States'},
+    {'keywords': 'operations analyst intern',      'location': 'Minnesota, United States'},
+    {'keywords': 'finance intern',                 'location': 'Minneapolis, Minnesota, United States'},
+    {'keywords': 'accounting intern',              'location': 'Minneapolis, Minnesota, United States'},
+    {'keywords': 'marketing analytics intern',     'location': 'Minnesota, United States'},
+    {'keywords': 'systems analyst intern',         'location': 'Minnesota, United States'},
+    {'keywords': 'supply chain intern',            'location': 'Minnesota, United States'},
+    {'keywords': 'project management intern',      'location': 'Minnesota, United States'},
+    # ── Remote ──
+    {'keywords': 'data analyst intern',            'location': 'United States', 'f_WT': '2'},
+    {'keywords': 'business analyst intern',        'location': 'United States', 'f_WT': '2'},
+    {'keywords': 'data analytics intern',          'location': 'United States', 'f_WT': '2'},
+    {'keywords': 'business intelligence intern',   'location': 'United States', 'f_WT': '2'},
+    {'keywords': 'MIS analytics internship',       'location': 'United States', 'f_WT': '2'},
+    {'keywords': 'operations analyst intern',      'location': 'United States', 'f_WT': '2'},
+    {'keywords': 'marketing analytics intern',     'location': 'United States', 'f_WT': '2'},
+    {'keywords': 'product analyst intern',         'location': 'United States', 'f_WT': '2'},
+    {'keywords': 'finance analyst intern',         'location': 'United States', 'f_WT': '2'},
+    {'keywords': 'information systems internship', 'location': 'United States', 'f_WT': '2'},
+]
+
+def fetch_linkedin(params: dict) -> list:
     try:
-        url = f'https://api.lever.co/v0/postings/{slug}?mode=json&limit=500'
-        resp = SESSION.get(url, timeout=10)
-        if resp.status_code != 200:
-            return []
-        postings = resp.json()
-        results = []
-        for j in postings:
-            title = j.get('text', '')
-            if not is_internship(title):
-                continue
-            cats = j.get('categories', {})
-            loc = cats.get('location', '')
-            if not loc and isinstance(cats.get('allLocations'), list):
-                loc = cats['allLocations'][0] if cats['allLocations'] else ''
-            if not is_mn_or_remote(loc):
-                continue
-            job_url = j.get('hostedUrl', '') or j.get('applyUrl', '')
-            if not job_url:
-                continue
-            company = j.get('company', slug.replace('-', ' ').title())
-            results.append({
-                'company': company,
-                'role': title,
-                'location': loc or 'Remote',
-                'url': job_url,
-                'source': 'lever',
-            })
-        return results
-    except Exception as e:
-        print(f'  [lever] {slug}: {e}', file=sys.stderr)
-        return []
-
-
-def fetch_indeed(feed_url: str, region: str) -> list:
-    try:
-        headers = {
-            'Accept': 'application/rss+xml,application/xml,text/xml,*/*',
-            'Accept-Language': 'en-US,en;q=0.9',
-        }
-        resp = SESSION.get(feed_url, timeout=15, headers=headers)
-        if resp.status_code != 200:
-            return []
-        root = ET.fromstring(resp.content)
-        # Indeed namespace
-        ns = 'https://www.indeed.com/about/rss'
-        results = []
-        for item in root.findall('.//item'):
-            title_el   = item.find('title')
-            link_el    = item.find('link')
-            if title_el is None or link_el is None:
-                continue
-            title = (title_el.text or '').strip()
-            url   = (link_el.text or '').strip()
-            if not is_internship(title):
-                continue
-            # Try to get employer name
-            company = 'Unknown'
-            for tag in [f'{{{ns}}}employer', 'source']:
-                el = item.find(tag)
-                if el is not None and el.text:
-                    company = el.text.strip()
-                    break
-            # Location
-            loc = region  # default to feed region
-            for tag in [f'{{{ns}}}jobLocation', f'{{{ns}}}location']:
-                el = item.find(tag)
-                if el is not None and el.text:
-                    loc = el.text.strip()
-                    break
-            results.append({
-                'company': company,
-                'role': title,
-                'location': loc,
-                'url': url,
-                'source': 'indeed',
-            })
-        return results
-    except Exception as e:
-        print(f'  [indeed] {region}: {e}', file=sys.stderr)
-        return []
-
-
-def fetch_linkedin(search_params: dict) -> list:
-    try:
-        params = {
-            'keywords': search_params['keywords'],
-            'location': search_params.get('location', ''),
-            'f_E': '1',     # Entry level
-            'f_JT': 'I',    # Internship job type
-            'sortBy': 'DD', # Date descending
+        qs = {
+            'keywords': params['keywords'],
+            'location': params.get('location', ''),
+            'f_E': '1',
+            'f_JT': 'I',
+            'sortBy': 'DD',
             'start': '0',
         }
-        if 'f_WT' in search_params:
-            params['f_WT'] = search_params['f_WT']
-
+        if 'f_WT' in params:
+            qs['f_WT'] = params['f_WT']
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
-            'Accept': 'text/html,application/xhtml+xml,*/*',
+            'Accept': 'text/html,*/*',
             'Accept-Language': 'en-US,en;q=0.9',
             'Referer': 'https://www.linkedin.com/jobs/',
         }
-        base = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?'
-        resp = SESSION.get(base + urlencode(params), timeout=15, headers=headers)
-        if resp.status_code != 200:
+        url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?' + urlencode(qs)
+        r = SESSION.get(url, headers=headers, timeout=15)
+        if r.status_code != 200:
             return []
-
-        html = resp.text
-        results = []
-
-        # Extract job IDs and metadata via regex
+        html = r.text
         id_pat      = re.compile(r'data-entity-urn="urn:li:jobPosting:(\d+)"')
         title_pat   = re.compile(r'class="base-search-card__title"[^>]*>\s*([^<]+)', re.DOTALL)
         company_pat = re.compile(r'class="base-search-card__subtitle"[^>]*>(?:\s*<[^>]+>)*\s*([^<\n]+)', re.DOTALL)
         loc_pat     = re.compile(r'class="job-search-card__location"[^>]*>\s*([^<\n]+)', re.DOTALL)
-
         job_ids   = id_pat.findall(html)
         titles    = [t.strip() for t in title_pat.findall(html)]
         companies = [c.strip() for c in company_pat.findall(html)]
         locations = [l.strip() for l in loc_pat.findall(html)]
-
-        for i, job_id in enumerate(job_ids):
-            title   = titles[i]   if i < len(titles)    else ''
+        results = []
+        for i, jid in enumerate(job_ids):
+            title   = titles[i]    if i < len(titles)    else ''
             company = companies[i] if i < len(companies) else 'Unknown'
-            loc     = locations[i] if i < len(locations) else search_params.get('location', '')
-
+            loc     = locations[i] if i < len(locations) else params.get('location', '')
             if not is_internship(title):
                 continue
             if not is_mn_or_remote(loc):
                 continue
-
-            results.append({
-                'company': company,
-                'role': title,
-                'location': loc,
-                'url': f'https://www.linkedin.com/jobs/view/{job_id}',
-                'source': 'linkedin',
-            })
-
+            results.append(_job(company, title, loc, f'https://www.linkedin.com/jobs/view/{jid}', 'linkedin'))
         return results
     except Exception as e:
-        print(f'  [linkedin] {search_params["keywords"]}: {e}', file=sys.stderr)
+        log(f'  [linkedin] {params["keywords"]}: {e}')
         return []
 
-
-# ── Dedup & Normalize ──────────────────────────────────────────────────────────
+# ── Dedup ────────────────────────────────────────────────────────────────────
 
 def dedup(jobs: list) -> list:
     seen = set()
-    result = []
+    out  = []
     for j in jobs:
         key = j['url'].split('?')[0].rstrip('/')
         if key not in seen:
             seen.add(key)
-            result.append(j)
-    return result
+            out.append(j)
+    return out
 
+# ── Main ─────────────────────────────────────────────────────────────────────
 
-def normalize(j: dict) -> dict:
-    return {
-        'company':  j.get('company', 'Unknown').strip(),
-        'role':     j.get('role', 'Unknown').strip(),
-        'location': j.get('location', '').strip(),
-        'url':      j.get('url', '').strip(),
-        'applied':  False,
-        'source':   j.get('source', ''),
-        'scanned':  datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
-    }
-
-
-# ── Main ───────────────────────────────────────────────────────────────────────
-
-def log(msg: str):
-    print(msg)
-    sys.stdout.flush()
-
-
-def scan(verbose=True) -> list:
+def scan() -> list:
     all_jobs = []
-    total_sources = len(GREENHOUSE_SLUGS) + len(ASHBY_SLUGS) + len(LEVER_SLUGS)
 
-    log(f'[scan] MN & Remote Internship Scanner starting...')
-    log(f'[scan] Checking {len(GREENHOUSE_SLUGS)} Greenhouse + {len(ASHBY_SLUGS)} Ashby + {len(LEVER_SLUGS)} Lever companies')
-    log(f'[scan] + {len(INDEED_FEEDS)} Indeed feeds + {len(LINKEDIN_SEARCHES)} LinkedIn searches')
+    log(f'[scan] MN + Remote Internship Scanner — MIS / Business Analytics focus')
+    log(f'[scan] Greenhouse: {len(GREENHOUSE_SLUGS)} | Ashby: {len(ASHBY_SLUGS)} | '
+        f'Lever: {len(LEVER_SLUGS)} | Workday: {len(WORKDAY_COMPANIES)} | '
+        f'LinkedIn: {len(LINKEDIN_SEARCHES)} searches')
+    log('')
 
-    # Greenhouse
     log('[scan] Greenhouse API...')
     for slug in GREENHOUSE_SLUGS:
         jobs = fetch_greenhouse(slug)
         if jobs:
-            log(f'  + greenhouse/{slug}: {len(jobs)} intern listings')
+            log(f'  + {slug}: {len(jobs)} internships')
         all_jobs.extend(jobs)
         time.sleep(0.08)
 
-    # Ashby
     log('[scan] Ashby API...')
     for slug in ASHBY_SLUGS:
         jobs = fetch_ashby(slug)
         if jobs:
-            log(f'  + ashby/{slug}: {len(jobs)} intern listings')
+            log(f'  + {slug}: {len(jobs)} internships')
         all_jobs.extend(jobs)
         time.sleep(0.08)
 
-    # Lever
     log('[scan] Lever API...')
     for slug in LEVER_SLUGS:
         jobs = fetch_lever(slug)
         if jobs:
-            log(f'  + lever/{slug}: {len(jobs)} intern listings')
+            log(f'  + {slug}: {len(jobs)} internships')
         all_jobs.extend(jobs)
         time.sleep(0.08)
 
-    # Indeed RSS
-    log('[scan] Indeed RSS...')
-    for feed_url, region in INDEED_FEEDS:
-        jobs = fetch_indeed(feed_url, region)
+    log('[scan] Workday API (major MN employers)...')
+    for (name, tenant, host, path) in WORKDAY_COMPANIES:
+        jobs = fetch_workday(name, tenant, host, path)
         if jobs:
-            log(f'  + indeed/{region}: {len(jobs)} listings')
+            log(f'  + {name}: {len(jobs)} internships')
         all_jobs.extend(jobs)
-        time.sleep(0.4)
+        time.sleep(0.2)
 
-    # LinkedIn
     log('[scan] LinkedIn guest API...')
     for params in LINKEDIN_SEARCHES:
         jobs = fetch_linkedin(params)
         if jobs:
-            log(f'  + linkedin "{params["keywords"]}": {len(jobs)} listings')
+            kw  = params['keywords']
+            loc = 'Remote' if params.get('f_WT') == '2' else params.get('location', '')
+            log(f'  + LinkedIn "{kw}" / {loc}: {len(jobs)} jobs')
         all_jobs.extend(jobs)
         time.sleep(1.2)
 
-    # Normalize, dedup, sort
-    all_jobs = [normalize(j) for j in all_jobs if j.get('url')]
     all_jobs = dedup(all_jobs)
     all_jobs.sort(key=lambda j: (
         0 if is_internship(j['role']) else 1,
-        j.get('company', '').lower()
+        (j.get('company') or '').lower()
     ))
 
-    log(f'[scan] Done — {len(all_jobs)} unique MN/Remote internships found.')
-
+    log(f'\n[scan] Done — {len(all_jobs)} unique internships found.')
     with open(JOBS_OUTPUT, 'w') as f:
         json.dump(all_jobs, f, indent=2)
     log(f'[scan] Written to {JOBS_OUTPUT}')
-
     return all_jobs
-
 
 if __name__ == '__main__':
     jobs = scan()
-    print(f'\n{"─"*70}')
-    print(f'Total: {len(jobs)} internships')
-    print(f'{"─"*70}')
-    for j in jobs[:15]:
-        src = j.get("source","")[:10].ljust(10)
-        print(f"  [{src}] {j['company'][:28]:28s} | {j['role'][:38]:38s} | {j['location']}")
-    if len(jobs) > 15:
-        print(f'  ... and {len(jobs)-15} more')
+    print(f'\n{"─"*72}')
+    mn  = sum(1 for j in jobs if any(t in (j['location'] or '').lower() for t in MN_TERMS))
+    rem = sum(1 for j in jobs if any(t in (j['location'] or '').lower() for t in REMOTE_TERMS))
+    print(f'  Total: {len(jobs)}  |  MN: {mn}  |  Remote: {rem}')
+    print(f'{"─"*72}')
+    for j in jobs[:20]:
+        src = (j.get('source') or '')[:10].ljust(10)
+        print(f'  [{src}] {(j["company"] or "")[:26]:26s} | {(j["role"] or "")[:38]:38s} | {j["location"]}')
+    if len(jobs) > 20:
+        print(f'  ... and {len(jobs)-20} more')
+    print(f'{"─"*72}')
