@@ -24,8 +24,12 @@ jobs:
       - name: Install dependencies
         run: npm install js-yaml
 
-      - name: Create data directory
-        run: mkdir -p data
+      - name: Initialize data files
+        run: |
+          mkdir -p data
+          [ -f data/pipeline.md ] || printf '# Pipeline\n\n## Pendientes\n\n## Procesadas\n' > data/pipeline.md
+          [ -f data/applications.md ] || printf '# Applications Tracker\n\n| # | Date | Company | Role | Score | Status | PDF | Report | Notes |\n|---|------|---------|------|-------|--------|-----|--------|-------|\n' > data/applications.md
+          [ -f data/scan-history.tsv ] || printf 'date\turl\tcompany\trole\tlocation\tsource\tstatus\n' > data/scan-history.tsv
 
       - name: Run job scanner
         run: node scan.mjs
