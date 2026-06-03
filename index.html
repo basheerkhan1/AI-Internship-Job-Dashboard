@@ -3,430 +3,700 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Basheer Khan — Internship Dashboard</title>
+<title>Basheer Khan — Internship Tracker</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+/* ── Reset ── */
+*{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --bg:#f8fafc;--surface:#fff;--border:#e2e8f0;
-  --text:#0f172a;--muted:#64748b;--subtle:#94a3b8;
-  --blue:#2563eb;--blue-light:#eff6ff;--blue-dark:#1d4ed8;
-  --green:#16a34a;--green-light:#f0fdf4;
-  --purple:#7c3aed;--purple-light:#f5f3ff;
-  --amber:#d97706;--amber-light:#fffbeb;
-  --red:#dc2626;--red-light:#fef2f2;
-  --navy:#0f172a;--navy2:#1e293b;
-  --radius:10px;--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+  --bg:#0b0d18;
+  --surface:#111827;
+  --surface2:#1a2035;
+  --border:rgba(255,255,255,0.07);
+  --text:#e2e8f0;
+  --muted:#64748b;
+  --blue:#3b82f6;
+  --blue2:#2563eb;
+  --green:#22c55e;
+  --red:#ef4444;
+  --purple:#a855f7;
+  --amber:#f59e0b;
 }
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);font-size:14px;min-height:100vh}
 
-/* ── HEADER ─────────────────────────────────────── */
-.header{background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 100%);color:#fff;padding:20px 28px}
-.header-inner{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.header-brand h1{font-size:18px;font-weight:800;letter-spacing:-.03em;display:flex;align-items:center;gap:8px}
-.header-brand p{font-size:12px;color:#93c5fd;margin-top:3px}
-.header-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600;color:#e0f2fe}
-.scan-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border-radius:6px;padding:5px 12px;font-size:11px;color:#93c5fd}
-.scan-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+/* ── Body ── */
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  font-size:14px;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+/* Ambient glow bg */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse at 15% 40%,rgba(59,130,246,.06) 0%,transparent 55%),
+    radial-gradient(ellipse at 85% 15%,rgba(168,85,247,.05) 0%,transparent 45%),
+    radial-gradient(ellipse at 50% 85%,rgba(34,197,94,.03) 0%,transparent 40%);
+  pointer-events:none;z-index:0;
+}
 
-/* ── TABS ────────────────────────────────────────── */
-.tabs-wrap{background:var(--surface);border-bottom:2px solid var(--border);position:sticky;top:0;z-index:10}
-.tabs{max-width:1400px;margin:0 auto;padding:0 28px;display:flex;gap:0}
-.tab{padding:13px 20px;font-size:13px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px;cursor:pointer;display:flex;align-items:center;gap:7px;transition:color .15s}
-.tab:hover{color:var(--text)}
-.tab.on{color:var(--blue);border-bottom-color:var(--blue)}
-.tab-badge{background:#f1f5f9;border-radius:20px;padding:1px 8px;font-size:10px;font-weight:700;min-width:20px;text-align:center}
-.tab.on .tab-badge{background:var(--blue-light);color:var(--blue)}
+/* ── Header ── */
+.hdr{
+  position:relative;
+  background:linear-gradient(135deg,#0b0d18 0%,#1a1040 40%,#0d1f3c 70%,#0b0d18 100%);
+  border-bottom:1px solid rgba(59,130,246,.15);
+  padding:22px 32px;
+  display:flex;justify-content:space-between;align-items:center;
+  overflow:hidden;z-index:10;
+}
+.hdr-shine{
+  position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(59,130,246,.4),rgba(168,85,247,.4),transparent);
+}
+.hdr-blob{
+  position:absolute;width:360px;height:360px;border-radius:50%;
+  background:radial-gradient(circle,rgba(59,130,246,.12) 0%,transparent 70%);
+  top:-180px;left:-80px;pointer-events:none;
+}
+.hdr-l{z-index:1;}
+.hdr-l h1{
+  font-size:23px;font-weight:900;letter-spacing:-.03em;
+  background:linear-gradient(135deg,#fff 0%,#93c5fd 60%,#c4b5fd 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:5px;
+}
+.hdr-l p{font-size:12px;color:#64748b;display:flex;align-items:center;gap:8px;}
+.live-dot{
+  display:inline-block;width:7px;height:7px;border-radius:50%;
+  background:var(--green);box-shadow:0 0 0 0 rgba(34,197,94,.4);
+  animation:pulse-g 2s infinite;
+}
+@keyframes pulse-g{0%{box-shadow:0 0 0 0 rgba(34,197,94,.4);}70%{box-shadow:0 0 0 8px rgba(34,197,94,0);}100%{box-shadow:0 0 0 0 rgba(34,197,94,0);}}
+.hdr-r{display:flex;gap:10px;align-items:center;z-index:1;}
 
-/* ── LAYOUT ──────────────────────────────────────── */
-.main{max-width:1400px;margin:0 auto;padding:22px 28px}
-.panel{display:none}
-.panel.on{display:block}
+/* ── Buttons ── */
+.btn{
+  padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;
+  cursor:pointer;border:none;display:inline-flex;align-items:center;gap:6px;
+  transition:all .2s;text-decoration:none;white-space:nowrap;
+}
+.btn:hover{transform:translateY(-1px);}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 0 18px rgba(59,130,246,.3);}
+.btn-blue:hover{background:var(--blue2);box-shadow:0 0 28px rgba(59,130,246,.5);}
+.btn-slate{background:rgba(255,255,255,.07);color:#e2e8f0;border:1px solid rgba(255,255,255,.1);}
+.btn-slate:hover{background:rgba(255,255,255,.12);}
+.btn-scan{
+  background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;
+  box-shadow:0 0 22px rgba(124,58,237,.35);
+  padding:9px 20px;font-size:13px;
+}
+.btn-scan:hover{box-shadow:0 0 36px rgba(124,58,237,.6);transform:translateY(-2px);}
+.btn-scan:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none;}
 
-/* ── STAT CARDS ──────────────────────────────────── */
-.stats{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
-.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;flex:1;min-width:100px;box-shadow:var(--shadow)}
-.stat-n{font-size:28px;font-weight:900;line-height:1;letter-spacing:-.03em}
-.stat-l{font-size:11px;color:var(--muted);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
-.stat-total .stat-n{color:var(--navy)}
-.stat-intern .stat-n{color:var(--purple)}
-.stat-remote .stat-n{color:var(--green)}
-.stat-applied .stat-n{color:var(--blue)}
-.stat-interview .stat-n{color:var(--purple)}
-.stat-offer .stat-n{color:var(--green)}
-.stat-rejected .stat-n{color:var(--red)}
+/* ── Tabs ── */
+.tabs-bar{
+  background:var(--surface);border-bottom:1px solid var(--border);
+  padding:0 32px;display:flex;position:relative;z-index:9;
+}
+.tab{
+  padding:15px 20px;font-size:13px;font-weight:600;color:var(--muted);
+  border-bottom:2px solid transparent;cursor:pointer;
+  display:flex;align-items:center;gap:8px;transition:all .2s;
+}
+.tab:hover{color:var(--text);}
+.tab.on{color:var(--blue);border-bottom-color:var(--blue);}
+.tab-count{
+  background:rgba(59,130,246,.12);color:var(--blue);
+  border-radius:20px;padding:1px 8px;font-size:11px;font-weight:700;
+}
 
-/* ── TOOLBAR ──────────────────────────────────────── */
-.toolbar-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-bottom:16px;box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.search-wrap{position:relative;display:flex;align-items:center}
-.search-ico{position:absolute;left:10px;color:var(--subtle);font-size:14px;pointer-events:none}
-.search-box{padding:8px 12px 8px 32px;border:1px solid var(--border);border-radius:7px;font-size:13px;background:#f8fafc;width:240px;outline:none;transition:border-color .15s,box-shadow .15s}
-.search-box:focus{border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
-.filters{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.ftab{padding:5px 14px;border-radius:20px;border:1px solid var(--border);font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:var(--muted);transition:all .15s;white-space:nowrap}
-.ftab:hover{border-color:var(--blue);color:var(--blue)}
-.ftab.on{background:var(--blue);color:#fff;border-color:var(--blue)}
-.scan-info{font-size:11px;color:var(--subtle);display:flex;align-items:center;gap:6px}
+/* ── Main ── */
+.main{max-width:1440px;margin:0 auto;padding:24px 28px;position:relative;z-index:1;}
+.panel{display:none;}
+.panel.on{display:block;}
 
-/* ── TABLE ────────────────────────────────────────── */
-.table-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
-.tbl-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse}
-thead{background:#f8fafc}
-th{padding:10px 16px;text-align:left;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);white-space:nowrap}
-td{padding:10px 16px;font-size:13px;border-bottom:1px solid #f8fafc;vertical-align:middle}
-tr:last-child td{border-bottom:none}
-tbody tr:hover td{background:#fafbfc}
-.td-co{font-weight:700;color:var(--navy);white-space:nowrap}
-.td-ro{color:var(--navy2);max-width:280px}
+/* ── Stats ── */
+.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:20px;}
+.stat{
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:16px 14px;text-align:center;position:relative;overflow:hidden;
+  transition:transform .2s,box-shadow .2s;cursor:default;
+}
+.stat:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.4);}
+.stat::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.s-tot::after{background:linear-gradient(90deg,var(--blue),var(--purple));}
+.s-app::after{background:var(--blue);}
+.s-int::after{background:var(--purple);}
+.s-off::after{background:var(--green);}
+.s-rej::after{background:var(--red);}
+.s-eva::after{background:var(--amber);}
+.stat-n{font-size:30px;font-weight:900;line-height:1;margin-bottom:4px;font-variant-numeric:tabular-nums;}
+.stat-l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;}
+.s-tot .stat-n{background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.s-app .stat-n{color:var(--blue);}
+.s-int .stat-n{color:var(--purple);}
+.s-off .stat-n{color:var(--green);}
+.s-rej .stat-n{color:var(--red);}
+.s-eva .stat-n{color:var(--amber);}
 
-/* ── SECTION HEADERS ─────────────────────────────── */
-.section-row td{padding:8px 16px 6px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid}
-.section-intern td{background:#f5f3ff;color:var(--purple);border-bottom-color:#ddd6fe}
-.section-rec td{background:#fffbeb;color:var(--amber);border-bottom-color:#fde68a}
-.section-pipe td{background:#f8fafc;color:var(--subtle);border-bottom-color:var(--border)}
+/* ── Card ── */
+.card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;margin-bottom:16px;overflow:hidden;
+  transition:box-shadow .2s;
+}
+.card:hover{box-shadow:0 4px 24px rgba(0,0,0,.35);}
+.card-hdr{
+  padding:16px 20px;display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid var(--border);background:rgba(255,255,255,.02);
+}
+.card-title{font-size:14px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px;}
 
-/* ── BADGES ──────────────────────────────────────── */
-.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
-.b-intern   {background:var(--purple-light);color:var(--purple)}
-.b-remote   {background:var(--green-light);color:var(--green)}
-.b-mn       {background:var(--blue-light);color:var(--blue-dark)}
-.b-city     {background:#f1f5f9;color:#475569}
-.b-applied  {background:var(--blue-light);color:var(--blue-dark)}
-.b-interview{background:var(--purple-light);color:var(--purple)}
-.b-offer    {background:var(--green-light);color:var(--green)}
-.b-rejected {background:var(--red-light);color:var(--red)}
-.b-evaluated{background:var(--amber-light);color:var(--amber)}
-.b-skip     {background:#f1f5f9;color:var(--subtle)}
+/* ── Toolbar ── */
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.search-wrap{position:relative;}
+.search-ico{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;pointer-events:none;}
+.search-box{
+  padding:8px 12px 8px 32px;background:rgba(255,255,255,.05);
+  border:1px solid var(--border);border-radius:8px;font-size:13px;
+  color:var(--text);width:240px;outline:none;transition:border-color .2s,background .2s;
+}
+.search-box::placeholder{color:var(--muted);}
+.search-box:focus{border-color:var(--blue);background:rgba(59,130,246,.08);}
+.ftab{
+  padding:6px 14px;border-radius:20px;border:1px solid var(--border);
+  font-size:12px;font-weight:600;cursor:pointer;
+  background:rgba(255,255,255,.04);color:var(--muted);transition:all .2s;
+}
+.ftab:hover{border-color:var(--blue);color:var(--blue);background:rgba(59,130,246,.08);}
+.ftab.on{background:rgba(59,130,246,.18);color:var(--blue);border-color:rgba(59,130,246,.4);box-shadow:0 0 12px rgba(59,130,246,.15);}
 
-/* source badges */
-.src{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
-.src-linkedin  {background:#e8f0fe;color:#1a56db}
-.src-indeed    {background:#fff4e0;color:#b45309}
-.src-handshake {background:#fce7f3;color:#9d174d}
-.src-greenhouse{background:#f0fdf4;color:#166534}
-.src-lever     {background:#fdf4ff;color:#7e22ce}
-.src-ashby     {background:#fef9c3;color:#92400e}
-.src-other     {background:#f1f5f9;color:#475569}
+/* ── Scan controls ── */
+.scan-row{display:flex;align-items:center;gap:12px;}
+.last-scan-txt{font-size:11px;color:var(--muted);}
+@keyframes spin{to{transform:rotate(360deg);}}
+.spin{display:inline-block;animation:spin .8s linear infinite;}
 
-/* ── ACTION BUTTONS ──────────────────────────────── */
-.btn-apply{padding:5px 12px;background:var(--blue);color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;transition:background .15s}
-.btn-apply:hover{background:var(--blue-dark)}
-.btn-skip{padding:5px 10px;background:#f1f5f9;color:var(--muted);border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;transition:background .15s;margin-left:4px}
-.btn-skip:hover{background:#e2e8f0}
-.btn-del{background:none;border:none;color:#cbd5e1;cursor:pointer;padding:4px 8px;border-radius:5px;font-size:12px;transition:all .15s}
-.btn-del:hover{background:var(--red-light);color:var(--red)}
-.btn-refresh{padding:7px 16px;background:var(--navy);color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background .15s}
-.btn-refresh:hover{background:var(--navy2)}
+/* ── Resume card ── */
+.resume-card{
+  background:linear-gradient(135deg,#0b0d18 0%,#1e1b4b 45%,#0d1f3c 80%,#0b0d18 100%);
+  border:1px solid rgba(59,130,246,.2);border-radius:14px;
+  padding:20px 24px;margin-bottom:16px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  position:relative;overflow:hidden;
+}
+.resume-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(59,130,246,.5),rgba(168,85,247,.5),transparent);
+}
+.resume-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:4px;}
+.resume-sub{font-size:12px;color:#64748b;}
+.resume-btns{display:flex;gap:10px;flex-wrap:wrap;}
 
-/* ── EMPTY STATE ─────────────────────────────────── */
-.empty{text-align:center;padding:60px 24px;color:var(--muted)}
-.empty-ico{font-size:42px;margin-bottom:12px}
-.empty p{font-size:14px}
+/* ── Job table ── */
+.tbl-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;}
+thead{background:rgba(255,255,255,.025);}
+th{
+  padding:10px 16px;text-align:left;font-size:10px;font-weight:700;
+  color:var(--muted);text-transform:uppercase;letter-spacing:.08em;
+  border-bottom:1px solid var(--border);white-space:nowrap;
+}
+td{
+  padding:11px 16px;font-size:13px;
+  border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle;
+}
+tr:last-child td{border-bottom:none;}
+tbody tr{transition:background .15s;}
+tbody tr:hover td{background:rgba(59,130,246,.05);}
+.co{font-weight:700;color:#e2e8f0;}
+.ro{color:#94a3b8;}
+td a{color:var(--blue);text-decoration:none;transition:color .15s;}
+td a:hover{color:#93c5fd;text-decoration:underline;}
 
-/* ── FORM ─────────────────────────────────────────── */
-.form-grid{display:grid;grid-template-columns:1.2fr 1.4fr 2fr .9fr 1.1fr 1.6fr auto;gap:10px;align-items:end;padding:16px 18px}
-.fg label{display:block;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
-input,select{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:7px;font-size:13px;color:var(--text);background:#f8fafc;outline:none;transition:border-color .15s}
-input:focus,select:focus{border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
-.btn-add{padding:8px 20px;background:var(--blue);color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;height:36px;white-space:nowrap}
-.btn-add:hover{background:var(--blue-dark)}
-.st-sel{font-size:12px;padding:4px 6px;border-radius:6px;border:1px solid var(--border);background:#fff;cursor:pointer;max-width:120px}
+/* ── Location tag ── */
+.loc-tag{
+  display:inline-block;padding:2px 8px;border-radius:6px;
+  font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  white-space:nowrap;
+}
+.loc-remote{background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.2);}
+.loc-mn    {background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.2);}
+.loc-other {background:rgba(255,255,255,.05);color:var(--muted);border:1px solid var(--border);}
 
-/* ── CARD HEADER ─────────────────────────────────── */
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
-.card-hdr{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);background:#fafbfc}
-.card-title{font-size:13px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:8px}
+/* ── Source badge ── */
+.src-badge{
+  display:inline-block;padding:1px 7px;border-radius:5px;
+  font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;
+}
+.src-greenhouse{background:rgba(34,197,94,.1);color:#4ade80;}
+.src-ashby     {background:rgba(168,85,247,.1);color:#c084fc;}
+.src-lever     {background:rgba(251,191,36,.1);color:#fbbf24;}
+.src-indeed    {background:rgba(59,130,246,.1);color:#60a5fa;}
+.src-linkedin  {background:rgba(14,165,233,.1);color:#38bdf8;}
+.src-saved     {background:rgba(245,158,11,.1);color:#f59e0b;}
+
+/* ── Section rows ── */
+.sec-row td{
+  padding:7px 16px 5px;font-size:10px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid var(--border);
+}
+.sec-intern td{color:#a855f7;background:rgba(168,85,247,.06);}
+.sec-rec    td{color:var(--amber);background:rgba(245,158,11,.06);}
+.sec-pipe   td{color:var(--muted);background:rgba(255,255,255,.02);}
+
+/* ── Action buttons ── */
+.btn-apply{
+  padding:5px 12px;background:rgba(59,130,246,.14);color:var(--blue);
+  border:1px solid rgba(59,130,246,.28);border-radius:6px;
+  font-size:11px;font-weight:700;cursor:pointer;transition:all .2s;
+}
+.btn-apply:hover{background:rgba(59,130,246,.28);transform:translateY(-1px);}
+.btn-skip{
+  padding:5px 10px;background:rgba(255,255,255,.04);color:var(--muted);
+  border:1px solid var(--border);border-radius:6px;font-size:11px;font-weight:600;
+  cursor:pointer;margin-left:4px;transition:all .2s;
+}
+.btn-skip:hover{background:rgba(239,68,68,.1);color:var(--red);border-color:rgba(239,68,68,.3);}
+.btn-del{
+  background:none;border:none;color:rgba(255,255,255,.18);cursor:pointer;
+  padding:4px 8px;border-radius:6px;font-size:14px;transition:all .2s;
+}
+.btn-del:hover{background:rgba(239,68,68,.1);color:var(--red);}
+
+/* ── Badge ── */
+.badge{
+  display:inline-block;padding:3px 10px;border-radius:12px;
+  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+}
+.b-Applied  {background:rgba(59,130,246,.14);color:#60a5fa;}
+.b-Interview{background:rgba(168,85,247,.14);color:#c084fc;}
+.b-Offer    {background:rgba(34,197,94,.14);color:#4ade80;}
+.b-Rejected {background:rgba(239,68,68,.14);color:#f87171;}
+.b-Discarded{background:rgba(255,255,255,.05);color:var(--muted);}
+.b-Evaluated{background:rgba(245,158,11,.14);color:#fbbf24;}
+.b-SKIP     {background:rgba(255,255,255,.04);color:rgba(255,255,255,.25);}
+
+/* ── Empty state ── */
+.empty{text-align:center;padding:64px 24px;color:var(--muted);}
+.empty .ico{font-size:52px;margin-bottom:14px;opacity:.4;}
+
+/* ── Form ── */
+.form-row{
+  display:grid;grid-template-columns:1.4fr 1.4fr 2fr 1fr 1.2fr 1.8fr auto;
+  gap:12px;align-items:end;padding:18px 20px;
+}
+.fg label{display:block;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;}
+input,select{
+  width:100%;padding:8px 12px;background:rgba(255,255,255,.05);
+  border:1px solid var(--border);border-radius:8px;font-size:13px;
+  color:var(--text);outline:none;transition:border-color .2s,background .2s;
+}
+input::placeholder{color:var(--muted);}
+input:focus,select:focus{border-color:var(--blue);background:rgba(59,130,246,.08);}
+select option{background:#111827;}
+.btn-add{
+  padding:8px 20px;background:linear-gradient(135deg,var(--blue2),var(--blue));
+  color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;
+  cursor:pointer;height:37px;transition:all .2s;white-space:nowrap;
+}
+.btn-add:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(59,130,246,.4);}
+.st-sel{
+  font-size:11px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);
+  background:rgba(255,255,255,.04);cursor:pointer;max-width:110px;
+}
+
+/* ── Toast ── */
+.toast-box{
+  position:fixed;bottom:24px;right:24px;z-index:9999;
+  display:flex;flex-direction:column;gap:10px;pointer-events:none;
+}
+.toast{
+  background:var(--surface2);border:1px solid var(--border);border-radius:10px;
+  padding:13px 18px;font-size:13px;font-weight:600;color:var(--text);
+  pointer-events:all;display:flex;align-items:center;gap:10px;
+  box-shadow:0 8px 32px rgba(0,0,0,.6);animation:t-in .3s ease;max-width:340px;
+}
+@keyframes t-in{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.toast.t-out{animation:t-out .3s ease forwards;}
+@keyframes t-out{to{opacity:0;transform:translateY(20px);}}
+.toast-ok{border-left:3px solid var(--green);}
+.toast-err{border-left:3px solid var(--red);}
+.toast-info{border-left:3px solid var(--blue);}
+
+/* ── Scan modal ── */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.75);
+  backdrop-filter:blur(6px);z-index:1000;display:none;
+  align-items:center;justify-content:center;
+}
+.modal-overlay.open{display:flex;}
+.modal{
+  background:var(--surface);border:1px solid rgba(59,130,246,.25);
+  border-radius:18px;padding:30px 34px;width:500px;max-width:96vw;
+  box-shadow:0 28px 72px rgba(0,0,0,.7);animation:m-in .3s ease;
+}
+@keyframes m-in{from{opacity:0;transform:scale(.95) translateY(16px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.modal h2{
+  font-size:19px;font-weight:900;color:#fff;margin-bottom:6px;
+  display:flex;align-items:center;gap:10px;
+}
+.modal-sub{color:var(--muted);font-size:13px;margin-bottom:20px;line-height:1.5;}
+.scan-log{
+  background:rgba(0,0,0,.5);border:1px solid var(--border);border-radius:10px;
+  padding:14px 16px;font-family:'Monaco','Menlo','Consolas',monospace;
+  font-size:11.5px;color:#4ade80;height:210px;overflow-y:auto;
+  margin-bottom:16px;white-space:pre-wrap;word-break:break-word;line-height:1.6;
+}
+.scan-bar{height:4px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden;margin-bottom:20px;}
+.scan-bar-fill{
+  height:100%;background:linear-gradient(90deg,var(--blue),var(--purple));
+  border-radius:2px;width:0%;transition:width .4s ease;display:none;
+  animation:bar-glow 1.5s ease infinite;
+}
+@keyframes bar-glow{0%{filter:brightness(1);}50%{filter:brightness(1.4);}100%{filter:brightness(1);}}
+.modal-btns{display:flex;gap:10px;}
+.modal-close{
+  flex:.5;padding:10px;background:rgba(255,255,255,.05);color:var(--text);
+  border:1px solid var(--border);border-radius:8px;cursor:pointer;
+  font-size:13px;font-weight:600;transition:background .2s;
+}
+.modal-close:hover{background:rgba(255,255,255,.1);}
+
+/* ── Animations ── */
+@keyframes fade-up{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.au{animation:fade-up .4s ease both;}
+.au-1{animation-delay:.08s;}
+.au-2{animation-delay:.16s;}
+.au-3{animation-delay:.24s;}
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  .stats{grid-template-columns:repeat(3,1fr);}
+  .form-row{grid-template-columns:1fr 1fr;}
+  .hdr{padding:16px 20px;flex-direction:column;gap:14px;align-items:flex-start;}
+  .main{padding:16px;}
+}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  <div class="header-inner">
-    <div class="header-brand">
-      <h1>&#127891; Basheer Khan — Internship Dashboard</h1>
-      <p>MIS &amp; Business Analytics &bull; Auto-scanned every 4 hours from LinkedIn, Indeed &amp; 100+ companies</p>
-    </div>
-    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-      <div class="scan-pill"><div class="scan-dot"></div><span id="scan-status">Loading jobs…</span></div>
-    </div>
+<!-- ════════════ HEADER ════════════ -->
+<div class="hdr">
+  <div class="hdr-blob"></div>
+  <div class="hdr-l">
+    <h1>Basheer Khan — Internship Tracker</h1>
+    <p>
+      <span class="live-dot"></span>
+      MN &amp; Remote Only &bull; Auto-scanned daily &bull; Greenhouse · Ashby · Lever · Indeed · LinkedIn
+    </p>
   </div>
+  <div class="hdr-r">
+    <a class="btn btn-blue"  href="basheer-khan-carlson.pdf"  target="_blank">&#8659; Carlson Resume</a>
+    <a class="btn btn-slate" href="basheer-khan-augsburg.pdf" target="_blank">&#8659; Augsburg Resume</a>
+    <button class="btn btn-scan" onclick="openScan()">&#9711; Scan Now</button>
+  </div>
+  <div class="hdr-shine"></div>
 </div>
 
-<!-- TABS -->
-<div class="tabs-wrap">
-  <div class="tabs">
-    <div class="tab on" id="t-pipeline" onclick="showTab('pipeline')">
-      &#128203; Job Pipeline <span class="tab-badge" id="tc-pipeline">—</span>
-    </div>
-    <div class="tab" id="t-apps" onclick="showTab('apps')">
-      &#9989; My Applications <span class="tab-badge" id="tc-apps">0</span>
-    </div>
+<!-- ════════════ TABS ════════════ -->
+<div class="tabs-bar">
+  <div class="tab on" id="t-pipeline" onclick="showTab('pipeline')">
+    Job Pipeline <span class="tab-count" id="tc-pipeline">—</span>
+  </div>
+  <div class="tab" id="t-apps" onclick="showTab('apps')">
+    My Applications <span class="tab-count" id="tc-apps">0</span>
   </div>
 </div>
 
 <div class="main">
 
-  <!-- ══ PIPELINE PANEL ══ -->
-  <div class="panel on" id="panel-pipeline">
+<!-- ════ PIPELINE PANEL ════ -->
+<div class="panel on" id="panel-pipeline">
 
-    <!-- stats -->
-    <div class="stats">
-      <div class="stat stat-total"><div class="stat-n" id="ps-total">—</div><div class="stat-l">Total Jobs</div></div>
-      <div class="stat stat-intern"><div class="stat-n" id="ps-intern">—</div><div class="stat-l">Internships</div></div>
-      <div class="stat stat-remote"><div class="stat-n" id="ps-remote">—</div><div class="stat-l">Remote</div></div>
-      <div class="stat stat-applied"><div class="stat-n" id="ps-new">—</div><div class="stat-l">Not Applied</div></div>
+  <!-- Resume downloads -->
+  <div class="resume-card au">
+    <div>
+      <div class="resume-title">My Resumes</div>
+      <div class="resume-sub">Download and send directly to employers</div>
     </div>
-
-    <!-- toolbar -->
-    <div class="toolbar-card">
-      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-        <div class="search-wrap">
-          <span class="search-ico">&#128269;</span>
-          <input class="search-box" id="pipe-search" placeholder="Search company or role…" oninput="renderPipeline()">
-        </div>
-        <div class="filters">
-          <button class="ftab on" id="pf-all"    onclick="setPFilter('all',this)">All</button>
-          <button class="ftab"    id="pf-intern" onclick="setPFilter('intern',this)">&#127891; Internships</button>
-          <button class="ftab"    id="pf-remote" onclick="setPFilter('remote',this)">&#127760; Remote</button>
-          <button class="ftab"    id="pf-mn"     onclick="setPFilter('mn',this)">&#128205; MN</button>
-          <button class="ftab"    id="pf-rec"    onclick="setPFilter('rec',this)">&#11088; Picks</button>
-        </div>
-      </div>
-      <div class="scan-info">
-        <span id="last-scan-label"></span>
-        <button class="btn-refresh" onclick="doRefresh()">&#8635; Scan Info</button>
-      </div>
+    <div class="resume-btns">
+      <a href="basheer-khan-carlson.pdf"  download="Basheer_Khan_Carlson_Resume.pdf"  class="btn btn-blue">&#8659; Carlson Resume</a>
+      <a href="basheer-khan-augsburg.pdf" download="Basheer_Khan_Augsburg_Resume.pdf" class="btn btn-slate">&#8659; Augsburg Resume</a>
+      <a href="basheer-khan-carlson.pdf"  target="_blank" class="btn btn-slate">&#128065; Preview Carlson</a>
+      <a href="basheer-khan-augsburg.pdf" target="_blank" class="btn btn-slate">&#128065; Preview Augsburg</a>
     </div>
+  </div>
 
-    <!-- table -->
-    <div class="table-card">
-      <div class="tbl-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:28px"></th>
-              <th>Company</th>
-              <th>Role</th>
-              <th>Location</th>
-              <th>Source</th>
-              <th>Link</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="pipe-body"></tbody>
-        </table>
-      </div>
-      <div class="empty" id="pipe-empty" style="display:none">
-        <div class="empty-ico">&#128203;</div>
-        <p>No jobs match your filter. Try a different search.</p>
+  <!-- Toolbar -->
+  <div class="card au au-1">
+    <div style="padding:14px 20px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;">
+        <div class="toolbar">
+          <div class="search-wrap">
+            <span class="search-ico">&#128269;</span>
+            <input class="search-box" id="pipe-search" placeholder="Search company or role…" oninput="renderPipeline()">
+          </div>
+          <button class="ftab on" id="pf-all"    onclick="setPF('all',this)">All</button>
+          <button class="ftab"    id="pf-intern" onclick="setPF('intern',this)">🎓 Internships</button>
+          <button class="ftab"    id="pf-remote" onclick="setPF('remote',this)">🌐 Remote</button>
+          <button class="ftab"    id="pf-mn"     onclick="setPF('mn',this)">📍 MN</button>
+          <button class="ftab"    id="pf-rec"    onclick="setPF('rec',this)">⭐ Saved</button>
+        </div>
+        <div class="scan-row">
+          <span class="last-scan-txt" id="last-scan-txt"></span>
+          <button class="btn btn-scan" id="btn-refresh" onclick="openScan()" style="padding:7px 16px;font-size:12px;">
+            <span id="refresh-ico">&#8635;</span> Scan / Refresh
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ══ MY APPLICATIONS PANEL ══ -->
-  <div class="panel" id="panel-apps">
-
-    <!-- stats -->
-    <div class="stats">
-      <div class="stat stat-total">   <div class="stat-n" id="sn-tot">0</div><div class="stat-l">Total</div></div>
-      <div class="stat stat-applied"> <div class="stat-n" id="sn-app">0</div><div class="stat-l">Applied</div></div>
-      <div class="stat stat-interview"><div class="stat-n" id="sn-int">0</div><div class="stat-l">Interview</div></div>
-      <div class="stat stat-offer">   <div class="stat-n" id="sn-off">0</div><div class="stat-l">Offer</div></div>
-      <div class="stat stat-rejected"><div class="stat-n" id="sn-rej">0</div><div class="stat-l">Rejected</div></div>
+  <!-- Job table -->
+  <div class="card au au-2">
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:30px"></th>
+            <th>Company</th>
+            <th>Role</th>
+            <th>Location</th>
+            <th>Source</th>
+            <th>Link</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="pipe-body"></tbody>
+      </table>
     </div>
-
-    <!-- add form -->
-    <div class="card">
-      <div class="card-hdr"><div class="card-title">&#43; Add Application</div></div>
-      <div class="form-grid">
-        <div class="fg"><label>Company</label><input id="fc" placeholder="e.g. Google"></div>
-        <div class="fg"><label>Role</label><input id="fr" placeholder="e.g. MIS Intern"></div>
-        <div class="fg"><label>Job URL</label><input id="fu" type="url" placeholder="https://…"></div>
-        <div class="fg"><label>Date</label><input id="fd" type="date"></div>
-        <div class="fg"><label>Status</label>
-          <select id="fs">
-            <option>Applied</option><option>Evaluated</option><option>Interview</option>
-            <option>Offer</option><option>Rejected</option><option>Discarded</option><option>SKIP</option>
-          </select>
-        </div>
-        <div class="fg"><label>Notes</label><input id="fn" placeholder="Any notes…"></div>
-        <button class="btn-add" onclick="addApp()">Add</button>
-      </div>
-    </div>
-
-    <!-- apps table -->
-    <div class="card">
-      <div class="card-hdr">
-        <div class="filters" id="app-filters">
-          <button class="ftab on" onclick="setAFilter('All',this)">All</button>
-          <button class="ftab" onclick="setAFilter('Applied',this)">Applied</button>
-          <button class="ftab" onclick="setAFilter('Interview',this)">Interview</button>
-          <button class="ftab" onclick="setAFilter('Offer',this)">&#127881; Offer</button>
-          <button class="ftab" onclick="setAFilter('Evaluated',this)">Evaluated</button>
-          <button class="ftab" onclick="setAFilter('Rejected',this)">Rejected</button>
-        </div>
-        <span style="font-size:11px;color:var(--subtle)" id="app-count-label"></span>
-      </div>
-      <div class="tbl-wrap">
-        <table>
-          <thead>
-            <tr><th>#</th><th>Date</th><th>Company</th><th>Role</th><th>Link</th><th>Status</th><th>Notes</th><th></th></tr>
-          </thead>
-          <tbody id="app-body"></tbody>
-        </table>
-      </div>
-      <div class="empty" id="app-empty" style="display:none">
-        <div class="empty-ico">&#128203;</div>
-        <p>No applications yet — click <strong>Mark Applied</strong> on any pipeline job to get started.</p>
-      </div>
+    <div class="empty" id="pipe-empty" style="display:none">
+      <div class="ico">📋</div>
+      <p>No jobs found — click <strong>Scan / Refresh</strong> to find fresh MN &amp; Remote internships.</p>
     </div>
   </div>
 
+</div><!-- /pipeline -->
+
+<!-- ════ APPLICATIONS PANEL ════ -->
+<div class="panel" id="panel-apps">
+
+  <div class="stats">
+    <div class="stat s-tot"><div class="stat-n" id="sn-tot">0</div><div class="stat-l">Total</div></div>
+    <div class="stat s-app"><div class="stat-n" id="sn-app">0</div><div class="stat-l">Applied</div></div>
+    <div class="stat s-int"><div class="stat-n" id="sn-int">0</div><div class="stat-l">Interview</div></div>
+    <div class="stat s-off"><div class="stat-n" id="sn-off">0</div><div class="stat-l">Offer</div></div>
+    <div class="stat s-rej"><div class="stat-n" id="sn-rej">0</div><div class="stat-l">Rejected</div></div>
+    <div class="stat s-eva"><div class="stat-n" id="sn-eva">0</div><div class="stat-l">Evaluated</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr"><div class="card-title">+ Add Application</div></div>
+    <div class="form-row">
+      <div class="fg"><label>Company</label><input id="fc" placeholder="e.g. Target"></div>
+      <div class="fg"><label>Role</label><input id="fr" placeholder="e.g. Data Analyst Intern"></div>
+      <div class="fg"><label>Job URL</label><input id="fu" type="url" placeholder="https://…"></div>
+      <div class="fg"><label>Date</label><input id="fd" type="date"></div>
+      <div class="fg"><label>Status</label>
+        <select id="fs">
+          <option>Applied</option><option>Evaluated</option><option>Interview</option>
+          <option>Offer</option><option>Rejected</option><option>Discarded</option><option>SKIP</option>
+        </select>
+      </div>
+      <div class="fg"><label>Notes</label><input id="fn" placeholder="Any notes…"></div>
+      <button class="btn-add" onclick="addApp()">Add</button>
+    </div>
+  </div>
+
+  <div class="card" style="overflow:hidden">
+    <div class="card-hdr">
+      <div class="toolbar" id="app-filters">
+        <button class="ftab on" onclick="setAF('All',this)">All</button>
+        <button class="ftab" onclick="setAF('Applied',this)">Applied</button>
+        <button class="ftab" onclick="setAF('Interview',this)">Interview</button>
+        <button class="ftab" onclick="setAF('Offer',this)">Offer 🎉</button>
+        <button class="ftab" onclick="setAF('Evaluated',this)">Evaluated</button>
+        <button class="ftab" onclick="setAF('Rejected',this)">Rejected</button>
+      </div>
+      <span class="last-scan-txt" id="app-count-lbl"></span>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Date</th><th>Company</th><th>Role</th><th>Link</th><th>Status</th><th>Notes</th><th></th></tr>
+        </thead>
+        <tbody id="app-body"></tbody>
+      </table>
+    </div>
+    <div class="empty" id="app-empty" style="display:none">
+      <div class="ico">📋</div>
+      <p>No applications yet — add your first above or click <strong>Mark Applied</strong> on a pipeline job.</p>
+    </div>
+  </div>
+</div><!-- /apps -->
 </div><!-- /main -->
 
+<!-- ════ SCAN MODAL ════ -->
+<div class="modal-overlay" id="scan-modal" onclick="if(event.target===this&&!scanRunning)closeScan()">
+  <div class="modal">
+    <h2 id="modal-title">&#9711; Scan for Internships</h2>
+    <div class="modal-sub" id="modal-sub">Find fresh MN &amp; Remote internships from Greenhouse, Ashby, Lever, Indeed, and LinkedIn.</div>
+    <div class="scan-bar"><div class="scan-bar-fill" id="scan-fill"></div></div>
+    <div class="scan-log" id="scan-log">Ready — click Start Scan below.</div>
+    <div class="modal-btns">
+      <button id="modal-start" class="btn btn-scan" style="flex:1;justify-content:center;" onclick="startScan()">&#9711; Start Scan</button>
+      <button class="modal-close" onclick="closeScan()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ TOAST ════ -->
+<div class="toast-box" id="toast-box"></div>
+
 <script>
-// ── CURATED PICKS ────────────────────────────────────────────────────
-const RECOMMENDED = [
-  { company:"Double Good", role:"Data Analyst Intern",     location:"Remote (US)", url:"https://job-boards.greenhouse.io/doublegood/jobs/5832697004" },
-  { company:"Voltus",      role:"Data Analyst Intern",     location:"Remote (US)", url:"https://jobs.lever.co/voltus/d30b5349-1023-497f-a5e5-264204071235" },
-  { company:"Rackner",     role:"Business Analyst Intern", location:"Remote (US)", url:"https://job-boards.greenhouse.io/rackner/jobs/4323514005" },
-  { company:"Robyn AI",    role:"Data Analyst Intern",     location:"Remote (US)", url:"https://jobs.ashbyhq.com/m13/2ed7a1e6-ff5b-412d-8006-c5b0edb7f304" },
+// ── Saved / Recommended jobs ─────────────────────────────────────────
+const SAVED = [
+  {company:"Double Good", role:"Data Analyst Intern",     location:"Elmhurst, IL",      url:"https://job-boards.greenhouse.io/doublegood/jobs/5832697004",                  source:"greenhouse"},
+  {company:"Voltus",      role:"Data Analyst Intern",     location:"Remote (US)",        url:"https://jobs.lever.co/voltus/d30b5349-1023-497f-a5e5-264204071235",             source:"lever"},
+  {company:"Rackner",     role:"Business Analyst Intern", location:"Remote (US)",        url:"https://job-boards.greenhouse.io/rackner/jobs/4323514005",                      source:"greenhouse"},
+  {company:"Robyn AI",    role:"Data Analyst Intern",     location:"Remote (US)",        url:"https://jobs.ashbyhq.com/m13/2ed7a1e6-ff5b-412d-8006-c5b0edb7f304",            source:"ashby"},
 ];
-const REC_URLS = new Set(RECOMMENDED.map(j => j.url));
+const SAVED_URLS = new Set(SAVED.map(j=>j.url));
 
-// ── STATE ────────────────────────────────────────────────────────────
+// ── State ────────────────────────────────────────────────────────────
 const STATUSES = ['Applied','Evaluated','Interview','Offer','Rejected','Discarded','SKIP'];
-let pipelineJobs = [];
-let pipeFilter   = 'all';
-let appFilter    = 'All';
-let apps         = JSON.parse(localStorage.getItem('bk-jobs') || '[]');
-let lastScan     = localStorage.getItem('bk-last-scan') || null;
+let pipeJobs  = [];
+let pipeF     = 'all';
+let appF      = 'All';
+let apps      = JSON.parse(localStorage.getItem('bk-apps')||'[]');
+let lastScan  = localStorage.getItem('bk-last-scan')||null;
+let scanRunning = false;
+const IS_LOCAL = location.hostname==='localhost'||location.hostname==='127.0.0.1';
 
+// ── Helpers ──────────────────────────────────────────────────────────
 const today = () => new Date().toISOString().slice(0,10);
-const save  = () => localStorage.setItem('bk-jobs', JSON.stringify(apps));
+const save  = () => localStorage.setItem('bk-apps', JSON.stringify(apps));
 const esc   = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
-// ── SOURCE DETECTION ─────────────────────────────────────────────────
-function detectSource(url) {
-  if (!url) return { label:'Other', cls:'src-other' };
-  if (url.includes('linkedin.com'))    return { label:'LinkedIn',   cls:'src-linkedin' };
-  if (url.includes('indeed.com'))      return { label:'Indeed',     cls:'src-indeed' };
-  if (url.includes('handshake'))       return { label:'Handshake',  cls:'src-handshake' };
-  if (url.includes('greenhouse.io'))   return { label:'Greenhouse', cls:'src-greenhouse' };
-  if (url.includes('lever.co'))        return { label:'Lever',      cls:'src-lever' };
-  if (url.includes('ashbyhq.com'))     return { label:'Ashby',      cls:'src-ashby' };
-  return { label:'Direct', cls:'src-other' };
-}
-
-// ── LOCATION TAG ─────────────────────────────────────────────────────
 function locTag(loc) {
-  if (!loc) return '<span style="color:#cbd5e1">—</span>';
+  if (!loc) return '';
   const l = loc.toLowerCase();
-  if (l.includes('remote') || l.includes('anywhere'))
-    return `<span class="badge b-remote">&#127760; Remote</span>`;
-  if (l.includes('minneapolis') || l.includes('minnesota') || l.includes('st. paul') || l.includes('twin cities'))
-    return `<span class="badge b-mn">&#128205; ${esc(loc)}</span>`;
-  return `<span class="badge b-city">${esc(loc)}</span>`;
+  if (l.includes('remote')||l.includes('anywhere')||l.includes('work from home'))
+    return `<span class="loc-tag loc-remote">&#127758; Remote</span>`;
+  if (l.includes('minnesota')||l.includes('minneapolis')||l.includes('st. paul')||
+      l.includes('saint paul')||l.includes('twin cities')||/\bmn\b/.test(l)||l.endsWith(', mn'))
+    return `<span class="loc-tag loc-mn">&#128205; MN</span>`;
+  return `<span class="loc-tag loc-other">${esc(loc)}</span>`;
 }
 
-const isInternship = j => {
+function srcBadge(src) {
+  if (!src) return '';
+  const map = {
+    greenhouse:['Greenhouse','src-greenhouse'],
+    ashby:     ['Ashby',     'src-ashby'],
+    lever:     ['Lever',     'src-lever'],
+    indeed:    ['Indeed',    'src-indeed'],
+    linkedin:  ['LinkedIn',  'src-linkedin'],
+    saved:     ['Saved',     'src-saved'],
+  };
+  const [label,cls] = map[src] || [src,'src-greenhouse'];
+  return `<span class="src-badge ${cls}">${label}</span>`;
+}
+
+const isIntern = j => {
   const r = (j.role||'').toLowerCase();
-  return r.includes('intern') || r.includes('co-op') || r.includes('coop') || r.includes('fellowship') || r.includes('extern');
+  return r.includes('intern')||r.includes('extern')||r.includes('co-op')||r.includes('coop')||r.includes('fellowship');
 };
 
-// ── TABS ─────────────────────────────────────────────────────────────
+// ── Tabs ─────────────────────────────────────────────────────────────
 function showTab(t) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
-  document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
   document.getElementById('panel-'+t).classList.add('on');
   document.getElementById('t-'+t).classList.add('on');
 }
 
-// ── PIPELINE ─────────────────────────────────────────────────────────
-async function loadPipeline() {
-  document.getElementById('scan-status').textContent = 'Loading jobs…';
+// ── Pipeline ──────────────────────────────────────────────────────────
+async function loadPipeline(force=false) {
   try {
-    const res = await fetch('./jobs.json');
-    if (!res.ok) throw new Error();
-    pipelineJobs = await res.json();
-    const ts = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-    document.getElementById('scan-status').textContent = `${pipelineJobs.length} jobs loaded · ${ts}`;
-    document.getElementById('tc-pipeline').textContent = pipelineJobs.length;
+    const r = await fetch('./jobs.json'+(force?'?t='+Date.now():''));
+    if (!r.ok) throw new Error();
+    pipeJobs = await r.json();
+    document.getElementById('tc-pipeline').textContent = pipeJobs.length;
+    if (force) { lastScan = new Date().toISOString(); localStorage.setItem('bk-last-scan',lastScan); }
+    renderPipeline();
   } catch {
-    pipelineJobs = [];
-    document.getElementById('scan-status').textContent = 'Using curated picks';
-    document.getElementById('tc-pipeline').textContent = RECOMMENDED.length;
+    pipeJobs = [];
+    renderPipeline();
   }
-  renderPipeline();
 }
 
-function setPFilter(f, btn) {
-  pipeFilter = f;
-  document.querySelectorAll('[id^="pf-"]').forEach(b => b.classList.remove('on'));
+function setPF(f, btn) {
+  pipeF = f;
+  document.querySelectorAll('[id^="pf-"]').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
   renderPipeline();
 }
 
 function renderPipeline() {
   const q = (document.getElementById('pipe-search').value||'').toLowerCase();
-  const recJobs  = RECOMMENDED.map(j => ({...j, _rec:true}));
-  const pipeOnly = pipelineJobs.filter(j => !REC_URLS.has(j.url));
-  const allJobs  = [...recJobs, ...pipeOnly];
 
-  const filtered = allJobs.filter(j => {
+  const savedJobs = SAVED.map(j=>({...j, _saved:true}));
+  const pipeOnly  = pipeJobs.filter(j=>!SAVED_URLS.has(j.url));
+  const all       = [...savedJobs, ...pipeOnly];
+
+  const filtered  = all.filter(j => {
     if (q && !(j.company||'').toLowerCase().includes(q) && !(j.role||'').toLowerCase().includes(q)) return false;
-    if (pipeFilter === 'rec')    return !!j._rec;
-    if (pipeFilter === 'intern') return isInternship(j);
-    if (pipeFilter === 'remote') return (j.location||'').toLowerCase().includes('remote') || (j.location||'').toLowerCase().includes('anywhere');
-    if (pipeFilter === 'mn')     return (j.location||'').toLowerCase().match(/minneapolis|minnesota|st\. paul|twin cities/);
+    const loc = (j.location||'').toLowerCase();
+    if (pipeF==='rec')    return !!j._saved;
+    if (pipeF==='intern') return isIntern(j);
+    if (pipeF==='remote') return loc.includes('remote')||loc.includes('anywhere')||loc.includes('wfh');
+    if (pipeF==='mn')     return loc.includes('minnesota')||loc.includes('minneapolis')||
+                                 loc.includes('st. paul')||loc.includes('saint paul')||
+                                 loc.includes('twin cities')||/\bmn\b/.test(loc)||loc.endsWith(', mn');
     return true;
   });
 
-  filtered.sort((a,b) => {
-    const rank = j => isInternship(j) ? 0 : (j._rec ? 1 : 2);
-    return rank(a) - rank(b);
+  filtered.sort((a,b)=>{
+    const ra = isIntern(a)?0:(a._saved?1:2);
+    const rb = isIntern(b)?0:(b._saved?1:2);
+    return ra-rb || (a.company||'').localeCompare(b.company||'');
   });
 
-  // Update pipeline stats
-  const allCombined = [...recJobs, ...pipeOnly];
-  document.getElementById('ps-total').textContent  = allCombined.length;
-  document.getElementById('ps-intern').textContent = allCombined.filter(isInternship).length;
-  document.getElementById('ps-remote').textContent = allCombined.filter(j => (j.location||'').toLowerCase().includes('remote')).length;
-  document.getElementById('ps-new').textContent    = allCombined.filter(j => !apps.some(a => a.url===j.url)).length;
-
   const tbody = document.getElementById('pipe-body');
-  const empty = document.getElementById('pipe-empty');
+  const empty  = document.getElementById('pipe-empty');
   if (!filtered.length) { tbody.innerHTML=''; empty.style.display='block'; return; }
   empty.style.display='none';
 
   let html='', section=null;
   filtered.forEach(j => {
-    const jSection = isInternship(j) ? 'intern' : (j._rec ? 'rec' : 'pipe');
-    if (jSection !== section) {
-      section = jSection;
-      if (jSection==='intern') html += `<tr class="section-row section-intern"><td colspan="7">&#127891; Internships &amp; Co-ops</td></tr>`;
-      else if (jSection==='rec') html += `<tr class="section-row section-rec"><td colspan="7">&#11088; Curated Picks</td></tr>`;
-      else html += `<tr class="section-row section-pipe"><td colspan="7">All Pipeline Jobs</td></tr>`;
+    const sec = isIntern(j)?'intern':(j._saved?'rec':'pipe');
+    if (sec!==section) {
+      section=sec;
+      if (sec==='intern') html+=`<tr class="sec-row sec-intern"><td colspan="7">🎓 Internships — Apply These First</td></tr>`;
+      else if(sec==='rec')html+=`<tr class="sec-row sec-rec"><td colspan="7">⭐ Saved / Recommended — Strong Matches</td></tr>`;
+      else                 html+=`<tr class="sec-row sec-pipe"><td colspan="7">All Scanned Jobs</td></tr>`;
     }
-
-    const src      = detectSource(j.url);
-    const loc      = j.location || '';
-    const isApp    = apps.some(a => a.url===j.url);
-    const icon     = isInternship(j) ? '&#127891;' : (j._rec ? '&#11088;' : '');
+    const icon    = isIntern(j)?'🎓':(j._saved?'<span style="color:#f59e0b">★</span>':'<span style="opacity:.2">★</span>');
+    const loc     = j.location||'';
+    const isApp   = apps.some(a=>a.url===j.url);
+    const srcKey  = j._saved&&!j.source?'saved':j.source;
 
     html += `<tr>
-      <td style="text-align:center;font-size:14px">${icon}</td>
-      <td class="td-co">${esc(j.company)}</td>
-      <td class="td-ro">${esc(j.role)}</td>
+      <td>${icon}</td>
+      <td class="co">${esc(j.company)}</td>
+      <td class="ro">${esc(j.role)}</td>
       <td>${locTag(loc)}</td>
-      <td><span class="src ${src.cls}">${src.label}</span></td>
-      <td><a href="${esc(j.url)}" target="_blank" rel="noopener" style="color:var(--blue);text-decoration:none;font-weight:600;font-size:12px">&#8599; View</a></td>
+      <td>${srcBadge(srcKey)}</td>
+      <td><a href="${esc(j.url)}" target="_blank" rel="noopener">↗ View</a></td>
       <td style="white-space:nowrap">
         ${isApp
-          ? `<span class="badge b-applied">&#10003; Applied</span>`
-          : `<button class="btn-apply" onclick="quickApply(${JSON.stringify(j.company)},${JSON.stringify(j.role)},${JSON.stringify(j.url)})">Mark Applied</button><button class="btn-skip" onclick="quickSkip(${JSON.stringify(j.url)})">Skip</button>`
+          ? `<span class="badge b-Applied">Applied ✓</span>`
+          : `<button class="btn-apply" onclick="quickApply(${JSON.stringify(j.company)},${JSON.stringify(j.role)},${JSON.stringify(j.url)})">Mark Applied</button>
+             <button class="btn-skip"  onclick="quickSkip(${JSON.stringify(j.url)})">Skip</button>`
         }
       </td>
     </tr>`;
@@ -435,64 +705,144 @@ function renderPipeline() {
   tbody.innerHTML = html;
   if (lastScan) {
     const ago = Math.round((Date.now()-new Date(lastScan))/60000);
-    document.getElementById('last-scan-label').textContent = `Last applied: ${ago<1?'just now':ago+'m ago'}`;
+    document.getElementById('last-scan-txt').textContent =
+      `Last scan: ${ago<1?'just now':ago<60?ago+'m ago':Math.round(ago/60)+'h ago'}`;
   }
 }
 
-function doRefresh() {
-  alert('This dashboard auto-refreshes every 4 hours via GitHub Actions.\nNext jobs update will happen automatically — no action needed.');
+// ── Scan modal ────────────────────────────────────────────────────────
+function openScan() {
+  document.getElementById('scan-modal').classList.add('open');
+  const log  = document.getElementById('scan-log');
+  const start = document.getElementById('modal-start');
+  if (!scanRunning) {
+    if (IS_LOCAL) {
+      log.textContent  = 'Ready to scan MN & Remote internships.\n\nSources:\n  · Greenhouse (100+ companies)\n  · Ashby\n  · Lever\n  · Indeed RSS (MN + Remote feeds)\n  · LinkedIn guest API\n\nClick "Start Scan" to begin.';
+      start.textContent = '⊙ Start Scan';
+    } else {
+      log.textContent  = 'Running on GitHub Pages.\n\nScanning happens automatically every 4 hours via GitHub Actions.\n\nClick "Fetch Latest" to reload jobs.json now.';
+      start.textContent = '↻ Fetch Latest Jobs';
+    }
+    start.disabled = false;
+  }
 }
 
-function quickApply(company, role, url) {
-  apps.unshift({id:Date.now(),company,role,url,date:today(),status:'Applied',notes:''});
-  save(); renderApps(); renderPipeline();
-  showTab('apps');
-}
-function quickSkip(url) {
-  apps.unshift({id:Date.now(),company:'',role:'',url,date:today(),status:'SKIP',notes:'Skipped'});
-  save(); renderPipeline();
+function closeScan() {
+  if (!scanRunning) document.getElementById('scan-modal').classList.remove('open');
 }
 
-// ── MY APPLICATIONS ──────────────────────────────────────────────────
+async function startScan() {
+  if (scanRunning) return;
+  const log   = document.getElementById('scan-log');
+  const fill  = document.getElementById('scan-fill');
+  const start = document.getElementById('modal-start');
+
+  if (IS_LOCAL) {
+    // Trigger local scan_server.py
+    scanRunning = true;
+    start.disabled = true;
+    start.textContent = '⟳ Scanning…';
+    fill.style.display = 'block'; fill.style.width = '4%';
+
+    let prog = 4;
+    const progTimer = setInterval(()=>{ prog=Math.min(prog+Math.random()*2.5,88); fill.style.width=prog+'%'; }, 600);
+
+    const pollTimer = setInterval(async ()=>{
+      try {
+        const r = await fetch('/api/status');
+        const s = await r.json();
+        if (s.log?.length) { log.textContent=s.log.join('\n'); log.scrollTop=log.scrollHeight; }
+        if (!s.running) {
+          clearInterval(progTimer); clearInterval(pollTimer);
+          fill.style.width='100%';
+          scanRunning=false; start.disabled=false; start.textContent='⊙ Scan Again';
+          setTimeout(()=>{ fill.style.display='none'; fill.style.width='0%'; }, 1000);
+          await loadPipeline(true);
+          toast('ok', `Done! Found ${s.last_count} internships`);
+          closeScan();
+        }
+      } catch{}
+    }, 1000);
+
+    try {
+      const r = await fetch('/api/scan', {method:'POST'});
+      if (!r.ok) throw new Error('server error');
+    } catch(e) {
+      clearInterval(progTimer); clearInterval(pollTimer);
+      fill.style.display='none'; scanRunning=false; start.disabled=false; start.textContent='⊙ Try Again';
+      log.textContent='✗ Could not reach local server.\n\nMake sure scan_server.py is running:\n\n  python3 scan_server.py\n\nThen open http://localhost:5050 instead of the GitHub Pages URL.';
+    }
+  } else {
+    // GitHub Pages — just re-fetch jobs.json
+    start.disabled=true; start.textContent='⟳ Fetching…';
+    fill.style.display='block'; fill.style.width='40%';
+    log.textContent='⟳ Fetching latest jobs.json from GitHub Pages…';
+    await loadPipeline(true);
+    fill.style.width='100%';
+    setTimeout(()=>{ fill.style.display='none'; fill.style.width='0%'; }, 800);
+    log.textContent=`✓ Loaded ${pipeJobs.length} jobs.\n\nNote: Scanning happens automatically every 4 hours.\nFor on-demand scanning, run locally:\n\n  python3 scan_server.py\n  open http://localhost:5050`;
+    start.disabled=false; start.textContent='↻ Fetch Again';
+    toast('ok',`Refreshed — ${pipeJobs.length} jobs loaded`);
+  }
+}
+
+// ── Applications ──────────────────────────────────────────────────────
 document.getElementById('fd').value = today();
 
 function addApp() {
   const co=document.getElementById('fc').value.trim();
   const ro=document.getElementById('fr').value.trim();
-  if (!co||!ro) { alert('Company and Role are required.'); return; }
+  if(!co||!ro){toast('err','Company and Role are required.');return;}
   apps.unshift({id:Date.now(),company:co,role:ro,url:document.getElementById('fu').value.trim(),
     date:document.getElementById('fd').value||today(),status:document.getElementById('fs').value,
     notes:document.getElementById('fn').value.trim()});
   save(); renderApps(); renderPipeline();
   ['fc','fr','fu','fn'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('fd').value=today();
-  document.getElementById('fs').value='Applied';
+  document.getElementById('fd').value=today(); document.getElementById('fs').value='Applied';
+  toast('ok',`Added: ${co} — ${ro}`);
 }
+
 function deleteApp(id) {
-  if (!confirm('Remove this application?')) return;
+  if(!confirm('Remove this application?'))return;
   apps=apps.filter(a=>a.id!==id); save(); renderApps(); renderPipeline();
 }
+
 function updateStatus(id,s) {
   const a=apps.find(a=>a.id===id); if(a){a.status=s;save();renderApps();}
 }
-function setAFilter(f,btn) {
-  appFilter=f;
+
+function setAF(f,btn) {
+  appF=f;
   document.querySelectorAll('#app-filters .ftab').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
   renderApps();
 }
+
+function quickApply(company,role,url) {
+  apps.unshift({id:Date.now(),company,role,url,date:today(),status:'Applied',notes:''});
+  save(); renderApps(); renderPipeline();
+  showTab('apps');
+  toast('ok',`Applied to ${company}!`);
+}
+
+function quickSkip(url) {
+  apps.unshift({id:Date.now(),company:'',role:'',url,date:today(),status:'SKIP',notes:'Skipped'});
+  save(); renderPipeline();
+}
+
 function renderApps() {
   const counts={Applied:0,Interview:0,Offer:0,Rejected:0,Evaluated:0};
-  apps.forEach(a=>{if(counts[a.status]!==undefined)counts[a.status]++;});
-  document.getElementById('sn-tot').textContent=apps.length;
-  document.getElementById('sn-app').textContent=counts.Applied;
-  document.getElementById('sn-int').textContent=counts.Interview;
-  document.getElementById('sn-off').textContent=counts.Offer;
-  document.getElementById('sn-rej').textContent=counts.Rejected;
+  apps.forEach(a=>{ if(counts[a.status]!==undefined) counts[a.status]++; });
+  counter('sn-tot',apps.length);
+  counter('sn-app',counts.Applied);
+  counter('sn-int',counts.Interview);
+  counter('sn-off',counts.Offer);
+  counter('sn-rej',counts.Rejected);
+  counter('sn-eva',counts.Evaluated);
   document.getElementById('tc-apps').textContent=apps.length;
 
-  const list=appFilter==='All'?apps:apps.filter(a=>a.status===appFilter);
-  document.getElementById('app-count-label').textContent=`${list.length} application${list.length!==1?'s':''}`;
+  const list = appF==='All'?apps:apps.filter(a=>a.status===appF);
+  document.getElementById('app-count-lbl').textContent=`${list.length} application${list.length!==1?'s':''}`;
 
   const tbody=document.getElementById('app-body');
   const empty=document.getElementById('app-empty');
@@ -501,21 +851,45 @@ function renderApps() {
 
   tbody.innerHTML=list.map((a,i)=>{
     const opts=STATUSES.map(s=>`<option value="${s}"${s===a.status?' selected':''}>${s}</option>`).join('');
-    const link=a.url?`<a href="${esc(a.url)}" target="_blank" rel="noopener" style="color:var(--blue);text-decoration:none;font-weight:600;font-size:12px">&#8599; View</a>`:`<span style="color:#e2e8f0">—</span>`;
+    const link=a.url?`<a href="${esc(a.url)}" target="_blank" rel="noopener">↗ View</a>`:`<span style="opacity:.2">—</span>`;
     return `<tr>
-      <td style="color:var(--subtle);font-size:11px;width:28px">${i+1}</td>
+      <td style="color:rgba(255,255,255,.25);font-size:11px;width:28px">${i+1}</td>
       <td style="white-space:nowrap;font-size:11px;color:var(--muted)">${a.date}</td>
-      <td class="td-co">${esc(a.company)}</td>
-      <td style="color:var(--navy2)">${esc(a.role)}</td>
+      <td class="co">${esc(a.company)}</td>
+      <td class="ro">${esc(a.role)}</td>
       <td>${link}</td>
       <td><select class="st-sel" onchange="updateStatus(${a.id},this.value)">${opts}</select></td>
-      <td style="font-size:12px;color:var(--muted);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(a.notes)||'<span style="color:#e2e8f0">—</span>'}</td>
-      <td><button class="btn-del" onclick="deleteApp(${a.id})">&#10005;</button></td>
+      <td style="color:var(--muted);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px">${esc(a.notes)||'<span style="opacity:.2">—</span>'}</td>
+      <td><button class="btn-del" onclick="deleteApp(${a.id})">✕</button></td>
     </tr>`;
   }).join('');
 }
 
-// ── INIT ─────────────────────────────────────────────────────────────
+// ── Animated counter ─────────────────────────────────────────────────
+function counter(id, target) {
+  const el=document.getElementById(id);
+  const cur=parseInt(el.textContent)||0;
+  if(cur===target)return;
+  const steps=18, step=(target-cur)/steps;
+  let n=cur, i=0;
+  const t=setInterval(()=>{ n+=step; el.textContent=Math.round(n); if(++i>=steps){el.textContent=target;clearInterval(t);} },14);
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────
+function toast(type, msg) {
+  const box=document.getElementById('toast-box');
+  const icons={ok:'✓',err:'✗',info:'ℹ'};
+  const el=document.createElement('div');
+  el.className=`toast toast-${type==='ok'?'ok':type==='err'?'err':'info'}`;
+  el.innerHTML=`<span style="font-size:15px">${icons[type]||'ℹ'}</span><span>${msg}</span>`;
+  box.appendChild(el);
+  setTimeout(()=>{ el.classList.add('t-out'); setTimeout(()=>el.remove(),320); },3800);
+}
+
+// ── Auto-refresh every 10 min ─────────────────────────────────────────
+setInterval(()=>loadPipeline(true), 10*60*1000);
+
+// ── Init ─────────────────────────────────────────────────────────────
 loadPipeline();
 renderApps();
 </script>
