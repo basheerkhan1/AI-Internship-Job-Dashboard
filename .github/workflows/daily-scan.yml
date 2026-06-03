@@ -2,7 +2,7 @@ name: Daily Job Scan
 
 on:
   schedule:
-    - cron: '0 */4 * * *'   # every 4 hours automatically
+    - cron: '0 * * * *'      # every 1 hour automatically
   workflow_dispatch:          # manual trigger from GitHub UI
 
 permissions:
