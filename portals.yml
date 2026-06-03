@@ -41,24 +41,14 @@
 # common foreign hubs. Customize to your geography.
 
 location_filter:
-  # MN cities always pass even if a block keyword also matches
+  # Open to all US locations for internships — block international only
   always_allow:
     - "Minnesota"
     - "Minneapolis"
     - "St. Paul"
     - "Saint Paul"
     - "Twin Cities"
-  allow:
-    - "Remote"
-    - "United States"
-    - "USA"
-    - "US"
-    - "Anywhere"
-    - "Minnesota"
-    - "Minneapolis"
-    - "St. Paul"
-    - "Saint Paul"
-    - "Twin Cities"
+  # allow is intentionally empty → any location passes unless it's blocked
   block:
     - "India"
     - "Bengaluru"
@@ -101,37 +91,23 @@ location_filter:
 
 title_filter:
   positive:
-    # -- Internships (primary focus) --
+    # -- Primary: internship keywords catch everything with "intern" in the title --
     - "Intern"
     - "Internship"
     - "Co-op"
     - "Coop"
-    # -- Entry Level / Junior (MN or Remote only) --
-    - "Entry Level"
-    - "Entry-Level"
-    - "Junior Analyst"
-    - "Analyst I"
-    - "Associate Analyst"
-    - "Analytics Associate"
-    - "Data Associate"
-    # -- MIS & Business Analytics --
-    - "Management Information Systems"
+    - "Summer 2025"
+    - "Summer 2026"
+    - "Fall 2025"
+    - "Fall 2026"
+    - "Spring 2026"
+    # -- MIS & Business Analytics specific (intern-focused compound titles) --
     - "MIS"
+    - "Management Information Systems"
     - "Business Analytics"
-    - "Systems Analyst"
-    - "Information Systems"
-    - "IT Analyst"
-    - "Technology Analyst"
-    # -- Analytics & Data --
-    - "Data Analyst"
-    - "Business Analyst"
     - "Business Intelligence"
-    - "BI Analyst"
-    - "Reporting Analyst"
-    - "Marketing Analyst"
-    - "Operations Analyst"
-    - "Insights Analyst"
-    - "Data & Analytics"
+    - "Information Systems"
+    - "Systems Analyst"
   negative:
     - ".NET"
     - "Java "
@@ -400,9 +376,16 @@ tracked_companies:
     provider: indeed
     careers_url: "https://www.indeed.com/rss?q=information+systems+internship&l=remote&sort=date"
 
-  # Handshake — requires school login at minneapolis.joinhandshake.com
-  # Bookmark: https://minneapolis.joinhandshake.com/job-search/11094094
-  # Cannot be auto-scanned (authentication required). Check manually.
+  # Handshake — attempts public API; falls back gracefully if login required
+  # Bookmark for manual check: https://minneapolis.joinhandshake.com/job-search/11094094
+  - name: Handshake — MIS & Analytics Internships
+    provider: handshake
+    careers_url: "https://app.joinhandshake.com/stu/jobs"
+
+  - name: Handshake — Remote Internships
+    provider: handshake
+    careers_url: "https://app.joinhandshake.com/stu/jobs"
+    api: "https://app.joinhandshake.com/stu/jobs.json?job.remote_job_types[]=remote_only"
 
   # ============================================================
   # -- Consumer & Brand companies (strong analytics programs) --

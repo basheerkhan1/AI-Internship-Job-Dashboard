@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Basheer Khan — Internship Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f8fafc;--surface:#fff;--border:#e2e8f0;
+  --text:#0f172a;--muted:#64748b;--subtle:#94a3b8;
+  --blue:#2563eb;--blue-light:#eff6ff;--blue-dark:#1d4ed8;
+  --green:#16a34a;--green-light:#f0fdf4;
+  --purple:#7c3aed;--purple-light:#f5f3ff;
+  --amber:#d97706;--amber-light:#fffbeb;
+  --red:#dc2626;--red-light:#fef2f2;
+  --navy:#0f172a;--navy2:#1e293b;
+  --radius:10px;--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);font-size:14px;min-height:100vh}
+
+/* ── HEADER ─────────────────────────────────────── */
+.header{background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 100%);color:#fff;padding:20px 28px}
+.header-inner{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.header-brand h1{font-size:18px;font-weight:800;letter-spacing:-.03em;display:flex;align-items:center;gap:8px}
+.header-brand p{font-size:12px;color:#93c5fd;margin-top:3px}
+.header-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600;color:#e0f2fe}
+.scan-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border-radius:6px;padding:5px 12px;font-size:11px;color:#93c5fd}
+.scan-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ── TABS ────────────────────────────────────────── */
+.tabs-wrap{background:var(--surface);border-bottom:2px solid var(--border);position:sticky;top:0;z-index:10}
+.tabs{max-width:1400px;margin:0 auto;padding:0 28px;display:flex;gap:0}
+.tab{padding:13px 20px;font-size:13px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px;cursor:pointer;display:flex;align-items:center;gap:7px;transition:color .15s}
+.tab:hover{color:var(--text)}
+.tab.on{color:var(--blue);border-bottom-color:var(--blue)}
+.tab-badge{background:#f1f5f9;border-radius:20px;padding:1px 8px;font-size:10px;font-weight:700;min-width:20px;text-align:center}
+.tab.on .tab-badge{background:var(--blue-light);color:var(--blue)}
+
+/* ── LAYOUT ──────────────────────────────────────── */
+.main{max-width:1400px;margin:0 auto;padding:22px 28px}
+.panel{display:none}
+.panel.on{display:block}
+
+/* ── STAT CARDS ──────────────────────────────────── */
+.stats{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;flex:1;min-width:100px;box-shadow:var(--shadow)}
+.stat-n{font-size:28px;font-weight:900;line-height:1;letter-spacing:-.03em}
+.stat-l{font-size:11px;color:var(--muted);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.stat-total .stat-n{color:var(--navy)}
+.stat-intern .stat-n{color:var(--purple)}
+.stat-remote .stat-n{color:var(--green)}
+.stat-applied .stat-n{color:var(--blue)}
+.stat-interview .stat-n{color:var(--purple)}
+.stat-offer .stat-n{color:var(--green)}
+.stat-rejected .stat-n{color:var(--red)}
+
+/* ── TOOLBAR ──────────────────────────────────────── */
+.toolbar-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-bottom:16px;box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.search-wrap{position:relative;display:flex;align-items:center}
+.search-ico{position:absolute;left:10px;color:var(--subtle);font-size:14px;pointer-events:none}
+.search-box{padding:8px 12px 8px 32px;border:1px solid var(--border);border-radius:7px;font-size:13px;background:#f8fafc;width:240px;outline:none;transition:border-color .15s,box-shadow .15s}
+.search-box:focus{border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.filters{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.ftab{padding:5px 14px;border-radius:20px;border:1px solid var(--border);font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:var(--muted);transition:all .15s;white-space:nowrap}
+.ftab:hover{border-color:var(--blue);color:var(--blue)}
+.ftab.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.scan-info{font-size:11px;color:var(--subtle);display:flex;align-items:center;gap:6px}
+
+/* ── TABLE ────────────────────────────────────────── */
+.table-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+thead{background:#f8fafc}
+th{padding:10px 16px;text-align:left;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:10px 16px;font-size:13px;border-bottom:1px solid #f8fafc;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:#fafbfc}
+.td-co{font-weight:700;color:var(--navy);white-space:nowrap}
+.td-ro{color:var(--navy2);max-width:280px}
+
+/* ── SECTION HEADERS ─────────────────────────────── */
+.section-row td{padding:8px 16px 6px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid}
+.section-intern td{background:#f5f3ff;color:var(--purple);border-bottom-color:#ddd6fe}
+.section-rec td{background:#fffbeb;color:var(--amber);border-bottom-color:#fde68a}
+.section-pipe td{background:#f8fafc;color:var(--subtle);border-bottom-color:var(--border)}
+
+/* ── BADGES ──────────────────────────────────────── */
+.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+.b-intern   {background:var(--purple-light);color:var(--purple)}
+.b-remote   {background:var(--green-light);color:var(--green)}
+.b-mn       {background:var(--blue-light);color:var(--blue-dark)}
+.b-city     {background:#f1f5f9;color:#475569}
+.b-applied  {background:var(--blue-light);color:var(--blue-dark)}
+.b-interview{background:var(--purple-light);color:var(--purple)}
+.b-offer    {background:var(--green-light);color:var(--green)}
+.b-rejected {background:var(--red-light);color:var(--red)}
+.b-evaluated{background:var(--amber-light);color:var(--amber)}
+.b-skip     {background:#f1f5f9;color:var(--subtle)}
+
+/* source badges */
+.src{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+.src-linkedin  {background:#e8f0fe;color:#1a56db}
+.src-indeed    {background:#fff4e0;color:#b45309}
+.src-handshake {background:#fce7f3;color:#9d174d}
+.src-greenhouse{background:#f0fdf4;color:#166534}
+.src-lever     {background:#fdf4ff;color:#7e22ce}
+.src-ashby     {background:#fef9c3;color:#92400e}
+.src-other     {background:#f1f5f9;color:#475569}
+
+/* ── ACTION BUTTONS ──────────────────────────────── */
+.btn-apply{padding:5px 12px;background:var(--blue);color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;transition:background .15s}
+.btn-apply:hover{background:var(--blue-dark)}
+.btn-skip{padding:5px 10px;background:#f1f5f9;color:var(--muted);border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;transition:background .15s;margin-left:4px}
+.btn-skip:hover{background:#e2e8f0}
+.btn-del{background:none;border:none;color:#cbd5e1;cursor:pointer;padding:4px 8px;border-radius:5px;font-size:12px;transition:all .15s}
+.btn-del:hover{background:var(--red-light);color:var(--red)}
+.btn-refresh{padding:7px 16px;background:var(--navy);color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background .15s}
+.btn-refresh:hover{background:var(--navy2)}
+
+/* ── EMPTY STATE ─────────────────────────────────── */
+.empty{text-align:center;padding:60px 24px;color:var(--muted)}
+.empty-ico{font-size:42px;margin-bottom:12px}
+.empty p{font-size:14px}
+
+/* ── FORM ─────────────────────────────────────────── */
+.form-grid{display:grid;grid-template-columns:1.2fr 1.4fr 2fr .9fr 1.1fr 1.6fr auto;gap:10px;align-items:end;padding:16px 18px}
+.fg label{display:block;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+input,select{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:7px;font-size:13px;color:var(--text);background:#f8fafc;outline:none;transition:border-color .15s}
+input:focus,select:focus{border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.btn-add{padding:8px 20px;background:var(--blue);color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;height:36px;white-space:nowrap}
+.btn-add:hover{background:var(--blue-dark)}
+.st-sel{font-size:12px;padding:4px 6px;border-radius:6px;border:1px solid var(--border);background:#fff;cursor:pointer;max-width:120px}
+
+/* ── CARD HEADER ─────────────────────────────────── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.card-hdr{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);background:#fafbfc}
+.card-title{font-size:13px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:8px}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <h1>&#127891; Basheer Khan — Internship Dashboard</h1>
+      <p>MIS &amp; Business Analytics &bull; Auto-scanned every 4 hours from LinkedIn, Indeed &amp; 100+ companies</p>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <div class="scan-pill"><div class="scan-dot"></div><span id="scan-status">Loading jobs…</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <div class="tab on" id="t-pipeline" onclick="showTab('pipeline')">
+      &#128203; Job Pipeline <span class="tab-badge" id="tc-pipeline">—</span>
+    </div>
+    <div class="tab" id="t-apps" onclick="showTab('apps')">
+      &#9989; My Applications <span class="tab-badge" id="tc-apps">0</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- ══ PIPELINE PANEL ══ -->
+  <div class="panel on" id="panel-pipeline">
+
+    <!-- stats -->
+    <div class="stats">
+      <div class="stat stat-total"><div class="stat-n" id="ps-total">—</div><div class="stat-l">Total Jobs</div></div>
+      <div class="stat stat-intern"><div class="stat-n" id="ps-intern">—</div><div class="stat-l">Internships</div></div>
+      <div class="stat stat-remote"><div class="stat-n" id="ps-remote">—</div><div class="stat-l">Remote</div></div>
+      <div class="stat stat-applied"><div class="stat-n" id="ps-new">—</div><div class="stat-l">Not Applied</div></div>
+    </div>
+
+    <!-- toolbar -->
+    <div class="toolbar-card">
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <div class="search-wrap">
+          <span class="search-ico">&#128269;</span>
+          <input class="search-box" id="pipe-search" placeholder="Search company or role…" oninput="renderPipeline()">
+        </div>
+        <div class="filters">
+          <button class="ftab on" id="pf-all"    onclick="setPFilter('all',this)">All</button>
+          <button class="ftab"    id="pf-intern" onclick="setPFilter('intern',this)">&#127891; Internships</button>
+          <button class="ftab"    id="pf-remote" onclick="setPFilter('remote',this)">&#127760; Remote</button>
+          <button class="ftab"    id="pf-mn"     onclick="setPFilter('mn',this)">&#128205; MN</button>
+          <button class="ftab"    id="pf-rec"    onclick="setPFilter('rec',this)">&#11088; Picks</button>
+        </div>
+      </div>
+      <div class="scan-info">
+        <span id="last-scan-label"></span>
+        <button class="btn-refresh" onclick="doRefresh()">&#8635; Scan Info</button>
+      </div>
+    </div>
+
+    <!-- table -->
+    <div class="table-card">
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:28px"></th>
+              <th>Company</th>
+              <th>Role</th>
+              <th>Location</th>
+              <th>Source</th>
+              <th>Link</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="pipe-body"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="pipe-empty" style="display:none">
+        <div class="empty-ico">&#128203;</div>
+        <p>No jobs match your filter. Try a different search.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MY APPLICATIONS PANEL ══ -->
+  <div class="panel" id="panel-apps">
+
+    <!-- stats -->
+    <div class="stats">
+      <div class="stat stat-total">   <div class="stat-n" id="sn-tot">0</div><div class="stat-l">Total</div></div>
+      <div class="stat stat-applied"> <div class="stat-n" id="sn-app">0</div><div class="stat-l">Applied</div></div>
+      <div class="stat stat-interview"><div class="stat-n" id="sn-int">0</div><div class="stat-l">Interview</div></div>
+      <div class="stat stat-offer">   <div class="stat-n" id="sn-off">0</div><div class="stat-l">Offer</div></div>
+      <div class="stat stat-rejected"><div class="stat-n" id="sn-rej">0</div><div class="stat-l">Rejected</div></div>
+    </div>
+
+    <!-- add form -->
+    <div class="card">
+      <div class="card-hdr"><div class="card-title">&#43; Add Application</div></div>
+      <div class="form-grid">
+        <div class="fg"><label>Company</label><input id="fc" placeholder="e.g. Google"></div>
+        <div class="fg"><label>Role</label><input id="fr" placeholder="e.g. MIS Intern"></div>
+        <div class="fg"><label>Job URL</label><input id="fu" type="url" placeholder="https://…"></div>
+        <div class="fg"><label>Date</label><input id="fd" type="date"></div>
+        <div class="fg"><label>Status</label>
+          <select id="fs">
+            <option>Applied</option><option>Evaluated</option><option>Interview</option>
+            <option>Offer</option><option>Rejected</option><option>Discarded</option><option>SKIP</option>
+          </select>
+        </div>
+        <div class="fg"><label>Notes</label><input id="fn" placeholder="Any notes…"></div>
+        <button class="btn-add" onclick="addApp()">Add</button>
+      </div>
+    </div>
+
+    <!-- apps table -->
+    <div class="card">
+      <div class="card-hdr">
+        <div class="filters" id="app-filters">
+          <button class="ftab on" onclick="setAFilter('All',this)">All</button>
+          <button class="ftab" onclick="setAFilter('Applied',this)">Applied</button>
+          <button class="ftab" onclick="setAFilter('Interview',this)">Interview</button>
+          <button class="ftab" onclick="setAFilter('Offer',this)">&#127881; Offer</button>
+          <button class="ftab" onclick="setAFilter('Evaluated',this)">Evaluated</button>
+          <button class="ftab" onclick="setAFilter('Rejected',this)">Rejected</button>
+        </div>
+        <span style="font-size:11px;color:var(--subtle)" id="app-count-label"></span>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>#</th><th>Date</th><th>Company</th><th>Role</th><th>Link</th><th>Status</th><th>Notes</th><th></th></tr>
+          </thead>
+          <tbody id="app-body"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="app-empty" style="display:none">
+        <div class="empty-ico">&#128203;</div>
+        <p>No applications yet — click <strong>Mark Applied</strong> on any pipeline job to get started.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+// ── CURATED PICKS ────────────────────────────────────────────────────
+const RECOMMENDED = [
+  { company:"Double Good", role:"Data Analyst Intern",     location:"Remote (US)", url:"https://job-boards.greenhouse.io/doublegood/jobs/5832697004" },
+  { company:"Voltus",      role:"Data Analyst Intern",     location:"Remote (US)", url:"https://jobs.lever.co/voltus/d30b5349-1023-497f-a5e5-264204071235" },
+  { company:"Rackner",     role:"Business Analyst Intern", location:"Remote (US)", url:"https://job-boards.greenhouse.io/rackner/jobs/4323514005" },
+  { company:"Robyn AI",    role:"Data Analyst Intern",     location:"Remote (US)", url:"https://jobs.ashbyhq.com/m13/2ed7a1e6-ff5b-412d-8006-c5b0edb7f304" },
+];
+const REC_URLS = new Set(RECOMMENDED.map(j => j.url));
+
+// ── STATE ────────────────────────────────────────────────────────────
+const STATUSES = ['Applied','Evaluated','Interview','Offer','Rejected','Discarded','SKIP'];
+let pipelineJobs = [];
+let pipeFilter   = 'all';
+let appFilter    = 'All';
+let apps         = JSON.parse(localStorage.getItem('bk-jobs') || '[]');
+let lastScan     = localStorage.getItem('bk-last-scan') || null;
+
+const today = () => new Date().toISOString().slice(0,10);
+const save  = () => localStorage.setItem('bk-jobs', JSON.stringify(apps));
+const esc   = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+// ── SOURCE DETECTION ─────────────────────────────────────────────────
+function detectSource(url) {
+  if (!url) return { label:'Other', cls:'src-other' };
+  if (url.includes('linkedin.com'))    return { label:'LinkedIn',   cls:'src-linkedin' };
+  if (url.includes('indeed.com'))      return { label:'Indeed',     cls:'src-indeed' };
+  if (url.includes('handshake'))       return { label:'Handshake',  cls:'src-handshake' };
+  if (url.includes('greenhouse.io'))   return { label:'Greenhouse', cls:'src-greenhouse' };
+  if (url.includes('lever.co'))        return { label:'Lever',      cls:'src-lever' };
+  if (url.includes('ashbyhq.com'))     return { label:'Ashby',      cls:'src-ashby' };
+  return { label:'Direct', cls:'src-other' };
+}
+
+// ── LOCATION TAG ─────────────────────────────────────────────────────
+function locTag(loc) {
+  if (!loc) return '<span style="color:#cbd5e1">—</span>';
+  const l = loc.toLowerCase();
+  if (l.includes('remote') || l.includes('anywhere'))
+    return `<span class="badge b-remote">&#127760; Remote</span>`;
+  if (l.includes('minneapolis') || l.includes('minnesota') || l.includes('st. paul') || l.includes('twin cities'))
+    return `<span class="badge b-mn">&#128205; ${esc(loc)}</span>`;
+  return `<span class="badge b-city">${esc(loc)}</span>`;
+}
+
+const isInternship = j => {
+  const r = (j.role||'').toLowerCase();
+  return r.includes('intern') || r.includes('co-op') || r.includes('coop') || r.includes('fellowship') || r.includes('extern');
+};
+
+// ── TABS ─────────────────────────────────────────────────────────────
+function showTab(t) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
+  document.getElementById('panel-'+t).classList.add('on');
+  document.getElementById('t-'+t).classList.add('on');
+}
+
+// ── PIPELINE ─────────────────────────────────────────────────────────
+async function loadPipeline() {
+  document.getElementById('scan-status').textContent = 'Loading jobs…';
+  try {
+    const res = await fetch('./jobs.json');
+    if (!res.ok) throw new Error();
+    pipelineJobs = await res.json();
+    const ts = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+    document.getElementById('scan-status').textContent = `${pipelineJobs.length} jobs loaded · ${ts}`;
+    document.getElementById('tc-pipeline').textContent = pipelineJobs.length;
+  } catch {
+    pipelineJobs = [];
+    document.getElementById('scan-status').textContent = 'Using curated picks';
+    document.getElementById('tc-pipeline').textContent = RECOMMENDED.length;
+  }
+  renderPipeline();
+}
+
+function setPFilter(f, btn) {
+  pipeFilter = f;
+  document.querySelectorAll('[id^="pf-"]').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  renderPipeline();
+}
+
+function renderPipeline() {
+  const q = (document.getElementById('pipe-search').value||'').toLowerCase();
+  const recJobs  = RECOMMENDED.map(j => ({...j, _rec:true}));
+  const pipeOnly = pipelineJobs.filter(j => !REC_URLS.has(j.url));
+  const allJobs  = [...recJobs, ...pipeOnly];
+
+  const filtered = allJobs.filter(j => {
+    if (q && !(j.company||'').toLowerCase().includes(q) && !(j.role||'').toLowerCase().includes(q)) return false;
+    if (pipeFilter === 'rec')    return !!j._rec;
+    if (pipeFilter === 'intern') return isInternship(j);
+    if (pipeFilter === 'remote') return (j.location||'').toLowerCase().includes('remote') || (j.location||'').toLowerCase().includes('anywhere');
+    if (pipeFilter === 'mn')     return (j.location||'').toLowerCase().match(/minneapolis|minnesota|st\. paul|twin cities/);
+    return true;
+  });
+
+  filtered.sort((a,b) => {
+    const rank = j => isInternship(j) ? 0 : (j._rec ? 1 : 2);
+    return rank(a) - rank(b);
+  });
+
+  // Update pipeline stats
+  const allCombined = [...recJobs, ...pipeOnly];
+  document.getElementById('ps-total').textContent  = allCombined.length;
+  document.getElementById('ps-intern').textContent = allCombined.filter(isInternship).length;
+  document.getElementById('ps-remote').textContent = allCombined.filter(j => (j.location||'').toLowerCase().includes('remote')).length;
+  document.getElementById('ps-new').textContent    = allCombined.filter(j => !apps.some(a => a.url===j.url)).length;
+
+  const tbody = document.getElementById('pipe-body');
+  const empty = document.getElementById('pipe-empty');
+  if (!filtered.length) { tbody.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+
+  let html='', section=null;
+  filtered.forEach(j => {
+    const jSection = isInternship(j) ? 'intern' : (j._rec ? 'rec' : 'pipe');
+    if (jSection !== section) {
+      section = jSection;
+      if (jSection==='intern') html += `<tr class="section-row section-intern"><td colspan="7">&#127891; Internships &amp; Co-ops</td></tr>`;
+      else if (jSection==='rec') html += `<tr class="section-row section-rec"><td colspan="7">&#11088; Curated Picks</td></tr>`;
+      else html += `<tr class="section-row section-pipe"><td colspan="7">All Pipeline Jobs</td></tr>`;
+    }
+
+    const src      = detectSource(j.url);
+    const loc      = j.location || '';
+    const isApp    = apps.some(a => a.url===j.url);
+    const icon     = isInternship(j) ? '&#127891;' : (j._rec ? '&#11088;' : '');
+
+    html += `<tr>
+      <td style="text-align:center;font-size:14px">${icon}</td>
+      <td class="td-co">${esc(j.company)}</td>
+      <td class="td-ro">${esc(j.role)}</td>
+      <td>${locTag(loc)}</td>
+      <td><span class="src ${src.cls}">${src.label}</span></td>
+      <td><a href="${esc(j.url)}" target="_blank" rel="noopener" style="color:var(--blue);text-decoration:none;font-weight:600;font-size:12px">&#8599; View</a></td>
+      <td style="white-space:nowrap">
+        ${isApp
+          ? `<span class="badge b-applied">&#10003; Applied</span>`
+          : `<button class="btn-apply" onclick="quickApply(${JSON.stringify(j.company)},${JSON.stringify(j.role)},${JSON.stringify(j.url)})">Mark Applied</button><button class="btn-skip" onclick="quickSkip(${JSON.stringify(j.url)})">Skip</button>`
+        }
+      </td>
+    </tr>`;
+  });
+
+  tbody.innerHTML = html;
+  if (lastScan) {
+    const ago = Math.round((Date.now()-new Date(lastScan))/60000);
+    document.getElementById('last-scan-label').textContent = `Last applied: ${ago<1?'just now':ago+'m ago'}`;
+  }
+}
+
+function doRefresh() {
+  alert('This dashboard auto-refreshes every 4 hours via GitHub Actions.\nNext jobs update will happen automatically — no action needed.');
+}
+
+function quickApply(company, role, url) {
+  apps.unshift({id:Date.now(),company,role,url,date:today(),status:'Applied',notes:''});
+  save(); renderApps(); renderPipeline();
+  showTab('apps');
+}
+function quickSkip(url) {
+  apps.unshift({id:Date.now(),company:'',role:'',url,date:today(),status:'SKIP',notes:'Skipped'});
+  save(); renderPipeline();
+}
+
+// ── MY APPLICATIONS ──────────────────────────────────────────────────
+document.getElementById('fd').value = today();
+
+function addApp() {
+  const co=document.getElementById('fc').value.trim();
+  const ro=document.getElementById('fr').value.trim();
+  if (!co||!ro) { alert('Company and Role are required.'); return; }
+  apps.unshift({id:Date.now(),company:co,role:ro,url:document.getElementById('fu').value.trim(),
+    date:document.getElementById('fd').value||today(),status:document.getElementById('fs').value,
+    notes:document.getElementById('fn').value.trim()});
+  save(); renderApps(); renderPipeline();
+  ['fc','fr','fu','fn'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fd').value=today();
+  document.getElementById('fs').value='Applied';
+}
+function deleteApp(id) {
+  if (!confirm('Remove this application?')) return;
+  apps=apps.filter(a=>a.id!==id); save(); renderApps(); renderPipeline();
+}
+function updateStatus(id,s) {
+  const a=apps.find(a=>a.id===id); if(a){a.status=s;save();renderApps();}
+}
+function setAFilter(f,btn) {
+  appFilter=f;
+  document.querySelectorAll('#app-filters .ftab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderApps();
+}
+function renderApps() {
+  const counts={Applied:0,Interview:0,Offer:0,Rejected:0,Evaluated:0};
+  apps.forEach(a=>{if(counts[a.status]!==undefined)counts[a.status]++;});
+  document.getElementById('sn-tot').textContent=apps.length;
+  document.getElementById('sn-app').textContent=counts.Applied;
+  document.getElementById('sn-int').textContent=counts.Interview;
+  document.getElementById('sn-off').textContent=counts.Offer;
+  document.getElementById('sn-rej').textContent=counts.Rejected;
+  document.getElementById('tc-apps').textContent=apps.length;
+
+  const list=appFilter==='All'?apps:apps.filter(a=>a.status===appFilter);
+  document.getElementById('app-count-label').textContent=`${list.length} application${list.length!==1?'s':''}`;
+
+  const tbody=document.getElementById('app-body');
+  const empty=document.getElementById('app-empty');
+  if(!list.length){tbody.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+
+  tbody.innerHTML=list.map((a,i)=>{
+    const opts=STATUSES.map(s=>`<option value="${s}"${s===a.status?' selected':''}>${s}</option>`).join('');
+    const link=a.url?`<a href="${esc(a.url)}" target="_blank" rel="noopener" style="color:var(--blue);text-decoration:none;font-weight:600;font-size:12px">&#8599; View</a>`:`<span style="color:#e2e8f0">—</span>`;
+    return `<tr>
+      <td style="color:var(--subtle);font-size:11px;width:28px">${i+1}</td>
+      <td style="white-space:nowrap;font-size:11px;color:var(--muted)">${a.date}</td>
+      <td class="td-co">${esc(a.company)}</td>
+      <td style="color:var(--navy2)">${esc(a.role)}</td>
+      <td>${link}</td>
+      <td><select class="st-sel" onchange="updateStatus(${a.id},this.value)">${opts}</select></td>
+      <td style="font-size:12px;color:var(--muted);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(a.notes)||'<span style="color:#e2e8f0">—</span>'}</td>
+      <td><button class="btn-del" onclick="deleteApp(${a.id})">&#10005;</button></td>
+    </tr>`;
+  }).join('');
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────
+loadPipeline();
+renderApps();
+</script>
+</body>
+</html>
