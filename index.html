@@ -240,6 +240,12 @@ td a:hover{color:#93c5fd;text-decoration:underline;}
 .src-excel     {background:rgba(21,128,61,.15);color:#4ade80;}
 .src-saved     {background:rgba(245,158,11,.1);color:#f59e0b;}
 
+/* ── External link buttons ── */
+.btn-hs{background:rgba(236,72,153,.15);color:#f472b6;border:1px solid rgba(236,72,153,.3);border-radius:8px;padding:6px 13px;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:all .2s;}
+.btn-hs:hover{background:rgba(236,72,153,.28);transform:translateY(-1px);}
+.btn-gj{background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.28);border-radius:8px;padding:6px 13px;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:all .2s;}
+.btn-gj:hover{background:rgba(59,130,246,.24);transform:translateY(-1px);}
+
 /* ── Pipeline stats ── */
 .pipe-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px;}
 .ps{
@@ -538,6 +544,12 @@ select option{background:#111827;}
           <button class="ftab"    id="pf-rec"    onclick="setPF('rec',this)">⭐ Saved</button>
         </div>
         <div class="scan-row">
+          <a class="btn-hs" href="https://minneapolis.joinhandshake.com/job-search/11094094" target="_blank" rel="noopener">
+            &#128081; Handshake
+          </a>
+          <a class="btn-gj" href="https://www.google.com/search?q=data+analyst+internship+Minnesota+2026&ibp=htl;jobs" target="_blank" rel="noopener">
+            &#128269; Google Jobs
+          </a>
           <span class="last-scan-txt" id="last-scan-txt"></span>
           <button class="btn btn-scan" id="btn-refresh" onclick="openScan()" style="padding:7px 16px;font-size:12px;">
             <span id="refresh-ico">&#8635;</span> Scan / Refresh
@@ -688,7 +700,7 @@ select option{background:#111827;}
         <span class="proj-status ps-live">Live</span>
       </div>
       <h3>AI Internship Job Dashboard</h3>
-      <p>Built and deployed this dashboard to track MN &amp; Remote internships. Python scripts hit Greenhouse, Ashby, Lever, LinkedIn, Indeed, and Handshake APIs to pull fresh listings. Auto-refreshes every 4 hours via GitHub Actions. Includes a liveness checker that removes closed postings automatically.</p>
+      <p>Built and deployed this dashboard to track MN &amp; Remote internships. Python scripts hit Greenhouse, Ashby, Lever, LinkedIn, Indeed, and Handshake APIs to pull fresh listings. Auto-refreshes every hour via GitHub Actions. Includes a liveness checker that removes closed postings automatically.</p>
       <div class="proj-tags">
         <span class="proj-tag">Python</span>
         <span class="proj-tag">HTML/CSS/JS</span>
@@ -714,7 +726,7 @@ select option{background:#111827;}
 <div class="modal-overlay" id="scan-modal" onclick="if(event.target===this&&!scanRunning)closeScan()">
   <div class="modal">
     <h2 id="modal-title">&#9711; Scan for Internships</h2>
-    <div class="modal-sub" id="modal-sub">Find fresh MN &amp; Remote internships from Greenhouse, Ashby, Lever, Indeed, and LinkedIn.</div>
+    <div class="modal-sub" id="modal-sub">Searches Greenhouse, Ashby, Lever, Workday, LinkedIn &amp; SimplyHired. Runs automatically every hour via GitHub Actions.</div>
     <div class="scan-bar"><div class="scan-bar-fill" id="scan-fill"></div></div>
     <div class="scan-log" id="scan-log">Ready — click Start Scan below.</div>
     <div class="modal-btns">
@@ -921,7 +933,7 @@ function openScan() {
       log.textContent  = 'Ready to scan MN & Remote internships.\n\nSources:\n  · Greenhouse (100+ companies)\n  · Ashby\n  · Lever\n  · Indeed RSS (MN + Remote feeds)\n  · LinkedIn guest API\n\nClick "Start Scan" to begin.';
       start.textContent = '⊙ Start Scan';
     } else {
-      log.textContent  = 'Running on GitHub Pages.\n\nScanning happens automatically every 4 hours via GitHub Actions.\n\nClick "Fetch Latest" to reload jobs.json now.';
+      log.textContent  = 'Running on GitHub Pages.\n\nJobs refresh automatically every hour via GitHub Actions.\nClick below to pull the latest results right now.';
       start.textContent = '↻ Fetch Latest Jobs';
     }
     start.disabled = false;
@@ -981,7 +993,7 @@ async function startScan() {
     await loadPipeline(true);
     fill.style.width='100%';
     setTimeout(()=>{ fill.style.display='none'; fill.style.width='0%'; }, 800);
-    log.textContent=`✓ Loaded ${pipeJobs.length} jobs.\n\nNote: Scanning happens automatically every 4 hours.\nFor on-demand scanning, run locally:\n\n  python3 scan_server.py\n  open http://localhost:5050`;
+    log.textContent=`✓ Loaded ${pipeJobs.length} jobs.\n\nScanning runs automatically every hour.\nFor on-demand scanning on your Mac:\n\n  python3 scan_jobs.py\n  python3 check_liveness.py`;
     start.disabled=false; start.textContent='↻ Fetch Again';
     toast('ok',`Refreshed — ${pipeJobs.length} jobs loaded`);
   }
