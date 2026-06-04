@@ -106,6 +106,15 @@ GREENHOUSE_SLUGS = [
     'intercom','postman','pagerduty','splunk','cloudflare','zendesk',
     'freshworks','drift','notion','figma','airtable','zapier','miro',
     'cockroachlabs','airbyte','prefect','astronomer',
+    # IT / cybersecurity / support (remote-friendly)
+    'crowdstrike','sentinelone','lacework','snyk','wiz',
+    'qualys','tenable','rapid7','huntress','abnormalsecurity',
+    'knowbe4','proofpoint','sailpoint','beyondtrust','cyberark',
+    'okta','auth0','onelogin','ping','duo',
+    'servicenow','freshservice','jira','atlassian',
+    'msp-anywhere','connectwise','n-able','kaseya',
+    # MN IT companies
+    'atomicdata','sps-commerce','stellent','entrust','code42',
 ]
 
 def fetch_greenhouse(slug):
@@ -205,6 +214,13 @@ WORKDAY_COMPANIES = [
     ('Donaldson',        'donaldson',       'wd5', 'Donaldson'),
     ('Deluxe Corp',      'deluxecorp',      'wd5', 'deluxe_careers'),
     ('Securian',         'securian',        'wd5', 'SecurianFinancial'),
+    # IT / tech companies in MN on Workday
+    ('Mayo Clinic',      'mayo-clinic',     'wd5', 'MayoClinicExt'),
+    ('Hennepin County',  'hennepin',        'wd5', 'HennepinCounty'),
+    ('State of MN',      'minnjobs',        'wd5', 'minnjobs'),
+    ('Fastenal',         'fastenal',        'wd5', 'Fastenal'),
+    ('Tennant Company',  'tennantco',       'wd5', 'Tennant'),
+    ('Entrust',          'entrust',         'wd5', 'Entrust'),
 ]
 def fetch_workday(display_name, tenant, wd_host, career_path):
     api = f'https://{tenant}.{wd_host}.myworkdayjobs.com/wday/cxs/{tenant}/{career_path}/jobs'
@@ -229,15 +245,26 @@ def fetch_workday(display_name, tenant, wd_host, career_path):
 
 # ── SimplyHired RSS ───────────────────────────────────────────────────────────
 SIMPLYHIRED_FEEDS = [
+    # Analytics / MIS — MN
     ('data analyst internship',        'Minnesota'),
     ('business analyst intern',        'Minnesota'),
     ('MIS intern',                     'Minnesota'),
     ('information systems intern',     'Minnesota'),
     ('data analytics internship',      'Minnesota'),
     ('business intelligence intern',   'Minnesota'),
+    # IT roles — MN
+    ('IT intern',                      'Minnesota'),
+    ('help desk intern',               'Minnesota'),
+    ('cybersecurity intern',           'Minnesota'),
+    ('software developer intern',      'Minnesota'),
+    ('technical support intern',       'Minnesota'),
+    ('network intern',                 'Minnesota'),
+    # Remote
     ('data analyst internship',        'Remote'),
     ('business analyst intern',        'Remote'),
-    ('analytics intern',               'Remote'),
+    ('IT intern',                      'Remote'),
+    ('cybersecurity intern',           'Remote'),
+    ('software developer intern',      'Remote'),
 ]
 def fetch_simplyhired(query, location):
     try:
@@ -272,14 +299,24 @@ def fetch_simplyhired(query, location):
 
 # ── Google Jobs (via search JSON-LD) ─────────────────────────────────────────
 GOOGLE_SEARCHES = [
+    # Analytics / MIS
     'data analyst internship Minnesota 2026',
     'business analyst internship Minneapolis MN',
     'MIS internship Minnesota',
     'information systems intern Minnesota',
     'business intelligence internship Minnesota',
     'data analytics intern remote 2026',
-    'business analyst intern remote United States',
     'operations analyst internship Minnesota',
+    # IT roles
+    'IT intern Minnesota 2026',
+    'cybersecurity internship Minnesota',
+    'help desk intern Minneapolis MN',
+    'software developer internship Minnesota',
+    'IT support intern Minnesota',
+    'network intern Minnesota',
+    'web developer intern Minnesota',
+    'IT analyst internship remote 2026',
+    'technical support intern remote United States',
 ]
 
 def fetch_google_jobs(query: str) -> list:
@@ -328,14 +365,13 @@ def fetch_google_jobs(query: str) -> list:
 
 # ── LinkedIn guest API ────────────────────────────────────────────────────────
 LINKEDIN_SEARCHES = [
-    # MN in-person
+    # ── MN in-person: Analytics / MIS ──
     {'keywords':'data analyst intern',           'location':'Minneapolis, Minnesota, United States'},
     {'keywords':'business analyst intern',        'location':'Minneapolis, Minnesota, United States'},
     {'keywords':'data analytics intern',          'location':'Minnesota, United States'},
     {'keywords':'MIS intern',                     'location':'Minnesota, United States'},
     {'keywords':'information systems intern',     'location':'Minnesota, United States'},
     {'keywords':'business intelligence intern',   'location':'Minnesota, United States'},
-    {'keywords':'IT intern',                      'location':'Minneapolis, Minnesota, United States'},
     {'keywords':'operations analyst intern',      'location':'Minnesota, United States'},
     {'keywords':'finance intern',                 'location':'Minneapolis, Minnesota, United States'},
     {'keywords':'accounting intern',              'location':'Minneapolis, Minnesota, United States'},
@@ -344,21 +380,41 @@ LINKEDIN_SEARCHES = [
     {'keywords':'supply chain intern',            'location':'Minnesota, United States'},
     {'keywords':'project management intern',      'location':'Minnesota, United States'},
     {'keywords':'ERP consulting intern',          'location':'Minnesota, United States'},
-    {'keywords':'technology intern',              'location':'Minneapolis, Minnesota, United States'},
     {'keywords':'data science intern',            'location':'Minnesota, United States'},
-    # Remote
+    # ── MN in-person: IT roles ──
+    {'keywords':'IT intern',                      'location':'Minneapolis, Minnesota, United States'},
+    {'keywords':'technology intern',              'location':'Minneapolis, Minnesota, United States'},
+    {'keywords':'IT support intern',              'location':'Minnesota, United States'},
+    {'keywords':'help desk intern',               'location':'Minnesota, United States'},
+    {'keywords':'cybersecurity intern',           'location':'Minnesota, United States'},
+    {'keywords':'network intern',                 'location':'Minnesota, United States'},
+    {'keywords':'software developer intern',      'location':'Minnesota, United States'},
+    {'keywords':'web developer intern',           'location':'Minnesota, United States'},
+    {'keywords':'cloud computing intern',         'location':'Minnesota, United States'},
+    {'keywords':'database intern',                'location':'Minnesota, United States'},
+    {'keywords':'IT analyst intern',              'location':'Minnesota, United States'},
+    {'keywords':'technical support intern',       'location':'Minnesota, United States'},
+    {'keywords':'computer science intern',        'location':'Minnesota, United States'},
+    {'keywords':'application developer intern',   'location':'Minnesota, United States'},
+    # ── Remote: Analytics / MIS ──
     {'keywords':'data analyst intern',            'location':'United States','f_WT':'2'},
     {'keywords':'business analyst intern',        'location':'United States','f_WT':'2'},
     {'keywords':'data analytics intern',          'location':'United States','f_WT':'2'},
     {'keywords':'business intelligence intern',   'location':'United States','f_WT':'2'},
     {'keywords':'MIS analytics internship',       'location':'United States','f_WT':'2'},
     {'keywords':'operations analyst intern',      'location':'United States','f_WT':'2'},
-    {'keywords':'marketing analytics intern',     'location':'United States','f_WT':'2'},
     {'keywords':'product analyst intern',         'location':'United States','f_WT':'2'},
     {'keywords':'finance analyst intern',         'location':'United States','f_WT':'2'},
     {'keywords':'information systems internship', 'location':'United States','f_WT':'2'},
-    {'keywords':'SQL data intern',                'location':'United States','f_WT':'2'},
-    {'keywords':'Excel analytics intern',         'location':'United States','f_WT':'2'},
+    # ── Remote: IT roles ──
+    {'keywords':'IT intern',                      'location':'United States','f_WT':'2'},
+    {'keywords':'cybersecurity intern',           'location':'United States','f_WT':'2'},
+    {'keywords':'software developer intern',      'location':'United States','f_WT':'2'},
+    {'keywords':'web developer intern',           'location':'United States','f_WT':'2'},
+    {'keywords':'IT support intern',              'location':'United States','f_WT':'2'},
+    {'keywords':'cloud intern',                   'location':'United States','f_WT':'2'},
+    {'keywords':'technical support intern',       'location':'United States','f_WT':'2'},
+    {'keywords':'help desk intern',               'location':'United States','f_WT':'2'},
 ]
 def fetch_linkedin(params):
     try:
