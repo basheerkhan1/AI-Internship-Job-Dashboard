@@ -24,10 +24,13 @@ jobs:
       - name: Install Python dependencies
         run: pip install requests openpyxl
 
-      - name: Run internship scanner (MN + Remote)
+      - name: Run main internship scanner (parallel — MN + Remote)
         run: python scan_jobs.py
 
-      - name: Check job liveness (remove closed listings)
+      - name: Run LinkedIn targeted scanner and merge
+        run: python scan_handshake_linkedin.py
+
+      - name: Remove closed listings (liveness check)
         run: python check_liveness.py
 
       - name: Push jobs.json to gh-pages
