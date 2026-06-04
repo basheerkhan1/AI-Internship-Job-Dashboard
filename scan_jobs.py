@@ -11,6 +11,7 @@ import sys
 import time
 import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from urllib.parse import quote_plus
 from datetime import datetime, timezone
 from urllib.parse import urlencode
 
@@ -269,6 +270,62 @@ def fetch_simplyhired(query, location):
         return out
     except: return []
 
+# ── Google Jobs (via search JSON-LD) ─────────────────────────────────────────
+GOOGLE_SEARCHES = [
+    'data analyst internship Minnesota 2026',
+    'business analyst internship Minneapolis MN',
+    'MIS internship Minnesota',
+    'information systems intern Minnesota',
+    'business intelligence internship Minnesota',
+    'data analytics intern remote 2026',
+    'business analyst intern remote United States',
+    'operations analyst internship Minnesota',
+]
+
+def fetch_google_jobs(query: str) -> list:
+    try:
+        url = f'https://www.google.com/search?q={quote_plus(query)}&ibp=htl;jobs&hl=en'
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,*/*;q=0.9',
+            'Accept-Language': 'en-US,en;q=0.9',
+        }
+        r = SESSION.get(url, headers=headers, timeout=15, allow_redirects=True)
+        if r.status_code != 200:
+            return []
+        html = r.text
+        # Extract JSON-LD job postings
+        jsonld_re = re.compile(r'<script type="application/ld\+json">(.*?)</script>', re.DOTALL)
+        out = []
+        for raw in jsonld_re.findall(html):
+            try:
+                data = json.loads(raw)
+                items = data if isinstance(data, list) else [data]
+                for item in items:
+                    if not isinstance(item, dict): continue
+                    if item.get('@type') != 'JobPosting': continue
+                    title = item.get('title', '')
+                    if not is_internship(title): continue
+                    org   = item.get('hiringOrganization') or {}
+                    company = org.get('name', 'Unknown') if isinstance(org, dict) else 'Unknown'
+                    loc_obj = item.get('jobLocation') or {}
+                    if isinstance(loc_obj, list): loc_obj = loc_obj[0] if loc_obj else {}
+                    addr = (loc_obj.get('address') or {}) if isinstance(loc_obj, dict) else {}
+                    city  = addr.get('addressLocality', '') if isinstance(addr, dict) else ''
+                    state = addr.get('addressRegion', '')   if isinstance(addr, dict) else ''
+                    loc   = ', '.join(filter(None, [city, state]))
+                    if not loc and 'remote' in query.lower():
+                        loc = 'Remote'
+                    if not is_mn_or_remote(loc): continue
+                    job_url = item.get('url') or item.get('sameAs') or ''
+                    if job_url:
+                        out.append(_job(company, title, loc or 'Minnesota', job_url, 'google'))
+            except Exception:
+                pass
+        return out
+    except Exception:
+        return []
+
 # ── LinkedIn guest API ────────────────────────────────────────────────────────
 LINKEDIN_SEARCHES = [
     # MN in-person
@@ -373,6 +430,15 @@ def scan():
             all_jobs.extend(jobs)
 
     log(f'[scan] API pass done — {len(all_jobs)} raw results so far')
+
+    # Google Jobs
+    log('[scan] Google Jobs...')
+    for q in GOOGLE_SEARCHES:
+        jobs = fetch_google_jobs(q)
+        if jobs:
+            log(f'  + Google Jobs "{q}": {len(jobs)}')
+        all_jobs.extend(jobs)
+        time.sleep(1.5)
 
     # SimplyHired RSS
     log('[scan] SimplyHired RSS...')
