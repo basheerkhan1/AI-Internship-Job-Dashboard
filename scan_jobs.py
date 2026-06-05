@@ -62,6 +62,32 @@ def is_mn_or_remote(loc: str) -> bool:
     if any(b in l for b in BLOCK_TERMS): return False
     return any(t in l for t in MN_TERMS) or any(t in l for t in REMOTE_TERMS)
 
+# ── MIS relevance filter — keeps tech/data/business roles, drops unrelated ───
+_NON_MIS_RE = re.compile(
+    r'\b(pharmac|clinical\s|nursing|medical\s+lab|dental|'
+    r'physical\s+therapy|occupational\s+therapy|'
+    r'attorney|paralegal|law\s+clerk|legal\s+assistant|'
+    r'graphic\s+design|illustration|visual\s+arts?|animation\s+|'
+    r'journalist|public\s+relations|copywriter|editorial\s+intern|'
+    r'civil\s+engineer|mechanical\s+engineer|structural\s+engineer|'
+    r'construction\s+intern|landscap|horticultur|agricultur|'
+    r'social\s+worker|counselor|therapist|'
+    r'retail\s+store|store\s+manag|cashier|'
+    r'content\s+creation|social\s+media|'
+    r'human\s+resources\s+intern|hr\s+intern(?!\s*(technology|information|systems|tech))|'
+    r'sales\s+intern(?!\s*(analytics|technology|operations|enablement))|'
+    r'marketing\s+intern(?!\s*(analytics|data|digital|technology))|'
+    r'manufacturing\s+engineer\w*|traffic\s+engineer\w*|'
+    r'mechanical\s+engineer\w*|civil\s+engineer\w*|structural\s+engineer\w*|'
+    r'seasonal\s+(engineer\w*|labor|traffic)|warehouse\s+associate|'
+    r'ministry|chaplain|spiritual|game\s+artist|'
+    r'respiratory|biology\s+research|life\s+science\s+intern|'
+    r'internship\s+in\s+marketing(?!\s*(analytics|data|digital)))\b',
+    re.IGNORECASE
+)
+def is_mis_relevant(title: str) -> bool:
+    return not bool(_NON_MIS_RE.search(title or ''))
+
 def _now(): return datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 def log(msg): print(msg, flush=True)
 
@@ -367,95 +393,95 @@ def fetch_google_jobs(query: str) -> list:
 
 # ── LinkedIn guest API ────────────────────────────────────────────────────────
 LINKEDIN_SEARCHES = [
-    # ── MN in-person: Analytics / MIS ──
-    {'keywords':'data analyst intern',           'location':'Minneapolis, Minnesota, United States'},
-    {'keywords':'business analyst intern',        'location':'Minneapolis, Minnesota, United States'},
-    {'keywords':'data analytics intern',          'location':'Minnesota, United States'},
-    {'keywords':'MIS intern',                     'location':'Minnesota, United States'},
-    {'keywords':'information systems intern',     'location':'Minnesota, United States'},
-    {'keywords':'business intelligence intern',   'location':'Minnesota, United States'},
-    {'keywords':'operations analyst intern',      'location':'Minnesota, United States'},
-    {'keywords':'finance intern',                 'location':'Minneapolis, Minnesota, United States'},
-    {'keywords':'accounting intern',              'location':'Minneapolis, Minnesota, United States'},
-    {'keywords':'marketing analytics intern',     'location':'Minnesota, United States'},
-    {'keywords':'systems analyst intern',         'location':'Minnesota, United States'},
-    {'keywords':'supply chain intern',            'location':'Minnesota, United States'},
-    {'keywords':'project management intern',      'location':'Minnesota, United States'},
-    {'keywords':'ERP consulting intern',          'location':'Minnesota, United States'},
-    {'keywords':'data science intern',            'location':'Minnesota, United States'},
-    # ── MN in-person: IT roles ──
-    {'keywords':'IT intern',                      'location':'Minneapolis, Minnesota, United States'},
-    {'keywords':'technology intern',              'location':'Minneapolis, Minnesota, United States'},
-    {'keywords':'IT support intern',              'location':'Minnesota, United States'},
-    {'keywords':'help desk intern',               'location':'Minnesota, United States'},
-    {'keywords':'cybersecurity intern',           'location':'Minnesota, United States'},
-    {'keywords':'network intern',                 'location':'Minnesota, United States'},
-    {'keywords':'software developer intern',      'location':'Minnesota, United States'},
-    {'keywords':'web developer intern',           'location':'Minnesota, United States'},
-    {'keywords':'cloud computing intern',         'location':'Minnesota, United States'},
-    {'keywords':'database intern',                'location':'Minnesota, United States'},
-    {'keywords':'IT analyst intern',              'location':'Minnesota, United States'},
-    {'keywords':'technical support intern',       'location':'Minnesota, United States'},
-    {'keywords':'computer science intern',        'location':'Minnesota, United States'},
-    {'keywords':'application developer intern',   'location':'Minnesota, United States'},
-    # ── Remote: Analytics / MIS ──
-    {'keywords':'data analyst intern',            'location':'United States','f_WT':'2'},
-    {'keywords':'business analyst intern',        'location':'United States','f_WT':'2'},
-    {'keywords':'data analytics intern',          'location':'United States','f_WT':'2'},
-    {'keywords':'business intelligence intern',   'location':'United States','f_WT':'2'},
-    {'keywords':'MIS analytics internship',       'location':'United States','f_WT':'2'},
-    {'keywords':'operations analyst intern',      'location':'United States','f_WT':'2'},
-    {'keywords':'product analyst intern',         'location':'United States','f_WT':'2'},
-    {'keywords':'finance analyst intern',         'location':'United States','f_WT':'2'},
-    {'keywords':'information systems internship', 'location':'United States','f_WT':'2'},
-    # ── Remote: IT roles ──
-    {'keywords':'IT intern',                      'location':'United States','f_WT':'2'},
-    {'keywords':'cybersecurity intern',           'location':'United States','f_WT':'2'},
-    {'keywords':'software developer intern',      'location':'United States','f_WT':'2'},
-    {'keywords':'web developer intern',           'location':'United States','f_WT':'2'},
-    {'keywords':'IT support intern',              'location':'United States','f_WT':'2'},
-    {'keywords':'cloud intern',                   'location':'United States','f_WT':'2'},
-    {'keywords':'technical support intern',       'location':'United States','f_WT':'2'},
-    {'keywords':'help desk intern',               'location':'United States','f_WT':'2'},
-    # ── MN: additional roles ──
-    {'keywords':'marketing intern',               'location':'Minnesota, United States'},
-    {'keywords':'HR intern',                      'location':'Minnesota, United States'},
-    {'keywords':'human resources intern',         'location':'Minnesota, United States'},
-    {'keywords':'communications intern',          'location':'Minnesota, United States'},
-    {'keywords':'software engineer intern',       'location':'Minnesota, United States'},
-    {'keywords':'product management intern',      'location':'Minnesota, United States'},
-    {'keywords':'sales intern',                   'location':'Minnesota, United States'},
-    {'keywords':'financial analyst intern',       'location':'Minnesota, United States'},
-    {'keywords':'risk management intern',         'location':'Minnesota, United States'},
-    {'keywords':'audit intern',                   'location':'Minnesota, United States'},
-    {'keywords':'engineering intern',             'location':'Minneapolis, Minnesota, United States'},
-    {'keywords':'research intern',                'location':'Minnesota, United States'},
-    {'keywords':'legal intern',                   'location':'Minnesota, United States'},
-    {'keywords':'graphic design intern',          'location':'Minnesota, United States'},
-    {'keywords':'digital marketing intern',       'location':'Minnesota, United States'},
-    {'keywords':'content intern',                 'location':'Minnesota, United States'},
-    {'keywords':'UX design intern',               'location':'Minnesota, United States'},
-    {'keywords':'consulting intern',              'location':'Minnesota, United States'},
-    {'keywords':'healthcare intern',              'location':'Minnesota, United States'},
-    {'keywords':'nonprofit intern',               'location':'Minneapolis, Minnesota, United States'},
-    # ── Remote: additional roles ──
-    {'keywords':'marketing intern',               'location':'United States','f_WT':'2'},
-    {'keywords':'product management intern',      'location':'United States','f_WT':'2'},
-    {'keywords':'software engineer intern',       'location':'United States','f_WT':'2'},
-    {'keywords':'financial analyst intern',       'location':'United States','f_WT':'2'},
-    {'keywords':'data science intern',            'location':'United States','f_WT':'2'},
-    {'keywords':'research intern',                'location':'United States','f_WT':'2'},
-    {'keywords':'sales intern',                   'location':'United States','f_WT':'2'},
-    {'keywords':'HR intern',                      'location':'United States','f_WT':'2'},
-    {'keywords':'communications intern',          'location':'United States','f_WT':'2'},
-    {'keywords':'content intern',                 'location':'United States','f_WT':'2'},
-    {'keywords':'UX intern',                      'location':'United States','f_WT':'2'},
-    {'keywords':'consulting intern',              'location':'United States','f_WT':'2'},
-    {'keywords':'accounting intern',              'location':'United States','f_WT':'2'},
-    {'keywords':'supply chain intern',            'location':'United States','f_WT':'2'},
-    {'keywords':'project management intern',      'location':'United States','f_WT':'2'},
-    {'keywords':'machine learning intern',        'location':'United States','f_WT':'2'},
-    {'keywords':'AI intern',                      'location':'United States','f_WT':'2'},
+    # ── MN: Core MIS / Analytics ──
+    {'keywords':'data analyst intern',              'location':'Minneapolis, Minnesota, United States'},
+    {'keywords':'business analyst intern',          'location':'Minneapolis, Minnesota, United States'},
+    {'keywords':'data analytics intern',            'location':'Minnesota, United States'},
+    {'keywords':'MIS intern',                       'location':'Minnesota, United States'},
+    {'keywords':'information systems intern',       'location':'Minnesota, United States'},
+    {'keywords':'business intelligence intern',     'location':'Minnesota, United States'},
+    {'keywords':'systems analyst intern',           'location':'Minnesota, United States'},
+    {'keywords':'operations analyst intern',        'location':'Minnesota, United States'},
+    {'keywords':'data science intern',              'location':'Minnesota, United States'},
+    {'keywords':'analytics intern',                 'location':'Minnesota, United States'},
+    {'keywords':'reporting analyst intern',         'location':'Minnesota, United States'},
+    {'keywords':'process improvement intern',       'location':'Minnesota, United States'},
+    {'keywords':'product analyst intern',           'location':'Minnesota, United States'},
+    {'keywords':'ERP intern',                       'location':'Minnesota, United States'},
+    {'keywords':'digital transformation intern',    'location':'Minnesota, United States'},
+    # ── MN: IT / Software ──
+    {'keywords':'IT intern',                        'location':'Minneapolis, Minnesota, United States'},
+    {'keywords':'technology intern',                'location':'Minneapolis, Minnesota, United States'},
+    {'keywords':'software engineer intern',         'location':'Minnesota, United States'},
+    {'keywords':'software developer intern',        'location':'Minnesota, United States'},
+    {'keywords':'web developer intern',             'location':'Minnesota, United States'},
+    {'keywords':'application developer intern',     'location':'Minnesota, United States'},
+    {'keywords':'full stack intern',                'location':'Minnesota, United States'},
+    {'keywords':'IT support intern',                'location':'Minnesota, United States'},
+    {'keywords':'help desk intern',                 'location':'Minnesota, United States'},
+    {'keywords':'technical support intern',         'location':'Minnesota, United States'},
+    {'keywords':'cybersecurity intern',             'location':'Minnesota, United States'},
+    {'keywords':'network intern',                   'location':'Minnesota, United States'},
+    {'keywords':'cloud computing intern',           'location':'Minnesota, United States'},
+    {'keywords':'database intern',                  'location':'Minnesota, United States'},
+    {'keywords':'IT analyst intern',                'location':'Minnesota, United States'},
+    {'keywords':'computer science intern',          'location':'Minnesota, United States'},
+    {'keywords':'systems administrator intern',     'location':'Minnesota, United States'},
+    {'keywords':'QA intern',                        'location':'Minnesota, United States'},
+    {'keywords':'DevOps intern',                    'location':'Minnesota, United States'},
+    # ── MN: Business / Finance (tech-adjacent) ──
+    {'keywords':'financial analyst intern',         'location':'Minnesota, United States'},
+    {'keywords':'finance technology intern',        'location':'Minnesota, United States'},
+    {'keywords':'supply chain analytics intern',    'location':'Minnesota, United States'},
+    {'keywords':'project management intern',        'location':'Minnesota, United States'},
+    {'keywords':'product management intern',        'location':'Minnesota, United States'},
+    {'keywords':'digital marketing analytics intern','location':'Minnesota, United States'},
+    {'keywords':'marketing analytics intern',       'location':'Minnesota, United States'},
+    {'keywords':'UX design intern',                 'location':'Minnesota, United States'},
+    {'keywords':'IT consulting intern',             'location':'Minnesota, United States'},
+    {'keywords':'technology consulting intern',     'location':'Minnesota, United States'},
+    {'keywords':'risk analytics intern',            'location':'Minnesota, United States'},
+    {'keywords':'IT audit intern',                  'location':'Minnesota, United States'},
+    # ── Remote: Core MIS / Analytics ──
+    {'keywords':'data analyst intern',              'location':'United States','f_WT':'2'},
+    {'keywords':'business analyst intern',          'location':'United States','f_WT':'2'},
+    {'keywords':'data analytics intern',            'location':'United States','f_WT':'2'},
+    {'keywords':'business intelligence intern',     'location':'United States','f_WT':'2'},
+    {'keywords':'MIS intern',                       'location':'United States','f_WT':'2'},
+    {'keywords':'information systems intern',       'location':'United States','f_WT':'2'},
+    {'keywords':'operations analyst intern',        'location':'United States','f_WT':'2'},
+    {'keywords':'product analyst intern',           'location':'United States','f_WT':'2'},
+    {'keywords':'data science intern',              'location':'United States','f_WT':'2'},
+    {'keywords':'analytics intern',                 'location':'United States','f_WT':'2'},
+    {'keywords':'reporting analyst intern',         'location':'United States','f_WT':'2'},
+    {'keywords':'machine learning intern',          'location':'United States','f_WT':'2'},
+    {'keywords':'AI intern',                        'location':'United States','f_WT':'2'},
+    {'keywords':'Python analytics intern',          'location':'United States','f_WT':'2'},
+    {'keywords':'Tableau intern',                   'location':'United States','f_WT':'2'},
+    {'keywords':'Power BI intern',                  'location':'United States','f_WT':'2'},
+    {'keywords':'SQL intern',                       'location':'United States','f_WT':'2'},
+    # ── Remote: IT / Software ──
+    {'keywords':'IT intern',                        'location':'United States','f_WT':'2'},
+    {'keywords':'software engineer intern',         'location':'United States','f_WT':'2'},
+    {'keywords':'software developer intern',        'location':'United States','f_WT':'2'},
+    {'keywords':'web developer intern',             'location':'United States','f_WT':'2'},
+    {'keywords':'full stack intern',                'location':'United States','f_WT':'2'},
+    {'keywords':'cybersecurity intern',             'location':'United States','f_WT':'2'},
+    {'keywords':'cloud intern',                     'location':'United States','f_WT':'2'},
+    {'keywords':'IT support intern',                'location':'United States','f_WT':'2'},
+    {'keywords':'technical support intern',         'location':'United States','f_WT':'2'},
+    {'keywords':'help desk intern',                 'location':'United States','f_WT':'2'},
+    {'keywords':'DevOps intern',                    'location':'United States','f_WT':'2'},
+    {'keywords':'QA intern',                        'location':'United States','f_WT':'2'},
+    # ── Remote: Business / Finance (tech-adjacent) ──
+    {'keywords':'financial analyst intern',         'location':'United States','f_WT':'2'},
+    {'keywords':'project management intern',        'location':'United States','f_WT':'2'},
+    {'keywords':'product management intern',        'location':'United States','f_WT':'2'},
+    {'keywords':'supply chain analytics intern',    'location':'United States','f_WT':'2'},
+    {'keywords':'UX intern',                        'location':'United States','f_WT':'2'},
+    {'keywords':'IT consulting intern',             'location':'United States','f_WT':'2'},
+    {'keywords':'technology consulting intern',     'location':'United States','f_WT':'2'},
+    {'keywords':'digital marketing analytics intern','location':'United States','f_WT':'2'},
 ]
 def fetch_linkedin(params):
     try:
@@ -507,6 +533,7 @@ def fetch_remoteok():
             if not title: continue
             tags = ' '.join(j.get('tags') or []).lower()
             if not is_internship(title) and 'intern' not in tags: continue
+            if not is_mis_relevant(title): continue
             company = j.get('company','Unknown')
             loc = j.get('location','') or 'Remote'
             if not is_mn_or_remote(loc): continue
@@ -529,6 +556,7 @@ def fetch_muse(pages=12):
             for j in results:
                 title = j.get('name', '')
                 if not is_internship(title): continue
+                if not is_mis_relevant(title): continue
                 company = (j.get('company') or {}).get('name', 'Unknown')
                 locs = j.get('locations') or []
                 loc = ', '.join(l.get('name', '') for l in locs) or 'Flexible'
@@ -641,6 +669,7 @@ def scan():
             added += 1
 
     all_jobs = list(seen.values())
+    all_jobs = [j for j in all_jobs if is_mis_relevant(j.get('role',''))]
     all_jobs = dedup(all_jobs)
     all_jobs.sort(key=lambda j: (
         0 if is_internship(j['role']) else 1,
