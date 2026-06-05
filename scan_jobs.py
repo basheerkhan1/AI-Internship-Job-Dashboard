@@ -425,7 +425,14 @@ def fetch_linkedin(params):
                    'Referer':'https://www.linkedin.com/jobs/'}
         url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?' + urlencode(qs)
         r = SESSION.get(url, headers=headers, timeout=15)
+        if r.status_code == 999:   # LinkedIn anti-bot block — back off
+            time.sleep(8)
+            return []
+        if r.status_code == 429:   # Rate limit — back off longer
+            time.sleep(15)
+            return []
         if r.status_code != 200: return []
+        if len(r.text) < 200: return []  # Empty bot-detection response
         html = r.text
         id_pat  = re.compile(r'data-entity-urn="urn:li:jobPosting:(\d+)"')
         t_pat   = re.compile(r'class="base-search-card__title"[^>]*>\s*([^<]+)', re.DOTALL)
@@ -443,6 +450,27 @@ def fetch_linkedin(params):
             if not is_internship(title): continue
             if not is_mn_or_remote(loc): continue
             out.append(_job(co, title, loc, f'https://www.linkedin.com/jobs/view/{jid}', 'linkedin'))
+        return out
+    except: return []
+
+# ── RemoteOK public API (no auth, always works on GitHub Actions) ─────────────
+def fetch_remoteok():
+    try:
+        r = SESSION.get('https://remoteok.com/api',
+                        headers={'Accept':'application/json'}, timeout=15)
+        if r.status_code != 200: return []
+        out = []
+        for j in (r.json() or []):
+            if not isinstance(j, dict): continue
+            title = j.get('position','')
+            if not title: continue
+            tags = ' '.join(j.get('tags') or []).lower()
+            if not is_internship(title) and 'intern' not in tags: continue
+            company = j.get('company','Unknown')
+            loc = j.get('location','') or 'Remote'
+            if not is_mn_or_remote(loc): continue
+            url = j.get('apply_url') or j.get('url','')
+            if url: out.append(_job(company, title, loc, url, 'remoteok'))
         return out
     except: return []
 
@@ -505,6 +533,13 @@ def scan():
         all_jobs.extend(jobs)
         time.sleep(0.4)
 
+    # RemoteOK (free public API — reliable fallback)
+    log('[scan] RemoteOK public API...')
+    remoteok_jobs = fetch_remoteok()
+    if remoteok_jobs:
+        log(f'  + RemoteOK: {len(remoteok_jobs)} internships')
+    all_jobs.extend(remoteok_jobs)
+
     # LinkedIn (sequential — rate sensitive)
     log('[scan] LinkedIn guest API...')
     for params in LINKEDIN_SEARCHES:
@@ -513,7 +548,7 @@ def scan():
         if jobs:
             log(f'  + LinkedIn "{params["keywords"]}" / {loc_label}: {len(jobs)}')
         all_jobs.extend(jobs)
-        time.sleep(1.0)
+        time.sleep(1.5)  # slightly longer — LinkedIn rate limits on GH Actions IPs
 
     all_jobs = dedup(all_jobs)
     all_jobs.sort(key=lambda j: (

@@ -7,6 +7,7 @@ Merges results into jobs.json.
 
 import json
 import os
+import platform
 import re
 import shutil
 import sqlite3
@@ -17,6 +18,8 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlencode
+
+IS_MACOS = platform.system() == 'Darwin'
 
 import requests
 from requests.adapters import HTTPAdapter
@@ -203,6 +206,9 @@ def _handshake_api(url):
         return []
 
 def scan_handshake():
+    if not IS_MACOS:
+        log('[handshake] Skipping — Chrome session only available on macOS (not GitHub Actions)')
+        return []
     log('[handshake] Scanning via API + Chrome session...')
     all_results = []
 
@@ -287,8 +293,15 @@ def fetch_linkedin(params):
                    'Referer':'https://www.linkedin.com/jobs/'}
         url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?' + urlencode(qs)
         r = SESSION.get(url, headers=headers, timeout=15)
+        if r.status_code == 999:   # LinkedIn anti-bot block
+            time.sleep(8)
+            return []
+        if r.status_code == 429:   # Rate limit
+            time.sleep(15)
+            return []
         if r.status_code != 200: return []
         html = r.text
+        if len(html) < 200: return []
         id_pat  = re.compile(r'data-entity-urn="urn:li:jobPosting:(\d+)"')
         t_pat   = re.compile(r'class="base-search-card__title"[^>]*>\s*([^<]+)', re.DOTALL)
         co_pat  = re.compile(r'class="base-search-card__subtitle"[^>]*>(?:\s*<[^>]+>)*\s*([^<\n]+)', re.DOTALL)
@@ -319,7 +332,7 @@ def scan_linkedin():
         if jobs:
             log(f'  + "{params["keywords"]}" / {loc_lbl}: {len(jobs)}')
         out.extend(jobs)
-        time.sleep(1.1)
+        time.sleep(1.5)
     log(f'[linkedin] {len(out)} total')
     return out
 
