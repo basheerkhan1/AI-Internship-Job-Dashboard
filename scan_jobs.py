@@ -47,6 +47,8 @@ REMOTE_TERMS = [
     'us remote','remote us','remote - us','remote (us)','remote, us',
     'remote united states','fully remote','telecommute','virtual',
     'remote / hybrid','hybrid remote','remote first',
+    'united states','usa','u.s.','flex','flexible location',
+    'hybrid','nationwide','anywhere in us','us-based','work anywhere',
 ]
 BLOCK_TERMS = [
     'india','bengaluru','hyderabad','pune','mumbai','united kingdom','london',
@@ -415,6 +417,45 @@ LINKEDIN_SEARCHES = [
     {'keywords':'cloud intern',                   'location':'United States','f_WT':'2'},
     {'keywords':'technical support intern',       'location':'United States','f_WT':'2'},
     {'keywords':'help desk intern',               'location':'United States','f_WT':'2'},
+    # ── MN: additional roles ──
+    {'keywords':'marketing intern',               'location':'Minnesota, United States'},
+    {'keywords':'HR intern',                      'location':'Minnesota, United States'},
+    {'keywords':'human resources intern',         'location':'Minnesota, United States'},
+    {'keywords':'communications intern',          'location':'Minnesota, United States'},
+    {'keywords':'software engineer intern',       'location':'Minnesota, United States'},
+    {'keywords':'product management intern',      'location':'Minnesota, United States'},
+    {'keywords':'sales intern',                   'location':'Minnesota, United States'},
+    {'keywords':'financial analyst intern',       'location':'Minnesota, United States'},
+    {'keywords':'risk management intern',         'location':'Minnesota, United States'},
+    {'keywords':'audit intern',                   'location':'Minnesota, United States'},
+    {'keywords':'engineering intern',             'location':'Minneapolis, Minnesota, United States'},
+    {'keywords':'research intern',                'location':'Minnesota, United States'},
+    {'keywords':'legal intern',                   'location':'Minnesota, United States'},
+    {'keywords':'graphic design intern',          'location':'Minnesota, United States'},
+    {'keywords':'digital marketing intern',       'location':'Minnesota, United States'},
+    {'keywords':'content intern',                 'location':'Minnesota, United States'},
+    {'keywords':'UX design intern',               'location':'Minnesota, United States'},
+    {'keywords':'consulting intern',              'location':'Minnesota, United States'},
+    {'keywords':'healthcare intern',              'location':'Minnesota, United States'},
+    {'keywords':'nonprofit intern',               'location':'Minneapolis, Minnesota, United States'},
+    # ── Remote: additional roles ──
+    {'keywords':'marketing intern',               'location':'United States','f_WT':'2'},
+    {'keywords':'product management intern',      'location':'United States','f_WT':'2'},
+    {'keywords':'software engineer intern',       'location':'United States','f_WT':'2'},
+    {'keywords':'financial analyst intern',       'location':'United States','f_WT':'2'},
+    {'keywords':'data science intern',            'location':'United States','f_WT':'2'},
+    {'keywords':'research intern',                'location':'United States','f_WT':'2'},
+    {'keywords':'sales intern',                   'location':'United States','f_WT':'2'},
+    {'keywords':'HR intern',                      'location':'United States','f_WT':'2'},
+    {'keywords':'communications intern',          'location':'United States','f_WT':'2'},
+    {'keywords':'content intern',                 'location':'United States','f_WT':'2'},
+    {'keywords':'UX intern',                      'location':'United States','f_WT':'2'},
+    {'keywords':'consulting intern',              'location':'United States','f_WT':'2'},
+    {'keywords':'accounting intern',              'location':'United States','f_WT':'2'},
+    {'keywords':'supply chain intern',            'location':'United States','f_WT':'2'},
+    {'keywords':'project management intern',      'location':'United States','f_WT':'2'},
+    {'keywords':'machine learning intern',        'location':'United States','f_WT':'2'},
+    {'keywords':'AI intern',                      'location':'United States','f_WT':'2'},
 ]
 def fetch_linkedin(params):
     try:
@@ -473,6 +514,31 @@ def fetch_remoteok():
             if url: out.append(_job(company, title, loc, url, 'remoteok'))
         return out
     except: return []
+
+# ── The Muse API (free, no auth, 20 results/page) ────────────────────────────
+def fetch_muse(pages=12):
+    out = []
+    for page in range(pages):
+        try:
+            r = SESSION.get(
+                f'https://www.themuse.com/api/public/jobs?level=Internship&page={page}&descending=true',
+                timeout=12)
+            if r.status_code != 200: break
+            results = r.json().get('results', [])
+            if not results: break
+            for j in results:
+                title = j.get('name', '')
+                if not is_internship(title): continue
+                company = (j.get('company') or {}).get('name', 'Unknown')
+                locs = j.get('locations') or []
+                loc = ', '.join(l.get('name', '') for l in locs) or 'Flexible'
+                if not is_mn_or_remote(loc): continue
+                url = j.get('refs', {}).get('landing_page', '') or j.get('refs', {}).get('url', '')
+                if url:
+                    out.append(_job(company, title, loc or 'Remote', url, 'themuse'))
+            time.sleep(0.3)
+        except: break
+    return out
 
 # ── Dedup ─────────────────────────────────────────────────────────────────────
 def dedup(jobs):
@@ -539,6 +605,13 @@ def scan():
     if remoteok_jobs:
         log(f'  + RemoteOK: {len(remoteok_jobs)} internships')
     all_jobs.extend(remoteok_jobs)
+
+    # The Muse (free API, 12 pages = ~240 raw internships)
+    log('[scan] The Muse API...')
+    muse_jobs = fetch_muse(pages=12)
+    if muse_jobs:
+        log(f'  + The Muse: {len(muse_jobs)} internships')
+    all_jobs.extend(muse_jobs)
 
     # LinkedIn (sequential — rate sensitive)
     log('[scan] LinkedIn guest API...')
