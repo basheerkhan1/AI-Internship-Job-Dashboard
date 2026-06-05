@@ -456,8 +456,8 @@ def fetch_linkedin(params):
 # ── RemoteOK public API (no auth, always works on GitHub Actions) ─────────────
 def fetch_remoteok():
     try:
-        r = SESSION.get('https://remoteok.com/api',
-                        headers={'Accept':'application/json'}, timeout=15)
+        r = SESSION.get('https://remoteok.com/api?tags=intern',
+                        headers={'Accept':'application/json','User-Agent':'Mozilla/5.0'}, timeout=15)
         if r.status_code != 200: return []
         out = []
         for j in (r.json() or []):

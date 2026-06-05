@@ -351,7 +351,7 @@ def merge(new_jobs):
     merged = list(seen.values())
     merged.sort(key=lambda j: ((j.get('company') or '').lower()))
     JOBS_OUT.write_text(json.dumps(merged, indent=2))
-    log(f'[merge] +{added} new → {len(merged)} total in jobs.json')
+    log(f'[merge] +{added} new -> {len(merged)} total in jobs.json')
     return merged
 
 # ── Main ──────────────────────────────────────────────────────────────────────
