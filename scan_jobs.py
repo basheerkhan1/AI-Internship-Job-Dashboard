@@ -550,13 +550,31 @@ def scan():
         all_jobs.extend(jobs)
         time.sleep(1.5)  # slightly longer — LinkedIn rate limits on GH Actions IPs
 
+    # Merge with existing jobs.json so old results are never erased
+    existing = []
+    try:
+        with open(JOBS_OUTPUT) as f:
+            existing = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        pass
+
+    # New scan results take precedence (fresher data), existing fills the gaps
+    seen = {j['url'].split('?')[0].rstrip('/'): j for j in all_jobs}
+    added = 0
+    for j in existing:
+        key = j['url'].split('?')[0].rstrip('/')
+        if key not in seen:
+            seen[key] = j
+            added += 1
+
+    all_jobs = list(seen.values())
     all_jobs = dedup(all_jobs)
     all_jobs.sort(key=lambda j: (
         0 if is_internship(j['role']) else 1,
         (j.get('company') or '').lower()
     ))
 
-    log(f'\n[scan] Done — {len(all_jobs)} unique internships.')
+    log(f'\n[scan] Done — {len(all_jobs)} unique internships ({added} kept from previous scan).')
     with open(JOBS_OUTPUT, 'w') as f:
         json.dump(all_jobs, f, indent=2)
     log(f'[scan] Saved to {JOBS_OUTPUT}')
