@@ -249,6 +249,25 @@ WORKDAY_COMPANIES = [
     ('Fastenal',         'fastenal',        'wd5', 'Fastenal'),
     ('Tennant Company',  'tennantco',       'wd5', 'Tennant'),
     ('Entrust',          'entrust',         'wd5', 'Entrust'),
+    # Big 4 + Consulting — top ISM intern hirers
+    ('Deloitte',         'deloitte',        'wd5', 'Deloitte_Careers'),
+    ('PwC',              'pwc',             'wd3', 'Global_Campus_Hiring'),
+    ('KPMG',             'kpmg',            'wd5', 'KPMG_Careers'),
+    ('Accenture',        'accenture',       'wd103','Accenture_Careers'),
+    ('Capgemini',        'capgemini',       'wd3', 'Capgemini'),
+    ('CGI',              'cgi',             'wd5', 'CGI'),
+    ('Booz Allen',       'bah',             'wd1', 'BAH'),
+    ('Leidos',           'leidos',          'wd5', 'Leidos'),
+    ('ManTech',          'mantech',         'wd5', 'ManTech'),
+    # Financial services ISM roles
+    ('JPMorgan Chase',   'jpmorganchase',   'wd5', 'jpmorganchase'),
+    ('Thomson Reuters',  'thomsonreuters',  'wd5', 'tr_external'),
+    ('Ameritas',         'ameritas',        'wd5', 'Ameritas'),
+    ('Nationwide',       'nationwide',      'wd5', 'nationwide-ext'),
+    # MN healthcare IT
+    ('Allina Health',    'allinahealth',    'wd5', 'Allina_Health_Careers'),
+    ('HealthPartners',   'healthpartners',  'wd5', 'HealthPartners'),
+    ('Prime Therapeutics','primetherapeutics','wd5','PrimeTherapeutics'),
 ]
 def fetch_workday(display_name, tenant, wd_host, career_path):
     api = f'https://{tenant}.{wd_host}.myworkdayjobs.com/wday/cxs/{tenant}/{career_path}/jobs'
@@ -482,6 +501,40 @@ LINKEDIN_SEARCHES = [
     {'keywords':'IT consulting intern',             'location':'United States','f_WT':'2'},
     {'keywords':'technology consulting intern',     'location':'United States','f_WT':'2'},
     {'keywords':'digital marketing analytics intern','location':'United States','f_WT':'2'},
+    # ── MN: ISM / Management Information Systems ──
+    {'keywords':'information systems management intern','location':'Minnesota, United States'},
+    {'keywords':'management information systems intern','location':'Minnesota, United States'},
+    {'keywords':'IT business analyst intern',       'location':'Minnesota, United States'},
+    {'keywords':'business systems analyst intern',  'location':'Minnesota, United States'},
+    {'keywords':'ERP intern',                       'location':'Minnesota, United States'},
+    {'keywords':'SAP intern',                       'location':'Minnesota, United States'},
+    {'keywords':'technology management intern',     'location':'Minnesota, United States'},
+    {'keywords':'IT project management intern',     'location':'Minnesota, United States'},
+    {'keywords':'enterprise systems intern',        'location':'Minnesota, United States'},
+    {'keywords':'IT governance intern',             'location':'Minnesota, United States'},
+    {'keywords':'systems integration intern',       'location':'Minnesota, United States'},
+    {'keywords':'technology solutions intern',      'location':'Minnesota, United States'},
+    {'keywords':'IS analyst intern',                'location':'Minnesota, United States'},
+    {'keywords':'technology analyst intern',        'location':'Minnesota, United States'},
+    {'keywords':'IT audit intern',                  'location':'Minnesota, United States'},
+    {'keywords':'accounting information systems intern','location':'Minnesota, United States'},
+    {'keywords':'business technology intern',       'location':'Minnesota, United States'},
+    # ── Remote: ISM ──
+    {'keywords':'information systems management intern','location':'United States','f_WT':'2'},
+    {'keywords':'management information systems intern','location':'United States','f_WT':'2'},
+    {'keywords':'IT business analyst intern',       'location':'United States','f_WT':'2'},
+    {'keywords':'business systems analyst intern',  'location':'United States','f_WT':'2'},
+    {'keywords':'ERP intern',                       'location':'United States','f_WT':'2'},
+    {'keywords':'SAP intern',                       'location':'United States','f_WT':'2'},
+    {'keywords':'technology management intern',     'location':'United States','f_WT':'2'},
+    {'keywords':'IT project management intern',     'location':'United States','f_WT':'2'},
+    {'keywords':'enterprise systems intern',        'location':'United States','f_WT':'2'},
+    {'keywords':'systems integration intern',       'location':'United States','f_WT':'2'},
+    {'keywords':'IT governance intern',             'location':'United States','f_WT':'2'},
+    {'keywords':'technology analyst intern',        'location':'United States','f_WT':'2'},
+    {'keywords':'IT audit intern',                  'location':'United States','f_WT':'2'},
+    {'keywords':'accounting information systems intern','location':'United States','f_WT':'2'},
+    {'keywords':'business technology intern',       'location':'United States','f_WT':'2'},
 ]
 def fetch_linkedin(params):
     try:
@@ -517,6 +570,59 @@ def fetch_linkedin(params):
             if not is_internship(title): continue
             if not is_mn_or_remote(loc): continue
             out.append(_job(co, title, loc, f'https://www.linkedin.com/jobs/view/{jid}', 'linkedin'))
+        return out
+    except: return []
+
+# ── Indeed RSS (public, no auth required) ────────────────────────────────────
+INDEED_FEEDS = [
+    ('information systems management intern', 'Minnesota'),
+    ('management information systems intern',  'Minnesota'),
+    ('IT business analyst intern',             'Minnesota'),
+    ('business systems analyst intern',        'Minnesota'),
+    ('ERP intern',                             'Minnesota'),
+    ('SAP intern',                             'Minnesota'),
+    ('technology management intern',           'Minnesota'),
+    ('IT project management intern',           'Minnesota'),
+    ('enterprise systems intern',              'Minnesota'),
+    ('IT governance intern',                   'Minnesota'),
+    ('systems integration intern',             'Minnesota'),
+    ('IT audit intern',                        'Minnesota'),
+    ('accounting information systems intern',  'Minnesota'),
+    ('MIS intern',                             'Minnesota'),
+    ('business technology intern',             'Minnesota'),
+    ('information systems management intern',  'Remote'),
+    ('IT business analyst intern',             'Remote'),
+    ('ERP intern',                             'Remote'),
+    ('SAP intern',                             'Remote'),
+    ('technology management intern',           'Remote'),
+    ('IT project management intern',           'Remote'),
+    ('MIS intern',                             'Remote'),
+]
+def fetch_indeed(query, location):
+    try:
+        from urllib.parse import quote_plus
+        params = {'q': query, 'l': location, 'jt': 'internship', 'sort': 'date'}
+        url = 'https://www.indeed.com/rss?' + urlencode(params)
+        r = SESSION.get(url, headers={'Accept': 'application/rss+xml,*/*'}, timeout=12)
+        if r.status_code != 200: return []
+        root = ET.fromstring(r.content)
+        out = []
+        for item in root.findall('.//item'):
+            title_el   = item.find('title')
+            link_el    = item.find('link')
+            source_el  = item.find('source')
+            if title_el is None or link_el is None: continue
+            title   = (title_el.text or '').strip()
+            job_url = (link_el.text or '').strip()
+            if not is_internship(title): continue
+            if not is_mis_relevant(title): continue
+            company = (source_el.text or 'Unknown').strip() if source_el is not None else 'Unknown'
+            loc     = location
+            guid_el = item.find('guid')
+            if guid_el is not None and guid_el.text:
+                job_url = guid_el.text.strip()
+            if job_url:
+                out.append(_job(company, title, loc, job_url, 'indeed'))
         return out
     except: return []
 
@@ -626,6 +732,15 @@ def scan():
             log(f'  + SimplyHired "{query}" / {location}: {len(jobs)}')
         all_jobs.extend(jobs)
         time.sleep(0.4)
+
+    # Indeed RSS (ISM-focused)
+    log('[scan] Indeed RSS (ISM)...')
+    for (query, location) in INDEED_FEEDS:
+        jobs = fetch_indeed(query, location)
+        if jobs:
+            log(f'  + Indeed "{query}" / {location}: {len(jobs)}')
+        all_jobs.extend(jobs)
+        time.sleep(0.5)
 
     # RemoteOK (free public API — reliable fallback)
     log('[scan] RemoteOK public API...')
