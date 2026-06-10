@@ -316,7 +316,7 @@ LINKEDIN_SEARCHES = [
 def fetch_linkedin(params):
     try:
         qs = {'keywords':params['keywords'],'location':params.get('location',''),
-              'f_E':'1','f_JT':'I','sortBy':'DD','start':'0'}
+              'f_E':'1','f_JT':'I','sortBy':'DD','start':'0','f_TPR':'r2592000'}
         if 'f_WT' in params: qs['f_WT'] = params['f_WT']
         headers = {'Accept':'text/html,*/*','Accept-Language':'en-US,en;q=0.9',
                    'Referer':'https://www.linkedin.com/jobs/'}

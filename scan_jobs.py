@@ -134,6 +134,13 @@ GREENHOUSE_SLUGS = [
     'intercom','postman','pagerduty','splunk','cloudflare','zendesk',
     'freshworks','drift','notion','figma','airtable','zapier','miro',
     'cockroachlabs','airbyte','prefect','astronomer',
+    # Year-round / rolling intern hirers
+    'duolingo','reddit','squarespace','wework','lyft','doordash',
+    'robinhood','affirm','brex','plaid','coinbase','openai',
+    'microsoft','salesforce','oracle','sap','workday','servicenow',
+    'adobe','autodesk','intuit','paypal','square','twilio',
+    'zoom','dropbox','box','qualtrics','medallia','veeva',
+    'benchling','relativity','inovalon','changehealth',
     # IT / cybersecurity / support (remote-friendly)
     'crowdstrike','sentinelone','lacework','snyk','wiz',
     'qualys','tenable','rapid7','huntress','abnormalsecurity',
@@ -312,6 +319,14 @@ SIMPLYHIRED_FEEDS = [
     ('IT intern',                      'Remote'),
     ('cybersecurity intern',           'Remote'),
     ('software developer intern',      'Remote'),
+    # Summer 2026 active now
+    ('paid internship summer 2026',    'Minnesota'),
+    ('paid IT internship summer 2026', 'Remote'),
+    ('information systems intern',     'Remote'),
+    ('MIS internship',                 'Remote'),
+    ('IT business analyst intern',     'Remote'),
+    ('ERP intern',                     'Remote'),
+    ('technology management intern',   'Remote'),
 ]
 def fetch_simplyhired(query, location):
     try:
@@ -519,6 +534,18 @@ LINKEDIN_SEARCHES = [
     {'keywords':'IT audit intern',                  'location':'Minnesota, United States'},
     {'keywords':'accounting information systems intern','location':'Minnesota, United States'},
     {'keywords':'business technology intern',       'location':'Minnesota, United States'},
+    # ── Summer 2026 paid — active now ──
+    {'keywords':'paid intern summer 2026',          'location':'Minnesota, United States'},
+    {'keywords':'paid internship summer 2026',      'location':'United States','f_WT':'2'},
+    {'keywords':'information systems intern summer 2026','location':'United States','f_WT':'2'},
+    {'keywords':'MIS intern summer 2026',           'location':'United States','f_WT':'2'},
+    {'keywords':'IT intern summer 2026',            'location':'Minnesota, United States'},
+    {'keywords':'IT intern summer 2026',            'location':'United States','f_WT':'2'},
+    {'keywords':'data analyst intern summer 2026',  'location':'United States','f_WT':'2'},
+    {'keywords':'business analyst intern summer 2026','location':'United States','f_WT':'2'},
+    {'keywords':'paid IT internship',               'location':'Minnesota, United States'},
+    {'keywords':'paid data analyst internship',     'location':'United States','f_WT':'2'},
+    {'keywords':'paid business analyst internship', 'location':'United States','f_WT':'2'},
     # ── Remote: ISM ──
     {'keywords':'information systems management intern','location':'United States','f_WT':'2'},
     {'keywords':'management information systems intern','location':'United States','f_WT':'2'},
@@ -539,7 +566,7 @@ LINKEDIN_SEARCHES = [
 def fetch_linkedin(params):
     try:
         qs = {'keywords':params['keywords'],'location':params.get('location',''),
-              'f_E':'1','f_JT':'I','sortBy':'DD','start':'0'}
+              'f_E':'1','f_JT':'I','sortBy':'DD','start':'0','f_TPR':'r2592000'}
         if 'f_WT' in params: qs['f_WT'] = params['f_WT']
         headers = {'Accept':'text/html,*/*','Accept-Language':'en-US,en;q=0.9',
                    'Referer':'https://www.linkedin.com/jobs/'}
