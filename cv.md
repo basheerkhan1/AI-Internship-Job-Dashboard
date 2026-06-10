@@ -14,7 +14,7 @@ Management Information Systems student with hands-on experience in data analytic
 
 **Augsburg University** — Minneapolis, MN
 Bachelor of Science in Business Administration (B.S.B.A.)
-Major: Management Information Systems | Minor: Data Analytics
+Major: Management Information Systems | Minors: Data Analytics, Computer Science
 GPA: 3.6/4.0 — Expected May 2027
 
 ---
