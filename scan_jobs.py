@@ -573,56 +573,21 @@ def fetch_linkedin(params):
         return out
     except: return []
 
-# ── Indeed RSS (public, no auth required) ────────────────────────────────────
-INDEED_FEEDS = [
-    ('information systems management intern', 'Minnesota'),
-    ('management information systems intern',  'Minnesota'),
-    ('IT business analyst intern',             'Minnesota'),
-    ('business systems analyst intern',        'Minnesota'),
-    ('ERP intern',                             'Minnesota'),
-    ('SAP intern',                             'Minnesota'),
-    ('technology management intern',           'Minnesota'),
-    ('IT project management intern',           'Minnesota'),
-    ('enterprise systems intern',              'Minnesota'),
-    ('IT governance intern',                   'Minnesota'),
-    ('systems integration intern',             'Minnesota'),
-    ('IT audit intern',                        'Minnesota'),
-    ('accounting information systems intern',  'Minnesota'),
-    ('MIS intern',                             'Minnesota'),
-    ('business technology intern',             'Minnesota'),
-    ('information systems management intern',  'Remote'),
-    ('IT business analyst intern',             'Remote'),
-    ('ERP intern',                             'Remote'),
-    ('SAP intern',                             'Remote'),
-    ('technology management intern',           'Remote'),
-    ('IT project management intern',           'Remote'),
-    ('MIS intern',                             'Remote'),
-]
-def fetch_indeed(query, location):
+# ── Jobicy public API (free remote jobs, no auth) ─────────────────────────────
+def fetch_jobicy():
     try:
-        from urllib.parse import quote_plus
-        params = {'q': query, 'l': location, 'jt': 'internship', 'sort': 'date'}
-        url = 'https://www.indeed.com/rss?' + urlencode(params)
-        r = SESSION.get(url, headers={'Accept': 'application/rss+xml,*/*'}, timeout=12)
+        r = SESSION.get('https://jobicy.com/api/v2/remote-jobs?count=50&tag=intern',
+                        timeout=12)
         if r.status_code != 200: return []
-        root = ET.fromstring(r.content)
         out = []
-        for item in root.findall('.//item'):
-            title_el   = item.find('title')
-            link_el    = item.find('link')
-            source_el  = item.find('source')
-            if title_el is None or link_el is None: continue
-            title   = (title_el.text or '').strip()
-            job_url = (link_el.text or '').strip()
+        for j in (r.json().get('jobs') or []):
+            title   = j.get('jobTitle', '')
             if not is_internship(title): continue
             if not is_mis_relevant(title): continue
-            company = (source_el.text or 'Unknown').strip() if source_el is not None else 'Unknown'
-            loc     = location
-            guid_el = item.find('guid')
-            if guid_el is not None and guid_el.text:
-                job_url = guid_el.text.strip()
-            if job_url:
-                out.append(_job(company, title, loc, job_url, 'indeed'))
+            company = j.get('companyName', 'Unknown')
+            loc     = j.get('jobGeo', 'Remote') or 'Remote'
+            url     = j.get('url', '')
+            if url: out.append(_job(company, title, loc, url, 'jobicy'))
         return out
     except: return []
 
@@ -733,14 +698,12 @@ def scan():
         all_jobs.extend(jobs)
         time.sleep(0.4)
 
-    # Indeed RSS (ISM-focused)
-    log('[scan] Indeed RSS (ISM)...')
-    for (query, location) in INDEED_FEEDS:
-        jobs = fetch_indeed(query, location)
-        if jobs:
-            log(f'  + Indeed "{query}" / {location}: {len(jobs)}')
-        all_jobs.extend(jobs)
-        time.sleep(0.5)
+    # Jobicy remote jobs API (free, no auth)
+    log('[scan] Jobicy remote jobs...')
+    jobicy_jobs = fetch_jobicy()
+    if jobicy_jobs:
+        log(f'  + Jobicy: {len(jobicy_jobs)} internships')
+    all_jobs.extend(jobicy_jobs)
 
     # RemoteOK (free public API — reliable fallback)
     log('[scan] RemoteOK public API...')
