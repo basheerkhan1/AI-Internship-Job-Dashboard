@@ -4,12 +4,6 @@ Minneapolis, MN | (651) 252-0785 | basheerkhan.43135@gmail.com | linkedin.com/in
 
 ---
 
-## Professional Summary
-
-Management Information Systems student with hands-on experience in data analytics, business intelligence, and operations process improvement. Proficient in Python, SQL, Excel, and data visualization tools including Tableau and Power BI. Experienced in applying analytical methods to drive business decisions, automate workflows, and communicate insights to cross-functional stakeholders. Seeking an internship in Information Systems, Business Analysis, or Data Analytics to apply technical and business skills in a professional environment.
-
----
-
 ## Education
 
 **Augsburg University** — Minneapolis, MN
