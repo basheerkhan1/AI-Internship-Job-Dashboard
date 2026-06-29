@@ -511,7 +511,7 @@ select option{background:#111827;}
   <div class="resume-card au">
     <div>
       <div class="resume-title">Basheer Khan — Resume</div>
-      <div class="resume-sub">Augsburg University &bull; MIS &amp; Data Analytics &bull; basheerkhan.43135@gmail.com</div>
+      <div class="resume-sub">Augsburg University &bull; MIS &amp; Data Analytics &bull; khanb@augsburg.edu</div>
     </div>
     <div class="resume-btns">
       <a href="basheer-khan-augsburg.pdf" download="Basheer_Khan_Resume.pdf" class="btn btn-blue">&#8659; Download Resume</a>
@@ -842,9 +842,20 @@ async function loadPipeline(force=false) {
   }
 }
 
+function isExpiredJob(j) {
+  if (j.closed || j.expired || j.status === 'closed') return true;
+  if (j.scanned) {
+    const daysSinceScanned = (Date.now() - new Date(j.scanned)) / 86400000;
+    if (daysSinceScanned > 30) return true;
+  }
+  const role = (j.role || '').toLowerCase();
+  if (/\b(2024|2025)\b/.test(role) && !/\b2026\b/.test(role)) return true;
+  return false;
+}
+
 function allVisibleJobs() {
   const savedJobs = SAVED.map(j=>({...j,_saved:true}));
-  const pipeOnly  = pipeJobs.filter(j=>!SAVED_URLS.has(j.url));
+  const pipeOnly  = pipeJobs.filter(j=>!SAVED_URLS.has(j.url) && !isExpiredJob(j));
   return [...savedJobs, ...pipeOnly];
 }
 
