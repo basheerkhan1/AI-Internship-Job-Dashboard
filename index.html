@@ -848,34 +848,51 @@ function isExpiredJob(j) {
 }
 
 const MIS_INCLUDE = [
-  'data anal','analytics','business anal','information system',
-  'information technology','it analyst','it intern','systems analyst',
-  'reporting','business intelligence','bi analyst','database',
-  'operations analyst','technology analyst','process analyst',
-  'data science','data engineer','data intern','mis ',
-  'product analyst','strategy anal','financial analyst',
-  'erp','crm','enterprise','digital analyst','insights analyst',
-  'research analyst','quantitative','management information',
-  'it specialist','technology specialist','digital transformation',
-  'it support','systems integration','data management',
-  'supply chain analyst','logistics analyst','it operations',
-  'technical analyst','junior analyst','associate analyst',
+  // Core analyst roles
+  'analyst','analytics',
+  // Data
+  'data','database','sql','bi ','business intelligence','reporting',
+  // Business & systems
+  'business anal','information system','information technology',
+  'systems analyst','management information','mis ',
+  'erp','crm','enterprise resource','enterprise application',
+  // IT & technology
+  'it analyst','it intern','it specialist','it support','it operations',
+  'technology analyst','technology intern','technology specialist',
+  'digital transformation','systems integration','technical analyst',
+  // Operations & process
+  'operations analyst','process analyst','operations intern',
+  'supply chain analyst','logistics analyst','project analyst',
+  'program analyst','planning analyst','pricing analyst',
+  'risk analyst','compliance analyst','audit intern','it audit',
+  'quality analyst','solutions analyst','functional analyst',
+  // Finance tech
+  'financial analyst','finance analyst','revenue operations',
+  'sales operations','customer success','treasury analyst',
+  // Consulting
+  'technology consulting','management consulting','it consulting',
+  'implementation','consultant intern',
+  // Data science & engineering
+  'data science','data engineer','data intern','machine learning',
+  'ai analyst','cloud analyst',
 ];
-const MIS_EXCLUDE = [
-  'software engineer','software developer','frontend developer',
-  'front-end developer','backend developer','back-end developer',
-  'devops','site reliability','machine learning engineer','ml engineer',
-  'security engineer','network engineer','cloud engineer',
+const MIS_HARD_EXCLUDE = [
+  'software engineer','software developer',
+  'frontend developer','front-end developer',
+  'backend developer','back-end developer',
+  'devops','site reliability',
+  'network engineer','cloud engineer',
   'mobile developer','ios developer','android developer',
-  'marketing intern','hr intern','human resources intern',
-  'sales intern','recruiting intern','graphic design','ui/ux design',
   'mechanical engineer','civil engineer','electrical engineer',
-  'game developer','game designer',
+  'graphic design','game developer','game designer',
+  'pharmacist','nursing','dental','physical therapy',
+  'attorney','paralegal','journalist','copywriter',
+  'landscap','agricultural','social worker','chaplain',
 ];
 function isMISRelevant(j) {
   if (j._saved) return true;
   const role = (j.role || '').toLowerCase();
-  if (MIS_EXCLUDE.some(k => role.includes(k))) return false;
+  if (MIS_HARD_EXCLUDE.some(k => role.includes(k))) return false;
   return MIS_INCLUDE.some(k => role.includes(k));
 }
 
