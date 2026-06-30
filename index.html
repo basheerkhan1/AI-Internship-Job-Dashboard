@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
-<title>Basheer Khan — Internship Tracker</title>
+<title>InternPulse — Free MIS Internship Finder</title>
 <style>
 /* ── Reset ── */
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -471,6 +471,8 @@ select option{background:#111827;}
   .main{padding:16px;}
 }
 </style>
+<!-- Google Identity Services for Gmail OAuth -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
 
@@ -478,10 +480,10 @@ select option{background:#111827;}
 <div class="hdr">
   <div class="hdr-blob"></div>
   <div class="hdr-l">
-    <h1>Basheer Khan — Internship Tracker</h1>
+    <h1>InternPulse <span style="font-size:14px;font-weight:400;color:var(--muted);background:rgba(59,130,246,.12);padding:3px 10px;border-radius:20px;border:1px solid rgba(59,130,246,.2);margin-left:8px;vertical-align:middle;">Free</span></h1>
     <p>
       <span class="live-dot"></span>
-      Nationwide — MN · Remote · All US &bull; Greenhouse · Lever · LinkedIn · Databricks · Stripe · Samsara
+      1,500+ MIS &amp; Analytics internships &bull; Nationwide US &bull; Updated every 2 hours &bull; 100% free
     </p>
   </div>
   <div class="hdr-r">
@@ -498,10 +500,10 @@ select option{background:#111827;}
     Job Pipeline <span class="tab-count" id="tc-pipeline">—</span>
   </div>
   <div class="tab" id="t-apps" onclick="showTab('apps')">
-    My Applications <span class="tab-count" id="tc-apps">0</span>
+    Applications <span class="tab-count" id="tc-apps">0</span>
   </div>
   <div class="tab" id="t-projects" onclick="showTab('projects')">
-    My Projects <span class="tab-count">3</span>
+    Projects <span class="tab-count">3</span>
   </div>
 </div>
 
@@ -593,6 +595,33 @@ select option{background:#111827;}
     <div class="stat s-off"><div class="stat-n" id="sn-off">0</div><div class="stat-l">Offer</div></div>
     <div class="stat s-rej"><div class="stat-n" id="sn-rej">0</div><div class="stat-l">Rejected</div></div>
     <div class="stat s-eva"><div class="stat-n" id="sn-eva">0</div><div class="stat-l">Evaluated</div></div>
+  </div>
+
+  <!-- Gmail Connect Card -->
+  <div class="card" id="gmail-connect-card" style="border:1px solid rgba(234,67,53,.25);background:rgba(234,67,53,.05);">
+    <div class="card-hdr" style="border:none;padding-bottom:6px;">
+      <div class="card-title" style="display:flex;align-items:center;gap:10px;">
+        <span style="font-size:20px;">📧</span> Import Applications from Gmail
+      </div>
+      <span id="gmail-status-badge" style="font-size:11px;color:var(--muted);">Not connected</span>
+    </div>
+    <p style="font-size:12px;color:var(--muted);padding:0 0 14px 0;line-height:1.6;">
+      Connect your Gmail to automatically detect internship applications, confirmation emails, interviews, and rejections.
+      No data is stored on any server — everything stays in your browser.
+    </p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <button id="gmail-btn" class="btn btn-blue" style="background:linear-gradient(135deg,#ea4335,#c62828);border-color:#ea4335;" onclick="connectGmail()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="vertical-align:-3px;margin-right:6px;"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Connect Gmail
+      </button>
+      <button id="gmail-scan-btn" class="btn btn-slate" style="display:none;" onclick="scanGmail()">🔍 Scan Inbox</button>
+      <button id="gmail-disc-btn" class="btn btn-slate" style="display:none;opacity:.6;" onclick="disconnectGmail()">Disconnect</button>
+      <span id="gmail-result-txt" style="font-size:12px;color:var(--muted);"></span>
+    </div>
+    <div id="gmail-setup-note" style="margin-top:14px;padding:10px 14px;background:rgba(255,255,255,.03);border-radius:8px;border:1px solid var(--border);font-size:11px;color:var(--muted);display:none;">
+      <strong style="color:var(--text);">Setup required:</strong> Gmail integration needs a Google OAuth Client ID.
+      <a href="https://github.com/basheerkhan1/AI-Internship-Job-Dashboard#gmail-setup" target="_blank" style="color:var(--blue);text-decoration:none;margin-left:4px;">See setup guide →</a>
+    </div>
   </div>
 
   <div class="card">
@@ -697,8 +726,8 @@ select option{background:#111827;}
         <div class="proj-icon">💼</div>
         <span class="proj-status ps-live">Live</span>
       </div>
-      <h3>AI Internship Job Dashboard</h3>
-      <p>Built and deployed this dashboard to track MN &amp; Remote internships. Python scripts hit Greenhouse, Ashby, Lever, LinkedIn, Indeed, and Handshake APIs to pull fresh listings. Auto-refreshes every hour via GitHub Actions. Includes a liveness checker that removes closed postings automatically.</p>
+      <h3>InternPulse — Free MIS Internship Tracker</h3>
+      <p>Built and deployed a free public internship tracker (like InternDock) for MIS students. Python scripts hit Greenhouse, Lever, and LinkedIn APIs to aggregate 1,500+ live listings nationwide. Auto-refreshes every 2 hours via GitHub Actions. Includes Gmail OAuth integration to auto-import applications, liveness checking to remove expired postings, and an application tracker — all client-side with no backend.</p>
       <div class="proj-tags">
         <span class="proj-tag">Python</span>
         <span class="proj-tag">HTML/CSS/JS</span>
@@ -893,10 +922,8 @@ function isExpiredJob(j) {
   if (j.closed || j.expired || j.status === 'closed') return true;
   if (j.scanned) {
     const daysSinceScanned = (Date.now() - new Date(j.scanned)) / 86400000;
-    if (daysSinceScanned > 30) return true;
+    if (daysSinceScanned > 60) return true;
   }
-  const role = (j.role || '').toLowerCase();
-  if (/\b(2024|2025)\b/.test(role) && !/\b2026\b/.test(role)) return true;
   return false;
 }
 
@@ -1227,7 +1254,195 @@ function toast(type, msg) {
 // ── Auto-refresh every 10 min ─────────────────────────────────────────
 setInterval(()=>loadPipeline(true), 10*60*1000);
 
-// ── Init ─────────────────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════
+// GMAIL OAUTH INTEGRATION
+// ══════════════════════════════════════════════════════════
+// To enable: replace with your own Google OAuth Client ID.
+// Steps:
+//  1. Go to console.cloud.google.com → New Project
+//  2. Enable "Gmail API"
+//  3. Credentials → OAuth 2.0 Client ID (Web application)
+//  4. Authorized JavaScript origins: https://basheerkhan1.github.io
+//  5. Paste the Client ID below.
+const GMAIL_CLIENT_ID = ''; // ← Paste your Client ID here
+
+let gmailToken = null;
+const GMAIL_LS_KEY = 'ip-gmail-token';
+const GMAIL_EXP_KEY = 'ip-gmail-exp';
+
+function gmailInit() {
+  const saved = localStorage.getItem(GMAIL_LS_KEY);
+  const exp   = parseInt(localStorage.getItem(GMAIL_EXP_KEY)||'0');
+  if (saved && Date.now() < exp) {
+    gmailToken = saved;
+    setGmailUI(true);
+  }
+}
+
+function setGmailUI(connected) {
+  const btn  = document.getElementById('gmail-btn');
+  const scan = document.getElementById('gmail-scan-btn');
+  const disc = document.getElementById('gmail-disc-btn');
+  const badge= document.getElementById('gmail-status-badge');
+  const card = document.getElementById('gmail-connect-card');
+  if (connected) {
+    btn.style.display='none';
+    scan.style.display='';
+    disc.style.display='';
+    badge.textContent='✓ Connected';
+    badge.style.color='var(--green)';
+    card.style.borderColor='rgba(34,197,94,.25)';
+    card.style.background='rgba(34,197,94,.04)';
+  } else {
+    btn.style.display='';
+    scan.style.display='none';
+    disc.style.display='none';
+    badge.textContent='Not connected';
+    badge.style.color='var(--muted)';
+    card.style.borderColor='rgba(234,67,53,.25)';
+    card.style.background='rgba(234,67,53,.05)';
+  }
+}
+
+function connectGmail() {
+  if (!GMAIL_CLIENT_ID) {
+    document.getElementById('gmail-setup-note').style.display='';
+    toast('info','Gmail needs a Client ID — see setup instructions below');
+    return;
+  }
+  if (typeof google === 'undefined') {
+    toast('err','Google script not loaded — try refreshing the page');
+    return;
+  }
+  const client = google.accounts.oauth2.initTokenClient({
+    client_id: GMAIL_CLIENT_ID,
+    scope: 'https://www.googleapis.com/auth/gmail.readonly',
+    callback: (resp) => {
+      if (resp.error) { toast('err', 'Gmail auth failed: '+resp.error); return; }
+      gmailToken = resp.access_token;
+      const expiry = Date.now() + (resp.expires_in||3600)*1000;
+      localStorage.setItem(GMAIL_LS_KEY, gmailToken);
+      localStorage.setItem(GMAIL_EXP_KEY, expiry.toString());
+      setGmailUI(true);
+      toast('ok','Gmail connected! Click "Scan Inbox" to import applications.');
+    }
+  });
+  client.requestAccessToken();
+}
+
+function disconnectGmail() {
+  gmailToken = null;
+  localStorage.removeItem(GMAIL_LS_KEY);
+  localStorage.removeItem(GMAIL_EXP_KEY);
+  setGmailUI(false);
+  toast('info','Gmail disconnected');
+}
+
+async function scanGmail() {
+  if (!gmailToken) { toast('err','Connect Gmail first'); return; }
+  const btn = document.getElementById('gmail-scan-btn');
+  const txt = document.getElementById('gmail-result-txt');
+  btn.disabled = true;
+  btn.textContent = '⏳ Scanning...';
+  txt.textContent = '';
+
+  const QUERIES = [
+    'subject:(application received internship)',
+    'subject:(thank you for applying)',
+    'subject:(we received your application)',
+    'subject:(interview invitation)',
+    'subject:(offer) internship',
+    'subject:(unfortunately) internship',
+  ];
+
+  const seen = new Set();
+  const headers = { Authorization: `Bearer ${gmailToken}` };
+  let found = 0;
+
+  for (const q of QUERIES) {
+    try {
+      const r = await fetch(
+        `https://gmail.googleapis.com/gmail/v1/users/me/messages?q=${encodeURIComponent(q)}&maxResults=20`,
+        { headers }
+      );
+      if (!r.ok) {
+        if (r.status === 401) { disconnectGmail(); toast('err','Gmail session expired — please reconnect'); break; }
+        continue;
+      }
+      const data = await r.json();
+      if (!data.messages) continue;
+
+      for (const msg of data.messages) {
+        if (seen.has(msg.id)) continue;
+        seen.add(msg.id);
+        try {
+          const detail = await fetch(
+            `https://gmail.googleapis.com/gmail/v1/users/me/messages/${msg.id}?format=metadata&metadataHeaders=From&metadataHeaders=Subject&metadataHeaders=Date`,
+            { headers }
+          ).then(r=>r.json());
+          const hdrs = detail.payload?.headers||[];
+          const subj = hdrs.find(h=>h.name==='Subject')?.value||'';
+          const from = hdrs.find(h=>h.name==='From')?.value||'';
+          const date = hdrs.find(h=>h.name==='Date')?.value||'';
+
+          const subLow = subj.toLowerCase();
+          const fromLow= from.toLowerCase();
+
+          // Skip obvious non-application emails
+          if (fromLow.includes('noreply@accounts.google')||fromLow.includes('linkedin.com')) continue;
+
+          // Derive company from sender name
+          const nameMatch = from.match(/^"?([^"<,]+)"?\s*</);
+          let company = nameMatch ? nameMatch[1].trim() : '';
+          if (!company) {
+            const domMatch = from.match(/@([a-zA-Z0-9-]+)\./);
+            company = domMatch ? domMatch[1].replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase()) : 'Unknown';
+          }
+
+          // Status heuristic
+          let status = 'Applied';
+          if (subLow.includes('interview')||subLow.includes('next steps')||subLow.includes('schedule')) status='Interview';
+          if (subLow.includes('offer')||subLow.includes('congratulations')||subLow.includes('pleased to')) status='Offer';
+          if (subLow.includes('unfortunately')||subLow.includes('not moving')||subLow.includes('not selected')||
+              subLow.includes('other candidates')||subLow.includes('won\'t be moving')) status='Rejected';
+
+          // Role from subject
+          const role = subj.replace(/re:|fwd:|fw:|=\?[^?]+\?[^?]+\?[^?]+\?=/gi,'').trim().slice(0,70);
+          const emailDate = date ? new Date(date).toISOString().slice(0,10) : today();
+
+          // De-duplicate: same company + same week
+          const dup = apps.find(a =>
+            a.company.toLowerCase()===company.toLowerCase() &&
+            Math.abs(new Date(a.date)-new Date(emailDate)) < 7*86400000
+          );
+          if (!dup) {
+            apps.unshift({
+              id: Date.now()+found,
+              company,
+              role,
+              url: '',
+              date: emailDate,
+              status,
+              notes: `Gmail: ${subj.slice(0,100)}`
+            });
+            found++;
+          }
+        } catch(_) {}
+      }
+    } catch(_) {}
+  }
+
+  save();
+  renderApps();
+  btn.disabled = false;
+  btn.textContent = '🔍 Scan Inbox';
+  txt.textContent = found ? `✓ Imported ${found} new application${found>1?'s':''}` : 'No new applications found';
+  if (found) toast('ok',`Imported ${found} internship application${found>1?'s':''} from Gmail!`);
+  else toast('info','Gmail scanned — no new applications found');
+}
+
+// ── Init ─────────────────────────────────────────────────
+gmailInit();
 loadPipeline();
 renderApps();
 </script>
