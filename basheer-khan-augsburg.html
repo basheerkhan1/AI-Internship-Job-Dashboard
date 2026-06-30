@@ -4,184 +4,178 @@
 <meta charset="UTF-8">
 <title>Basheer Khan</title>
 <style>
-@page { size: letter; margin: 0.5in 0.65in; }
-@media print { html, body { margin: 0; padding: 0; } }
-* { margin: 0; padding: 0; box-sizing: border-box; }
+@page { size: letter; margin: 0.45in 0.6in; }
+@media print { html, body { margin:0; padding:0; } }
+* { margin:0; padding:0; box-sizing:border-box; }
 body {
   font-family: 'Times New Roman', Times, serif;
-  font-size: 10.5pt;
+  font-size: 10pt;
   color: #000;
   background: #fff;
-  line-height: 1.22;
+  line-height: 1.25;
 }
-.page { width: 100%; }
 
-.header { text-align: center; margin-bottom: 4px; }
 .name {
-  font-size: 19pt; font-weight: bold; font-variant: small-caps;
-  letter-spacing: 0.04em; display: block; margin-bottom: 2px;
+  text-align: center;
+  font-size: 24pt;
+  font-weight: bold;
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
 }
-.contact { font-size: 9pt; letter-spacing: 0.01em; }
+.contact {
+  text-align: center;
+  font-size: 9.5pt;
+  margin-bottom: 4px;
+}
 .contact a { color: #000; text-decoration: underline; }
-.contact svg { display: inline-block; vertical-align: -1pt; }
-.ci { white-space: nowrap; }
-.sep { margin: 0 7px; }
+.sep { margin: 0 5px; }
 
-.section { margin-top: 6px; }
+.section { margin-top: 5px; }
 .section-title {
-  font-size: 11pt; font-weight: bold; font-variant: small-caps;
-  border-bottom: 1px solid #000; padding-bottom: 0px;
-  margin-bottom: 3px; line-height: 1.3;
+  font-size: 10pt;
+  font-weight: bold;
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid #000;
+  padding-bottom: 0px;
+  margin-bottom: 3px;
 }
 
-.subheading { margin-bottom: 2px; }
-.sh-r1, .sh-r2 {
-  display: flex; justify-content: space-between;
-  align-items: baseline; width: 100%;
-}
-.sh-org  { font-weight: bold; font-size: 10.5pt; }
-.sh-date { font-weight: bold; font-size: 9.5pt; white-space: nowrap; }
-.sh-role { font-style: italic; font-size: 9.5pt; }
-.sh-loc  { font-style: italic; font-size: 9.5pt; white-space: nowrap; }
+.sub { margin-bottom: 1px; }
+.row { display:flex; justify-content:space-between; align-items:baseline; width:100%; }
+.job-title { font-weight: bold; font-size: 10pt; }
+.job-date  { font-weight: bold; font-size: 9.5pt; white-space: nowrap; }
+.job-org   { font-style: italic; font-size: 9.5pt; }
+.job-loc   { font-style: italic; font-size: 9.5pt; white-space: nowrap; }
 
-ul.b {
-  list-style: disc; padding-left: 14px;
-  margin-top: 0px; margin-bottom: 3px;
+ul {
+  list-style: none;
+  padding-left: 13px;
+  margin-top: 1px;
+  margin-bottom: 3px;
 }
-ul.b li { font-size: 9.5pt; line-height: 1.25; margin-bottom: 0px; }
+ul li {
+  font-size: 9.5pt;
+  line-height: 1.28;
+  margin-bottom: 1px;
+  text-indent: -9px;
+  padding-left: 9px;
+}
+ul li::before { content: '\2022\00A0'; }
 
-.proj { margin-bottom: 3px; }
-.proj-hdr { font-size: 9.5pt; margin-bottom: 1px; }
+.proj { margin-bottom: 2px; }
+.proj-hdr { font-size: 10pt; margin-bottom: 0px; }
 .proj-name { font-weight: bold; }
 .proj-tech { font-style: italic; }
 
-ul.sk { list-style: none; padding-left: 0; margin-top: 1px; }
-ul.sk li { font-size: 9.5pt; line-height: 1.4; }
+ul.sk { list-style:none; padding-left:0; margin-top:0; }
+ul.sk li { font-size:9.5pt; line-height:1.38; margin-bottom:0; text-indent:0; padding-left:0; }
+ul.sk li::before { content:''; }
 </style>
 </head>
 <body>
-<div class="page">
 
-  <!-- HEADER -->
-  <div class="header">
-    <span class="name">Basheer Khan</span>
-    <div class="contact">
-      <span class="ci">
-        <svg width="9" height="9" viewBox="0 0 512 512" fill="currentColor"><path d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 49.6c-36 76.7-98.9 140.5-177.2 177.2l-49.6-60.6c-6.8-8.3-18.2-11.1-28-6.9l-112 48C3.9 366.5-2 378.1.6 389.4l24 104C27.1 504.2 36.7 512 48 512c256.1 0 464-207.5 464-464 0-11.2-7.7-20.9-18.6-23.4z"/></svg>
-        &nbsp;<u>(651) 252-0785</u>
-      </span>
-      <span class="sep">|</span>
-      <span class="ci">
-        <svg width="11" height="9" viewBox="0 0 512 512" fill="currentColor"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg>
-        &nbsp;<a href="mailto:khanb@augsburg.edu"><u>khanb@augsburg.edu</u></a>
-      </span>
-      <span class="sep">|</span>
-      <span class="ci">
-        <svg width="9" height="9" viewBox="0 0 448 512" fill="currentColor"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
-        &nbsp;<a href="https://linkedin.com/in/basheerkhn"><u>linkedin.com/in/basheerkhn</u></a>
-      </span>
-    </div>
-  </div>
-
-  <!-- EDUCATION -->
-  <div class="section">
-    <div class="section-title">Education</div>
-    <div class="subheading">
-      <div class="sh-r1">
-        <span class="sh-org">Augsburg University</span>
-        <span class="sh-date">Minneapolis, MN</span>
-      </div>
-      <div class="sh-r2">
-        <span class="sh-role">Bachelor of Science in Business Administration (B.S.B.A.) &mdash; Management Information Systems</span>
-        <span class="sh-loc">GPA: 3.6/4.0 &mdash; Expected Fall 2027</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- EXPERIENCE -->
-  <div class="section">
-    <div class="section-title">Experience</div>
-
-    <div class="subheading">
-      <div class="sh-r1">
-        <span class="sh-org">Data Analytics Intern &mdash; Qualitative &amp; Quantitative Insights</span>
-        <span class="sh-date">May 2026 &ndash; Present</span>
-      </div>
-      <div class="sh-r2">
-        <span class="sh-role">Beats by Dre</span>
-        <span class="sh-loc">Remote</span>
-      </div>
-    </div>
-    <ul class="b">
-      <li>Analyzed consumer survey data in Python (Google Colab) to identify behavioral trends, brand preferences, and purchase motivations using pandas and NumPy for data cleaning and aggregation.</li>
-      <li>Applied VADER sentiment analysis to open-ended survey responses, classifying feedback by emotional tone and brand attribute to surface actionable insights for cross-functional business strategy discussions.</li>
-      <li>Designed an interactive data visualization dashboard to present findings to the Global Consumer Insights team and compiled a final report supporting senior leadership brand strategy and requirements gathering.</li>
-    </ul>
-
-    <div class="subheading" style="margin-top:6px;">
-      <div class="sh-r1">
-        <span class="sh-org">Operations Specialist</span>
-        <span class="sh-date">Apr 2022 &ndash; Mar 2024</span>
-      </div>
-      <div class="sh-r2">
-        <span class="sh-role">MetroCare Inc.</span>
-        <span class="sh-loc">St. Paul, MN</span>
-      </div>
-    </div>
-    <ul class="b">
-      <li>Managed scheduling and daily operations for a 4-person healthcare team, establishing workflow systems and documentation that improved consistency and reduced coordination errors.</li>
-      <li>Led digital systems implementation transitioning from paper-based timesheets, reducing duplicate data entry and improving processing efficiency by an estimated 25&ndash;35%.</li>
-      <li>Maintained DHS billing and payroll reconciliation records in Excel; identified and resolved recurring billing discrepancies through systems analysis, improving invoice accuracy and reducing payment delays.</li>
-    </ul>
-  </div>
-
-  <!-- PROJECTS -->
-  <div class="section">
-    <div class="section-title">Projects</div>
-
-    <div class="proj">
-      <div class="proj-hdr">
-        <span class="proj-name">Brand Sentiment &amp; Survey Analysis</span> | <span class="proj-tech">Python, VADER Sentiment, pandas, Matplotlib, Google Colab</span>
-      </div>
-      <ul class="b">
-        <li>Applied VADER sentiment scoring to customer survey responses, categorizing feedback by emotional tone and brand attribute to identify key factors driving repurchase intent.</li>
-        <li>Produced structured data visualizations in Matplotlib covering sentiment distributions and attribute rankings, formatted as a leadership-ready business intelligence report.</li>
-      </ul>
-    </div>
-
-    <div class="proj">
-      <div class="proj-hdr">
-        <span class="proj-name">Operations Reporting Workbook</span> | <span class="proj-tech">Excel, Pivot Tables, VLOOKUP, Conditional Formatting, Microsoft 365</span>
-      </div>
-      <ul class="b">
-        <li>Built a multi-tab Excel workbook consolidating scheduling, visit completion, and billing data; used VLOOKUP and pivot tables to generate automated weekly accuracy summaries and KPI reports.</li>
-        <li>Documented measurable reduction in billing errors supporting a team-wide systems rollout decision through data-driven requirements analysis.</li>
-      </ul>
-    </div>
-
-    <div class="proj">
-      <div class="proj-hdr">
-        <span class="proj-name">Internship Job Tracker Dashboard</span> | <span class="proj-tech">Python, REST APIs, HTML/CSS/JavaScript, GitHub Actions</span>
-      </div>
-      <ul class="b">
-        <li>Developed Python scripts using REST APIs to aggregate MN and Remote internship listings from Greenhouse, Lever, LinkedIn, and Workday into a structured JSON database.</li>
-        <li>Deployed a live dashboard to GitHub Pages with automated hourly data refresh via GitHub Actions CI/CD pipeline and a URL liveness checker to maintain data accuracy.</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- SKILLS -->
-  <div class="section">
-    <div class="section-title">Technical Skills</div>
-    <ul class="sk">
-      <li><strong>Languages &amp; Query:</strong> Python, SQL, HTML/CSS, JavaScript</li>
-      <li><strong>Tools &amp; Platforms:</strong> Excel, Power BI, Tableau, Google Sheets, Google Colab, Microsoft 365, VS Code, Git, GitHub, Canva</li>
-      <li><strong>Data &amp; Reporting:</strong> pandas, NumPy, Matplotlib, Data Visualization, KPI Reporting, Business Intelligence</li>
-      <li><strong>Methods:</strong> Systems Analysis, Business Analysis, Requirements Gathering, Process Improvement, Data Cleaning, Cross-functional Collaboration</li>
-      <li><strong>Concepts:</strong> Management Information Systems, Database Management, ERP Systems, Agile Methodology, Stakeholder Communication</li>
-    </ul>
-  </div>
-
+<div class="name">Basheer Khan</div>
+<div class="contact">
+  <span>(651) 252-0785</span>
+  <span class="sep">|</span>
+  <span><a href="mailto:khanb@augsburg.edu">khanb@augsburg.edu</a></span>
+  <span class="sep">|</span>
+  <span><a href="https://linkedin.com/in/basheerkhn">linkedin.com/in/basheerkhn</a></span>
 </div>
+
+<div class="section">
+  <div class="section-title">Education</div>
+  <div class="sub">
+    <div class="row">
+      <span class="job-title">Augsburg University</span>
+      <span class="job-date">Minneapolis, MN</span>
+    </div>
+    <div class="row">
+      <span class="job-org">Bachelor of Science in Business Administration (B.S.B.A.) &mdash; Major: Management Information Systems</span>
+      <span class="job-loc">GPA: 3.6/4.0 &mdash; Expected Fall 2027</span>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Experience</div>
+
+  <div class="sub">
+    <div class="row">
+      <span class="job-title">Data Analytics Intern &mdash; Qualitative &amp; Quantitative Insights</span>
+      <span class="job-date">May 2026 &ndash; Present</span>
+    </div>
+    <div class="row">
+      <span class="job-org">Beats by Dre</span>
+      <span class="job-loc">Remote</span>
+    </div>
+  </div>
+  <ul>
+    <li>Analyzed consumer survey data in Python (Google Colab) to identify behavioral trends, brand preferences, and purchase motivations across Beats customer segments using pandas and NumPy for data cleaning and aggregation.</li>
+    <li>Applied VADER sentiment analysis to open-ended survey responses, classifying feedback by emotional tone and brand attribute to surface actionable consumer insights for cross-functional business strategy discussions.</li>
+    <li>Designed an interactive data visualization dashboard to present findings to the Global Consumer Insights team; communicated results clearly to non-technical stakeholders through structured presentations.</li>
+    <li>Compiled a final report synthesizing quantitative and qualitative results, directly supporting senior leadership brand strategy and requirements gathering for future consumer research initiatives.</li>
+  </ul>
+
+  <div class="sub" style="margin-top:3px;">
+    <div class="row">
+      <span class="job-title">Operations Specialist</span>
+      <span class="job-date">Apr 2022 &ndash; Mar 2024</span>
+    </div>
+    <div class="row">
+      <span class="job-org">MetroCare Inc.</span>
+      <span class="job-loc">St. Paul, MN</span>
+    </div>
+  </div>
+  <ul>
+    <li>Managed scheduling and daily operations for a 4-person healthcare team, establishing workflow systems and process documentation that improved consistency and reduced coordination errors.</li>
+    <li>Led systems implementation of a digital scheduling platform, transitioning from paper-based timesheets and reducing duplicate data entry while improving processing efficiency by an estimated 25&ndash;35%.</li>
+    <li>Maintained DHS billing and payroll reconciliation records in Microsoft Excel, ensuring accurate pay periods and audit-ready documentation through database management and data integrity practices.</li>
+    <li>Identified and resolved recurring billing discrepancies through systems analysis and client record restructuring, improving invoice accuracy and reducing payment delays.</li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="section-title">Projects</div>
+
+  <div class="proj">
+    <div class="proj-hdr"><span class="proj-name">Brand Sentiment &amp; Survey Analysis</span> | <span class="proj-tech">Python, VADER Sentiment, pandas, Matplotlib, Google Colab</span></div>
+    <ul>
+      <li>Applied VADER sentiment scoring and data analysis techniques to customer survey responses, categorizing feedback by emotional tone and brand attribute to identify key factors driving repurchase intent.</li>
+      <li>Produced structured data visualizations in Matplotlib covering sentiment distributions and attribute rankings, formatted as a leadership-ready business intelligence report.</li>
+    </ul>
+  </div>
+
+  <div class="proj">
+    <div class="proj-hdr"><span class="proj-name">Operations Reporting Workbook</span> | <span class="proj-tech">Excel, Pivot Tables, VLOOKUP, Conditional Formatting, Microsoft 365</span></div>
+    <ul>
+      <li>Built a multi-tab Excel workbook consolidating scheduling, visit completion, and billing data across pay periods; used VLOOKUP and pivot tables to generate automated weekly accuracy summaries and KPI reports.</li>
+      <li>Calculated pre- and post-adoption billing accuracy rates, documenting a measurable reduction in errors that supported a team-wide systems rollout decision through data-driven requirements analysis.</li>
+    </ul>
+  </div>
+
+  <div class="proj">
+    <div class="proj-hdr"><span class="proj-name">Internship Job Tracker Dashboard</span> | <span class="proj-tech">Python, REST APIs, HTML/CSS/JavaScript, GitHub Actions</span></div>
+    <ul>
+      <li>Developed Python scripts using REST APIs to query job board platforms &mdash; Greenhouse, Lever, LinkedIn, and Workday &mdash; aggregating MN and Remote internship listings into a structured JSON database.</li>
+      <li>Deployed a live business intelligence dashboard to GitHub Pages with automated hourly data refresh via GitHub Actions CI/CD pipeline; integrated a URL liveness checker to maintain data accuracy automatically.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Technical Skills</div>
+  <ul class="sk">
+    <li><strong>Languages:</strong> Python, SQL, JavaScript, HTML/CSS</li>
+    <li><strong>Analytics &amp; BI:</strong> Excel, Tableau, Power BI, Google Sheets, Google Colab, Data Visualization, Business Intelligence</li>
+    <li><strong>Libraries:</strong> pandas, NumPy, Matplotlib</li>
+    <li><strong>Methods:</strong> Systems Analysis, Business Analysis, Survey Analysis, Sentiment Analysis, KPI Reporting, Data Cleaning, Requirements Gathering, Process Documentation, Process Improvement, Cross-functional Collaboration</li>
+    <li><strong>Tools:</strong> Git, GitHub, VS Code, REST APIs, Microsoft 365, Microsoft Office Suite, Canva</li>
+    <li><strong>Concepts:</strong> Management Information Systems, Database Management, Agile Methodology, Information Technology, ERP Systems, Stakeholder Communication</li>
+  </ul>
+</div>
+
 </body>
 </html>
