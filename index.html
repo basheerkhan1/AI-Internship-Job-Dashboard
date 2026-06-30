@@ -226,6 +226,7 @@ td a:hover{color:#93c5fd;text-decoration:underline;}
 }
 .loc-remote{background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.2);}
 .loc-mn    {background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.2);}
+.loc-us    {background:rgba(245,158,11,.10);color:#fbbf24;border:1px solid rgba(245,158,11,.2);}
 .loc-other {background:rgba(255,255,255,.05);color:var(--muted);border:1px solid var(--border);}
 
 /* ── Source badge ── */
@@ -480,7 +481,7 @@ select option{background:#111827;}
     <h1>Basheer Khan — Internship Tracker</h1>
     <p>
       <span class="live-dot"></span>
-      MN &amp; Remote Only &bull; Auto-scanned daily &bull; Greenhouse · Ashby · Lever · Indeed · LinkedIn
+      Nationwide — MN · Remote · All US &bull; Greenhouse · Lever · LinkedIn · Databricks · Stripe · Samsara
     </p>
   </div>
   <div class="hdr-r">
@@ -527,7 +528,7 @@ select option{background:#111827;}
     <div class="ps ps-int"><div class="ps-n" id="ps-int">—</div><div class="ps-l">Internships</div></div>
     <div class="ps ps-mn" ><div class="ps-n" id="ps-mn">—</div><div class="ps-l">MN Jobs</div></div>
     <div class="ps ps-rem"><div class="ps-n" id="ps-rem">—</div><div class="ps-l">Remote</div></div>
-    <div class="ps ps-app"><div class="ps-n" id="ps-app-c">—</div><div class="ps-l">Applied</div></div>
+    <div class="ps ps-app"><div class="ps-n" id="ps-us-c">—</div><div class="ps-l">US Jobs</div></div>
   </div>
 
   <!-- Toolbar -->
@@ -543,6 +544,7 @@ select option{background:#111827;}
           <button class="ftab"    id="pf-intern" onclick="setPF('intern',this)">🎓 Internships</button>
           <button class="ftab"    id="pf-remote" onclick="setPF('remote',this)">🌐 Remote</button>
           <button class="ftab"    id="pf-mn"     onclick="setPF('mn',this)">📍 MN</button>
+          <button class="ftab"    id="pf-us"     onclick="setPF('us',this)">🇺🇸 US Only</button>
           <button class="ftab"    id="pf-rec"    onclick="setPF('rec',this)">⭐ Saved</button>
         </div>
         <div class="scan-row">
@@ -722,7 +724,7 @@ select option{background:#111827;}
 <div class="modal-overlay" id="scan-modal" onclick="if(event.target===this&&!scanRunning)closeScan()">
   <div class="modal">
     <h2 id="modal-title">&#9711; Scan for Internships</h2>
-    <div class="modal-sub" id="modal-sub">Searches Greenhouse, Ashby, Lever, Workday, LinkedIn &amp; SimplyHired. Runs automatically every hour via GitHub Actions.</div>
+    <div class="modal-sub" id="modal-sub">Searches Greenhouse, Lever, LinkedIn &amp; more — MN, Remote, and Nationwide US. Runs automatically every 2 hours via GitHub Actions.</div>
     <div class="scan-bar"><div class="scan-bar-fill" id="scan-fill"></div></div>
     <div class="scan-log" id="scan-log">Ready — click Start Scan below.</div>
     <div class="modal-btns">
@@ -738,10 +740,20 @@ select option{background:#111827;}
 <script>
 // ── Saved / Recommended jobs ─────────────────────────────────────────
 const SAVED = [
-  {company:"Double Good", role:"Data Analyst Intern",     location:"Elmhurst, IL",      url:"https://job-boards.greenhouse.io/doublegood/jobs/5832697004",                  source:"greenhouse"},
-  {company:"Voltus",      role:"Data Analyst Intern",     location:"Remote (US)",        url:"https://jobs.lever.co/voltus/d30b5349-1023-497f-a5e5-264204071235",             source:"lever"},
-  {company:"Rackner",     role:"Business Analyst Intern", location:"Remote (US)",        url:"https://job-boards.greenhouse.io/rackner/jobs/4323514005",                      source:"greenhouse"},
-  {company:"Robyn AI",    role:"Data Analyst Intern",     location:"Remote (US)",        url:"https://jobs.ashbyhq.com/m13/2ed7a1e6-ff5b-412d-8006-c5b0edb7f304",            source:"ashby"},
+  // ── Original curated ──
+  {company:"Double Good",  role:"Data Analyst Intern",                        location:"Elmhurst, IL",       url:"https://job-boards.greenhouse.io/doublegood/jobs/5832697004",           source:"greenhouse"},
+  {company:"Voltus",       role:"Data Analyst Intern",                        location:"Remote (US)",        url:"https://jobs.lever.co/voltus/d30b5349-1023-497f-a5e5-264204071235",     source:"lever"},
+  {company:"Rackner",      role:"Business Analyst Intern",                    location:"Remote (US)",        url:"https://job-boards.greenhouse.io/rackner/jobs/4323514005",               source:"greenhouse"},
+  {company:"Robyn AI",     role:"Data Analyst Intern",                        location:"Remote (US)",        url:"https://jobs.ashbyhq.com/m13/2ed7a1e6-ff5b-412d-8006-c5b0edb7f304",    source:"ashby"},
+  // ── New MIS / Analytics / Operations ──
+  {company:"Samsara",      role:"Applied AI Specialist, Customer Success",    location:"Remote - US",        url:"https://www.samsara.com/company/careers/roles/8024110?gh_jid=8024110",  source:"greenhouse"},
+  {company:"Smartsheet",   role:"Customer Success Manager — Enterprise",      location:"Remote, USA",        url:"https://job-boards.greenhouse.io/smartsheet/jobs/8029487",               source:"greenhouse"},
+  {company:"project44",    role:"Customer Success Manager",                   location:"Chicago, IL",        url:"https://job-boards.greenhouse.io/project44/jobs/7683877",                source:"greenhouse"},
+  {company:"Brex",         role:"Data Analyst II",                            location:"San Francisco, CA",  url:"https://www.brex.com/careers/8463696002?gh_jid=8463696002",              source:"greenhouse"},
+  {company:"Asana",        role:"AI Strategist, Service Management",          location:"New York City, NY",  url:"https://www.asana.com/jobs/apply/8027437?gh_jid=8027437",                source:"greenhouse"},
+  {company:"Inovalon",     role:"GTM & Commercial Strategy — Real World Data",location:"Remote, US",         url:"https://www.inovalon.com/careers/job/?gh_jid=7768820003",                source:"greenhouse"},
+  {company:"Jamf",         role:"IT Operations Analyst",                      location:"Minneapolis, MN",    url:"https://www.jamf.com/about/careers/jobs/?gh_jid=6103602004",             source:"greenhouse"},
+  {company:"Thoughtworks",  role:"Business Analyst",                          location:"United States",      url:"https://www.thoughtworks.com/careers/jobs/7836837?gh_jid=7836837",       source:"greenhouse"},
 ];
 const SAVED_URLS = new Set(SAVED.map(j=>j.url));
 
@@ -760,14 +772,55 @@ const today = () => new Date().toISOString().slice(0,10);
 const save  = () => localStorage.setItem('bk-apps', JSON.stringify(apps));
 const esc   = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
+const US_STATES = ['alabama','alaska','arizona','arkansas','california','colorado','connecticut','delaware',
+  'florida','georgia','hawaii','idaho','illinois','indiana','iowa','kansas','kentucky','louisiana',
+  'maine','maryland','massachusetts','michigan','minnesota','mississippi','missouri','montana',
+  'nebraska','nevada','new hampshire','new jersey','new mexico','new york','north carolina',
+  'north dakota','ohio','oklahoma','oregon','pennsylvania','rhode island','south carolina',
+  'south dakota','tennessee','texas','utah','vermont','virginia','washington','west virginia',
+  'wisconsin','wyoming'];
+const US_ABBR = /\b(al|ak|az|ar|ca|co|ct|de|fl|ga|hi|id|il|in|ia|ks|ky|la|me|md|ma|mi|mn|ms|mo|mt|ne|nv|nh|nj|nm|ny|nc|nd|oh|ok|or|pa|ri|sc|sd|tn|tx|ut|vt|va|wa|wv|wi|wy)\b/;
+const US_CITIES = ['new york','los angeles','chicago','houston','phoenix','san antonio','san diego',
+  'dallas','san jose','austin','jacksonville','fort worth','columbus','charlotte','indianapolis',
+  'san francisco','seattle','denver','boston','nashville','oklahoma city','atlanta','las vegas',
+  'portland','minneapolis','tulsa','arlington','new orleans','wichita','cleveland','bakersfield',
+  'tampa','aurora','anaheim','santa ana','corpus christi','riverside','lexington','st. louis',
+  'pittsburgh','anchorage','stockton','cincinnati','st. paul','toledo','greensboro','newark',
+  'plano','henderson','lincoln','buffalo','fort wayne','jersey city','chula vista','orlando',
+  'omaha','chandler','madison','laredo','durham','lubbock','winston','garland','glendale',
+  'hialeah','reno','baton rouge','irvine','chesapeake','scottsdale','north las vegas','fremont',
+  'gilbert','san bernardino','birmingham','rochester','richmond','spokane','des moines','montgomery',
+  'modesto','fayetteville','tacoma','shreveport','akron','aurora (co)','salt lake city','oxnard'];
+
+function isUS(loc) {
+  if (!loc) return false;
+  const l = loc.toLowerCase();
+  if (l.includes('united states')||l.includes('usa')||l==='us'||l.startsWith('us-')||
+      l.includes(', us')||l.includes('- us')||l.includes('us remote')||l.includes('remote - us')||
+      l.includes('remote, us')||l.includes('(us)')||l.includes('u.s.'))
+    return true;
+  if (US_STATES.some(s=>l.includes(s))) return true;
+  if (US_ABBR.test(l)) return true;
+  if (US_CITIES.some(c=>l.includes(c))) return true;
+  return false;
+}
+
+function isMN(loc) {
+  const l = loc.toLowerCase();
+  return l.includes('minnesota')||l.includes('minneapolis')||l.includes('st. paul')||
+         l.includes('saint paul')||l.includes('twin cities')||/\bmn\b/.test(l)||l.endsWith(', mn');
+}
+
 function locTag(loc) {
   if (!loc) return '';
   const l = loc.toLowerCase();
-  if (l.includes('remote')||l.includes('anywhere')||l.includes('work from home'))
+  if (l.includes('remote')||l.includes('anywhere')||l.includes('work from home')||
+      l.includes('flexible/remote')||l.includes('wfh'))
     return `<span class="loc-tag loc-remote">&#127758; Remote</span>`;
-  if (l.includes('minnesota')||l.includes('minneapolis')||l.includes('st. paul')||
-      l.includes('saint paul')||l.includes('twin cities')||/\bmn\b/.test(l)||l.endsWith(', mn'))
+  if (isMN(loc))
     return `<span class="loc-tag loc-mn">&#128205; MN</span>`;
+  if (isUS(loc))
+    return `<span class="loc-tag loc-us">&#127482;&#127480; ${esc(loc)}</span>`;
   return `<span class="loc-tag loc-other">${esc(loc)}</span>`;
 }
 
@@ -788,26 +841,24 @@ function srcBadge(src) {
 }
 
 function renderPipeStats(all) {
-  const mnKw  = ['minnesota','minneapolis','st. paul','saint paul','twin cities',', mn',/\bmn\b/];
-  const remKw = ['remote','anywhere','wfh','work from home'];
-  const isMN  = loc => mnKw.some(k => k instanceof RegExp ? k.test(loc) : loc.includes(k));
+  const remKw = ['remote','anywhere','wfh','work from home','flexible/remote'];
   const isRem = loc => remKw.some(k => loc.includes(k));
 
-  let tot=all.length, intern=0, mn=0, rem=0;
+  let tot=all.length, intern=0, mn=0, rem=0, us=0;
   all.forEach(j => {
     const loc=(j.location||'').toLowerCase();
     if (isIntern(j)) intern++;
     if (isMN(loc))   mn++;
     if (isRem(loc))  rem++;
+    if (isUS(j.location)||isRem(loc)||isMN(loc)) us++;
   });
-  const applied = apps.filter(a=>a.status==='Applied').length;
 
   const set=(id,v)=>{ const el=document.getElementById(id); if(el) el.textContent=v; };
   set('ps-tot', tot);
   set('ps-int', intern);
   set('ps-mn',  mn);
   set('ps-rem', rem);
-  set('ps-app-c', applied);
+  set('ps-us-c', us);
 }
 
 const isIntern = j => {
@@ -850,20 +901,20 @@ function isExpiredJob(j) {
 }
 
 const MIS_INCLUDE = [
-  // Core analyst roles
+  // Core analyst
   'analyst','analytics',
   // Data
-  'data','database','sql','bi ','business intelligence','reporting',
+  'data','database','sql','bi ','business intelligence','reporting','dashboard',
   // Business & systems
   'business anal','information system','information technology',
-  'systems analyst','management information','mis ',
+  'systems analyst','management information','mis ','mis intern',
   'erp','crm','enterprise resource','enterprise application',
   // IT & technology
   'it analyst','it intern','it specialist','it support','it operations',
   'technology analyst','technology intern','technology specialist',
   'digital transformation','systems integration','technical analyst',
   // Operations & process
-  'operations analyst','process analyst','operations intern',
+  'operations analyst','process analyst','operations intern','business operations',
   'supply chain analyst','logistics analyst','project analyst',
   'program analyst','planning analyst','pricing analyst',
   'risk analyst','compliance analyst','audit intern','it audit',
@@ -871,31 +922,48 @@ const MIS_INCLUDE = [
   // Finance tech
   'financial analyst','finance analyst','revenue operations',
   'sales operations','customer success','treasury analyst',
-  // Consulting
+  'revenue anal','sales anal','market analyst','market research',
+  // Consulting & strategy
   'technology consulting','management consulting','it consulting',
-  'implementation','consultant intern',
+  'implementation','consultant intern','strategy','strategic',
   // Data science & engineering
   'data science','data engineer','data intern','machine learning',
-  'ai analyst','cloud analyst',
+  'ai analyst','cloud analyst','intelligence analyst',
+  // Products & research
+  'product analyst','product manager intern','product intern',
+  'research analyst','insights','growth analyst',
+  'workforce anal','hr analyst','people analytics',
+  // Other relevant
+  'project management intern','technical program','coordinator',
+  'intern, it','intern — it','intern - it',
 ];
 const MIS_HARD_EXCLUDE = [
   'software engineer','software developer',
-  'frontend developer','front-end developer',
-  'backend developer','back-end developer',
-  'devops','site reliability',
-  'network engineer','cloud engineer',
+  'frontend developer','front-end developer','front end developer',
+  'backend developer','back-end developer','back end developer',
+  'full stack','fullstack','full-stack',
+  'devops','site reliability','sre ',
+  'network engineer','cloud engineer','infrastructure engineer',
   'mobile developer','ios developer','android developer',
+  'embedded','firmware','hardware engineer',
   'mechanical engineer','civil engineer','electrical engineer',
-  'graphic design','game developer','game designer',
-  'pharmacist','nursing','dental','physical therapy',
-  'attorney','paralegal','journalist','copywriter',
-  'landscap','agricultural','social worker','chaplain',
+  'graphic designer','game developer','game designer',
+  'pharmacist','nursing','dental','physical therapy','pharmacy intern',
+  'attorney','paralegal','journalist','copywriter','social worker',
+  'landscap','agricultural','chaplain','security engineer','penetration',
+  'clinical data manager','regulatory affairs','medical affairs',
+  'music therapy','veterinary','legal intern','law clerk',
 ];
 function isMISRelevant(j) {
   if (j._saved) return true;
   const role = (j.role || '').toLowerCase();
   if (MIS_HARD_EXCLUDE.some(k => role.includes(k))) return false;
   return MIS_INCLUDE.some(k => role.includes(k));
+}
+
+function isRemote(loc) {
+  const l = (loc||'').toLowerCase();
+  return l.includes('remote')||l.includes('anywhere')||l.includes('wfh')||l.includes('flexible/remote');
 }
 
 function allVisibleJobs() {
@@ -919,13 +987,14 @@ function renderPipeline() {
 
   const filtered  = allJobs.filter(j => {
     if (q && !(j.company||'').toLowerCase().includes(q) && !(j.role||'').toLowerCase().includes(q)) return false;
-    const loc = (j.location||'').toLowerCase();
+    const loc = j.location||'';
+    const ll  = loc.toLowerCase();
+    const rem = ll.includes('remote')||ll.includes('anywhere')||ll.includes('wfh')||ll.includes('flexible/remote');
     if (pipeF==='rec')    return !!j._saved;
     if (pipeF==='intern') return isIntern(j);
-    if (pipeF==='remote') return loc.includes('remote')||loc.includes('anywhere')||loc.includes('wfh');
-    if (pipeF==='mn')     return loc.includes('minnesota')||loc.includes('minneapolis')||
-                                 loc.includes('st. paul')||loc.includes('saint paul')||
-                                 loc.includes('twin cities')||/\bmn\b/.test(loc)||loc.endsWith(', mn');
+    if (pipeF==='remote') return rem;
+    if (pipeF==='mn')     return isMN(loc);
+    if (pipeF==='us')     return isUS(loc)||rem||isMN(loc);
     return true;
   });
 
