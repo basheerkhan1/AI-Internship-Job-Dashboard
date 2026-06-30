@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
-<title>InternPulse — Free MIS Internship Finder</title>
+<title>InternRadar — Free MIS Internship Tracker</title>
 <style>
 /* ── Reset ── */
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -463,12 +463,59 @@ select option{background:#111827;}
 .proj-link-gh:hover{background:rgba(255,255,255,.12);}
 @media(max-width:900px){.proj-grid{grid-template-columns:1fr;}}
 
+/* ── Hero Banner ── */
+.hero-banner{
+  display:flex;gap:32px;align-items:center;
+  background:linear-gradient(135deg,rgba(59,130,246,.08) 0%,rgba(168,85,247,.06) 50%,rgba(34,197,94,.04) 100%);
+  border:1px solid rgba(59,130,246,.18);
+  border-radius:18px;padding:28px 32px;margin-bottom:20px;
+  position:relative;overflow:hidden;
+}
+.hero-banner::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 0% 50%,rgba(59,130,246,.1),transparent 60%);
+  pointer-events:none;
+}
+.hero-l{flex:1;z-index:1;}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--green);margin-bottom:12px;
+}
+.hero-h{
+  font-size:26px;font-weight:900;letter-spacing:-.03em;
+  background:linear-gradient(135deg,#fff 0%,#93c5fd 50%,#c4b5fd 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:10px;line-height:1.2;
+}
+.hero-sub{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px;max-width:500px;}
+.hero-sub strong{color:var(--text);}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px;}
+.h-pill{
+  padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;
+  white-space:nowrap;
+}
+.h-pill-blue  {background:rgba(59,130,246,.15);color:#93c5fd;border:1px solid rgba(59,130,246,.25);}
+.h-pill-purple{background:rgba(168,85,247,.15);color:#c4b5fd;border:1px solid rgba(168,85,247,.25);}
+.h-pill-green {background:rgba(34,197,94,.12);color:#86efac;border:1px solid rgba(34,197,94,.2);}
+.h-pill-amber {background:rgba(245,158,11,.12);color:#fcd34d;border:1px solid rgba(245,158,11,.2);}
+.hero-r{flex-shrink:0;z-index:1;}
+.hero-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.h-stat{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:14px 18px;text-align:center;min-width:90px;
+}
+.h-stat-n{font-size:26px;font-weight:900;line-height:1;background:linear-gradient(135deg,#fff,#93c5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.h-stat-l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-top:4px;}
+
 /* ── Responsive ── */
 @media(max-width:900px){
   .stats{grid-template-columns:repeat(3,1fr);}
   .form-row{grid-template-columns:1fr 1fr;}
   .hdr{padding:16px 20px;flex-direction:column;gap:14px;align-items:flex-start;}
   .main{padding:16px;}
+  .hero-banner{flex-direction:column;gap:20px;}
+  .hero-stat-grid{grid-template-columns:repeat(4,1fr);}
 }
 </style>
 <!-- Google Identity Services for Gmail OAuth -->
@@ -480,15 +527,25 @@ select option{background:#111827;}
 <div class="hdr">
   <div class="hdr-blob"></div>
   <div class="hdr-l">
-    <h1>InternPulse <span style="font-size:14px;font-weight:400;color:var(--muted);background:rgba(59,130,246,.12);padding:3px 10px;border-radius:20px;border:1px solid rgba(59,130,246,.2);margin-left:8px;vertical-align:middle;">Free</span></h1>
+    <h1>
+      <span style="display:inline-flex;align-items:center;gap:10px;">
+        <svg width="28" height="28" viewBox="0 0 36 36" fill="none" style="flex-shrink:0;">
+          <circle cx="18" cy="18" r="17" stroke="rgba(59,130,246,.4)" stroke-width="1.5"/>
+          <circle cx="18" cy="18" r="11" stroke="rgba(59,130,246,.5)" stroke-width="1.5"/>
+          <circle cx="18" cy="18" r="5"  stroke="rgba(59,130,246,.8)" stroke-width="1.5"/>
+          <circle cx="18" cy="18" r="2"  fill="#3b82f6"/>
+          <line x1="18" y1="18" x2="29" y2="7" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round" opacity=".7"/>
+        </svg>
+        InternRadar
+        <span style="font-size:12px;font-weight:600;color:#22c55e;background:rgba(34,197,94,.12);padding:3px 10px;border-radius:20px;border:1px solid rgba(34,197,94,.2);">Free</span>
+      </span>
+    </h1>
     <p>
       <span class="live-dot"></span>
-      1,500+ MIS &amp; Analytics internships &bull; Nationwide US &bull; Updated every 2 hours &bull; 100% free
+      <span id="hdr-job-count">1,690+</span> MIS &amp; Analytics internships &bull; Nationwide US &bull; Updated hourly &bull; No sign-up needed
     </p>
   </div>
   <div class="hdr-r">
-    <a class="btn btn-blue"  href="basheer-khan-augsburg.pdf?v=20260629b" download="Basheer_Khan_Resume.pdf">&#8659; Resume</a>
-    <a class="btn btn-slate" href="basheer-khan-augsburg.pdf?v=20260629b" target="_blank">&#128065; Preview</a>
     <button class="btn btn-scan" onclick="openScan()">&#9711; Scan Now</button>
   </div>
   <div class="hdr-shine"></div>
@@ -512,15 +569,38 @@ select option{background:#111827;}
 <!-- ════ PIPELINE PANEL ════ -->
 <div class="panel on" id="panel-pipeline">
 
-  <!-- Resume download -->
-  <div class="resume-card au">
-    <div>
-      <div class="resume-title">Basheer Khan — Resume</div>
-      <div class="resume-sub">Augsburg University &bull; MIS &amp; Data Analytics &bull; khanb@augsburg.edu</div>
+  <!-- Hero Banner -->
+  <div class="hero-banner au">
+    <div class="hero-l">
+      <div class="hero-tag">
+        <span class="live-dot"></span>
+        Live · Updated Every Hour
+      </div>
+      <h2 class="hero-h">Find Your MIS Internship.</h2>
+      <p class="hero-sub">
+        InternRadar scans Greenhouse, Lever, and LinkedIn to surface <strong id="hero-count">1,690+</strong> live internships
+        in Management Information Systems, Data Analytics, Business Intelligence, IT Operations, and more —
+        all across the US. Free forever. No account needed.
+      </p>
+      <div class="hero-pills">
+        <span class="h-pill h-pill-blue">📊 Data Analytics</span>
+        <span class="h-pill h-pill-purple">💼 Business Analyst</span>
+        <span class="h-pill h-pill-green">🖥️ IT Operations</span>
+        <span class="h-pill h-pill-amber">📈 Business Intelligence</span>
+        <span class="h-pill h-pill-blue">🤖 AI / ML Analyst</span>
+        <span class="h-pill h-pill-purple">⚙️ ERP / CRM</span>
+      </div>
     </div>
-    <div class="resume-btns">
-      <a href="basheer-khan-augsburg.pdf?v=20260629b" download="Basheer_Khan_Resume.pdf" class="btn btn-blue">&#8659; Download Resume</a>
-      <a href="basheer-khan-augsburg.pdf?v=20260629b" target="_blank" class="btn btn-slate">&#128065; Preview Resume</a>
+    <div class="hero-r">
+      <div class="hero-stat-grid">
+        <div class="h-stat"><div class="h-stat-n" id="hstat-total">—</div><div class="h-stat-l">Live Jobs</div></div>
+        <div class="h-stat"><div class="h-stat-n" id="hstat-intern">—</div><div class="h-stat-l">Internships</div></div>
+        <div class="h-stat"><div class="h-stat-n" id="hstat-remote">—</div><div class="h-stat-l">Remote</div></div>
+        <div class="h-stat"><div class="h-stat-n" id="hstat-us">—</div><div class="h-stat-l">US-Based</div></div>
+      </div>
+      <div style="margin-top:14px;font-size:11px;color:var(--muted);text-align:center;">
+        Scanning Greenhouse · Lever · LinkedIn · and more
+      </div>
     </div>
   </div>
 
@@ -673,8 +753,8 @@ select option{background:#111827;}
 <div class="panel" id="panel-projects">
 
   <div class="proj-intro au">
-    <h2>My Projects</h2>
-    <p>Real work I've done — externship projects, tools I built, and experience from my roles. All honest and at my level as an MIS &amp; Data Analytics student.</p>
+    <h2>Projects</h2>
+    <p>Real work — externship projects, tools I built, and experience from my roles. Honest and at my level as an MIS &amp; Data Analytics student.</p>
   </div>
 
   <div class="proj-grid">
@@ -745,6 +825,19 @@ select option{background:#111827;}
     </div>
 
   </div>
+
+  <!-- Resume download (personal section) -->
+  <div class="resume-card au" style="margin-top:8px;">
+    <div>
+      <div class="resume-title">Basheer Khan — Resume</div>
+      <div class="resume-sub">Augsburg University &bull; MIS &amp; Data Analytics &bull; khanb@augsburg.edu</div>
+    </div>
+    <div class="resume-btns">
+      <a href="basheer-khan-augsburg.pdf?v=20260629b" download="Basheer_Khan_Resume.pdf" class="btn btn-blue">&#8659; Download Resume</a>
+      <a href="basheer-khan-augsburg.pdf?v=20260629b" target="_blank" class="btn btn-slate">&#128065; Preview</a>
+    </div>
+  </div>
+
 </div><!-- /projects -->
 
 </div><!-- /main -->
@@ -752,8 +845,8 @@ select option{background:#111827;}
 <!-- ════ SCAN MODAL ════ -->
 <div class="modal-overlay" id="scan-modal" onclick="if(event.target===this&&!scanRunning)closeScan()">
   <div class="modal">
-    <h2 id="modal-title">&#9711; Scan for Internships</h2>
-    <div class="modal-sub" id="modal-sub">Searches Greenhouse, Lever, LinkedIn &amp; more — MN, Remote, and Nationwide US. Runs automatically every 2 hours via GitHub Actions.</div>
+    <h2 id="modal-title">📡 InternRadar Scan</h2>
+    <div class="modal-sub" id="modal-sub">Searches Greenhouse, Lever, LinkedIn &amp; more across the entire US. Auto-scans every hour via GitHub Actions — click below to trigger a manual scan now.</div>
     <div class="scan-bar"><div class="scan-bar-fill" id="scan-fill"></div></div>
     <div class="scan-log" id="scan-log">Ready — click Start Scan below.</div>
     <div class="modal-btns">
@@ -888,6 +981,13 @@ function renderPipeStats(all) {
   set('ps-mn',  mn);
   set('ps-rem', rem);
   set('ps-us-c', us);
+  // hero stats
+  set('hstat-total',  tot);
+  set('hstat-intern', intern);
+  set('hstat-remote', rem);
+  set('hstat-us',     us);
+  set('hero-count',   tot.toLocaleString()+'+');
+  set('hdr-job-count',tot.toLocaleString()+'+');
 }
 
 const isIntern = j => {
