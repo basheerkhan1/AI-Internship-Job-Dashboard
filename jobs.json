@@ -204,7 +204,7 @@
     "url": "https://www.linkedin.com/jobs/view/4444367367",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:58:11Z"
+    "scanned": "2026-07-30T01:50:06Z"
   },
   {
     "company": "Acadium",
@@ -303,7 +303,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-revops-ai-analyst-intern-actian-corporation-1130997",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Actus Nutrition",
@@ -366,7 +366,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-social-creative-lead-real-time-amp-reactive-airbnb-1133091",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Alcor Solutions, Inc.",
@@ -402,7 +402,7 @@
     "url": "https://www.linkedin.com/jobs/view/4444381125",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:57:45Z"
+    "scanned": "2026-07-30T01:49:40Z"
   },
   {
     "company": "Allianz Technology",
@@ -589,7 +589,7 @@
     "url": "https://www.linkedin.com/jobs/view/4440786321",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T22:01:49Z"
+    "scanned": "2026-07-30T01:53:29Z"
   },
   {
     "company": "ARXG by Reconomy",
@@ -831,7 +831,7 @@
     "url": "https://www.linkedin.com/jobs/view/4435408803",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:58:11Z"
+    "scanned": "2026-07-30T01:50:06Z"
   },
   {
     "company": "Athena",
@@ -858,7 +858,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-scrum-master-avum-inc-1133092",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "AXENTRA OS",
@@ -1011,7 +1011,7 @@
     "url": "https://www.linkedin.com/jobs/view/4436275449",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:57:21Z"
+    "scanned": "2026-07-30T01:49:14Z"
   },
   {
     "company": "Blue Seagull Group",
@@ -1932,6 +1932,15 @@
     "scanned": "2026-07-07T17:09:53Z"
   },
   {
+    "company": "Bump Connect",
+    "role": "Marketing Intern",
+    "location": "Minnesota, United States",
+    "url": "https://www.linkedin.com/jobs/view/4440032468",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-07-30T01:54:47Z"
+  },
+  {
     "company": "BUREUX",
     "role": "Frontend Designer Intern",
     "location": "United States",
@@ -2122,7 +2131,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-merchandising-representative-celsius-1133089",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "CELSIUS",
@@ -2131,7 +2140,16 @@
     "url": "https://remoteOK.com/remote-jobs/remote-merchandising-representative-celsius-1132860",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
+  },
+  {
+    "company": "Central Minnesota Jobs and Training Services, Inc.",
+    "role": "Engineering Intern - Richfield",
+    "location": "Minneapolis, MN",
+    "url": "https://www.linkedin.com/jobs/view/4444191005",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-07-30T01:47:53Z"
   },
   {
     "company": "Central Minnesota Jobs and Training Services, Inc.",
@@ -2150,15 +2168,6 @@
     "applied": false,
     "source": "linkedin",
     "scanned": "2026-07-29T23:59:20Z"
-  },
-  {
-    "company": "Central Minnesota Jobs and Training Services, Inc.",
-    "role": "Engineering Intern - Richfield",
-    "location": "Minneapolis, MN",
-    "url": "https://www.linkedin.com/jobs/view/4444191005",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-07-29T21:55:58Z"
   },
   {
     "company": "Central Minnesota Jobs and Training Services, Inc.",
@@ -2240,6 +2249,24 @@
     "applied": false,
     "source": "linkedin",
     "scanned": "2026-06-20T20:16:01Z"
+  },
+  {
+    "company": "Chartwells Higher Education Dining Services",
+    "role": "Event Marketing Intern, Chartwells Higher Ed / University of Minnesota - Minneapolis",
+    "location": "Minneapolis, MN",
+    "url": "https://www.linkedin.com/jobs/view/4441904226",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-07-30T01:54:47Z"
+  },
+  {
+    "company": "Chartwells Higher Education Dining Services",
+    "role": "Boost Marketing Intern, Chartwells Higher Ed + Boost / University of Minnesota - Minneapolis",
+    "location": "Minneapolis, MN",
+    "url": "https://www.linkedin.com/jobs/view/4441909094",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-07-30T01:54:47Z"
   },
   {
     "company": "ChatGPT Jobs",
@@ -2422,6 +2449,15 @@
   },
   {
     "company": "CliquePrize - Local Giveaway Marketing for Small Businesses",
+    "role": "Search Engine Optimization Specialist Non Paid Intern",
+    "location": "United States",
+    "url": "https://www.linkedin.com/jobs/view/4446882152",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-07-30T01:50:00Z"
+  },
+  {
+    "company": "CliquePrize - Local Giveaway Marketing for Small Businesses",
     "role": "Swift iPhone Mobile (Non Paid Academic Credit Only) Developer Internship",
     "location": "United States",
     "url": "https://www.linkedin.com/jobs/view/4446541604",
@@ -2436,7 +2472,7 @@
     "url": "https://boards.greenhouse.io/cloudflare/jobs/8053437?gh_jid=8053437",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-07-29T23:55:00Z"
+    "scanned": "2026-07-30T01:44:29Z"
   },
   {
     "company": "Cloudflare",
@@ -2725,7 +2761,7 @@
     "url": "https://www.linkedin.com/jobs/view/4439296465",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:56:29Z"
+    "scanned": "2026-07-30T01:49:33Z"
   },
   {
     "company": "Connors Group",
@@ -2998,7 +3034,7 @@
     "url": "https://www.linkedin.com/jobs/view/4411680967",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:58:11Z"
+    "scanned": "2026-07-30T01:50:06Z"
   },
   {
     "company": "Cresta",
@@ -3025,7 +3061,7 @@
     "url": "https://jobicy.com/jobs/149456-customer-advocacy-intern",
     "applied": false,
     "source": "jobicy",
-    "scanned": "2026-07-29T23:55:52Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Cribl",
@@ -3052,7 +3088,7 @@
     "url": "https://www.themuse.com/jobs/crowdstrike/intelligence-automation-launch-intern-remote",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-07-29T23:55:56Z"
+    "scanned": "2026-07-30T01:45:16Z"
   },
   {
     "company": "CrowdStrike",
@@ -3088,7 +3124,7 @@
     "url": "https://www.themuse.com/jobs/cvshealth/pharmacy-intern-grad-5e3fd5",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-07-29T23:55:58Z"
+    "scanned": "2026-07-30T01:45:17Z"
   },
   {
     "company": "Daikin Applied Americas",
@@ -3106,7 +3142,7 @@
     "url": "https://www.linkedin.com/jobs/view/4304450298",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:55:31Z"
+    "scanned": "2026-07-30T01:47:26Z"
   },
   {
     "company": "DataAnnotation",
@@ -3663,7 +3699,7 @@
     "url": "https://jobicy.com/jobs/142689-new-business-development-intern",
     "applied": false,
     "source": "jobicy",
-    "scanned": "2026-07-29T23:55:52Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Datasite",
@@ -3747,6 +3783,15 @@
     "scanned": "2026-07-11T02:00:06Z"
   },
   {
+    "company": "Democratic Socialists of America",
+    "role": "YDSA Intern",
+    "location": "United States",
+    "url": "https://www.linkedin.com/jobs/view/4446433755",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-07-30T01:50:54Z"
+  },
+  {
     "company": "Destination Careers",
     "role": "Virtual Scheduling Assistant Entry Level",
     "location": "New York, New York, United States",
@@ -3772,6 +3817,15 @@
     "applied": false,
     "source": "linkedin",
     "scanned": "2026-06-18T22:04:26Z"
+  },
+  {
+    "company": "Digbi Health",
+    "role": "Sales Tech &amp; AI Research Intern",
+    "location": "United States",
+    "url": "https://www.linkedin.com/jobs/view/4445192799",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-07-30T01:50:28Z"
   },
   {
     "company": "DigiCert",
@@ -3922,7 +3976,7 @@
     "url": "https://www.linkedin.com/jobs/view/4445217583",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:57:41Z"
+    "scanned": "2026-07-30T01:49:36Z"
   },
   {
     "company": "Egaki.AI",
@@ -3949,7 +4003,7 @@
     "url": "https://www.linkedin.com/jobs/view/4444035346",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T22:02:18Z"
+    "scanned": "2026-07-30T01:53:53Z"
   },
   {
     "company": "Electro-Voice Official",
@@ -4093,7 +4147,7 @@
     "url": "https://www.linkedin.com/jobs/view/4444425033",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:59:04Z"
+    "scanned": "2026-07-30T01:48:41Z"
   },
   {
     "company": "EnergyHub",
@@ -4120,7 +4174,7 @@
     "url": "https://www.linkedin.com/jobs/view/4441369974",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:57:43Z"
+    "scanned": "2026-07-30T01:49:38Z"
   },
   {
     "company": "Ensemble Health Partners",
@@ -4192,7 +4246,7 @@
     "url": "https://www.linkedin.com/jobs/view/4412158558",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:58:11Z"
+    "scanned": "2026-07-30T01:50:06Z"
   },
   {
     "company": "Extreme Networks",
@@ -4219,7 +4273,7 @@
     "url": "https://www.linkedin.com/jobs/view/4444378645",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:58:12Z"
+    "scanned": "2026-07-30T01:49:40Z"
   },
   {
     "company": "Fairview Health Services",
@@ -4228,7 +4282,7 @@
     "url": "https://www.linkedin.com/jobs/view/4442640515",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T19:02:03Z"
+    "scanned": "2026-07-30T01:46:08Z"
   },
   {
     "company": "Fairview Health Services",
@@ -4517,7 +4571,7 @@
     "url": "https://www.linkedin.com/jobs/view/4445932776",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T22:01:49Z"
+    "scanned": "2026-07-30T01:53:29Z"
   },
   {
     "company": "Fulton Analytics",
@@ -4535,7 +4589,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-brand-content-communications-associate-manager-fuseglobal-1135387",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "FutureSelf\u2122",
@@ -4679,7 +4733,7 @@
     "url": "https://www.linkedin.com/jobs/view/4440096688",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:55:58Z"
+    "scanned": "2026-07-30T01:47:53Z"
   },
   {
     "company": "Granite Partners",
@@ -4688,7 +4742,7 @@
     "url": "https://www.linkedin.com/jobs/view/4425849116",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T23:59:26Z"
+    "scanned": "2026-07-30T01:51:44Z"
   },
   {
     "company": "GreenlightGO",
@@ -4724,7 +4778,7 @@
     "url": "https://www.linkedin.com/jobs/view/4445214552",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T19:04:02Z"
+    "scanned": "2026-07-30T01:50:50Z"
   },
   {
     "company": "GrowthExpertz",
@@ -4760,7 +4814,7 @@
     "url": "https://www.linkedin.com/jobs/view/4444264179",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:58:58Z"
+    "scanned": "2026-07-30T01:50:54Z"
   },
   {
     "company": "GuidePoint Security",
@@ -5364,7 +5418,7 @@
     "url": "https://www.linkedin.com/jobs/view/4438478316",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T19:03:06Z"
+    "scanned": "2026-07-30T01:48:41Z"
   },
   {
     "company": "IMMIGRANT INVEST",
@@ -5373,7 +5427,7 @@
     "url": "https://www.linkedin.com/jobs/view/4438475431",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T19:03:06Z"
+    "scanned": "2026-07-30T01:48:41Z"
   },
   {
     "company": "IMMIGRANT INVEST",
@@ -5382,7 +5436,7 @@
     "url": "https://www.linkedin.com/jobs/view/4438472538",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T19:03:06Z"
+    "scanned": "2026-07-30T01:48:41Z"
   },
   {
     "company": "IMMIGRANT INVEST",
@@ -5454,7 +5508,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-director-of-customer-success-innergy-1134738",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Innodata Inc.",
@@ -5598,7 +5652,7 @@
     "url": "https://www.linkedin.com/jobs/view/4439490203",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T22:00:18Z"
+    "scanned": "2026-07-30T01:52:13Z"
   },
   {
     "company": "Innovative Hub Co., Ltd",
@@ -5923,7 +5977,7 @@
     "url": "https://www.linkedin.com/jobs/view/4444190035",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:57:43Z"
+    "scanned": "2026-07-30T01:49:38Z"
   },
   {
     "company": "Jobright.ai",
@@ -5932,7 +5986,7 @@
     "url": "https://www.linkedin.com/jobs/view/4444182302",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:57:43Z"
+    "scanned": "2026-07-30T01:49:38Z"
   },
   {
     "company": "Jobright.ai",
@@ -6518,7 +6572,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-kyc-compliance-analyst-kast-1134740",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Keep Going Athletics",
@@ -6545,7 +6599,7 @@
     "url": "https://www.linkedin.com/jobs/view/4439915780",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:57:21Z"
+    "scanned": "2026-07-30T01:49:10Z"
   },
   {
     "company": "Kforce Inc",
@@ -6554,7 +6608,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-executive-assistant-kforce-inc-1133088",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Kiewit",
@@ -7174,7 +7228,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-educational-programs-administrator-lingraphica-1134741",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Livingston International",
@@ -7466,21 +7520,21 @@
   },
   {
     "company": "Marketeq Talent",
-    "role": "Application Testing Intern",
-    "location": "United States",
-    "url": "https://www.linkedin.com/jobs/view/4446425129",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-07-29T21:58:34Z"
-  },
-  {
-    "company": "Marketeq Talent",
     "role": "Software Quality Assurance - Internship",
     "location": "United States",
     "url": "https://www.linkedin.com/jobs/view/4446437187",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:58:34Z"
+    "scanned": "2026-07-30T01:50:30Z"
+  },
+  {
+    "company": "Marketeq Talent",
+    "role": "Application Testing Intern",
+    "location": "United States",
+    "url": "https://www.linkedin.com/jobs/view/4446425129",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-07-30T01:50:30Z"
   },
   {
     "company": "Marketeq Talent",
@@ -8048,7 +8102,7 @@
     "url": "https://www.linkedin.com/jobs/view/4446341852",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:58:58Z"
+    "scanned": "2026-07-30T01:50:54Z"
   },
   {
     "company": "Nestl\u00e9",
@@ -8066,7 +8120,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-associate-account-strategist-donut-studios-new-engen-1134405",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Nilavitech",
@@ -8876,7 +8930,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-data-analyst-retention-ollie-1133083",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Olympic Steel",
@@ -8894,7 +8948,7 @@
     "url": "https://www.linkedin.com/jobs/view/4445778656",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:53:27Z"
+    "scanned": "2026-07-30T01:45:21Z"
   },
   {
     "company": "Ondaro",
@@ -8975,7 +9029,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-customer-service-chat-representative-orchestrate-consulting-group-1134737",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Outreach",
@@ -9040,7 +9094,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-business-development-executive-outsource-access-careers-1135287",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Palantir",
@@ -9208,7 +9262,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-human-resources-coordinator-peace-through-trade-ptt-coin-layer-1-pow-blockchain-1133084",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Peakflo (YC W22)",
@@ -9388,7 +9442,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-2d-game-design-intern-playpower-labs-1130440",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Pluvus",
@@ -9624,7 +9678,7 @@
     "url": "https://www.themuse.com/jobs/pwc/management-consulting-intern-summer-2026",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-07-29T23:55:55Z"
+    "scanned": "2026-07-30T01:45:14Z"
   },
   {
     "company": "PwC",
@@ -9929,7 +9983,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-forecast-analyst-rei-1132861",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Relativity",
@@ -10063,7 +10117,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-animal-cruelty-case-specialist-rose-klein-amp-marias-1135388",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Rundoo",
@@ -10180,7 +10234,7 @@
     "url": "https://www.linkedin.com/jobs/view/4440594475",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:58:33Z"
+    "scanned": "2026-07-30T01:53:00Z"
   },
   {
     "company": "Salas Games",
@@ -11077,7 +11131,7 @@
     "url": "https://www.linkedin.com/jobs/view/4443614286",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T15:48:26Z"
+    "scanned": "2026-07-30T01:50:50Z"
   },
   {
     "company": "Shop ONline New York",
@@ -11149,7 +11203,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-director-of-total-rewards-skims-1133085",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "SkipQ",
@@ -11377,7 +11431,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-care-coordinator-sondermind-1132858",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "South Washington County Schools",
@@ -11431,7 +11485,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-accounting-intern-specterops-1130972",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "SpendMatch",
@@ -11476,7 +11530,7 @@
     "url": "https://jobicy.com/jobs/148205-cams-sustainability-internship",
     "applied": false,
     "source": "jobicy",
-    "scanned": "2026-07-29T23:55:52Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Stealth",
@@ -11530,7 +11584,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-biologists-stem-sync-ai-1133086",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Stripe",
@@ -11539,6 +11593,15 @@
     "url": "https://stripe.com/jobs/search?gh_jid=7993151",
     "source": "greenhouse",
     "scanned": "2026-06-30T04:46:56.125288+00:00"
+  },
+  {
+    "company": "STUD.",
+    "role": "Intern",
+    "location": "United States",
+    "url": "https://www.linkedin.com/jobs/view/4444166255",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-07-30T01:50:54Z"
   },
   {
     "company": "Sungrow",
@@ -11736,7 +11799,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-business-development-manager-temu-1135291",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Tessera Labs",
@@ -11781,7 +11844,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-human-resources-generalist-the-contractor-consultants-1133087",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "The Maven Show",
@@ -11808,7 +11871,7 @@
     "url": "https://www.themuse.com/jobs/themuse/backend-developer-remote-internship",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-07-29T23:55:54Z"
+    "scanned": "2026-07-30T01:45:14Z"
   },
   {
     "company": "The Recruitment Alliance by HRKS",
@@ -11844,7 +11907,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-streaming-media-assistant-the-walt-disney-company-1132857",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Thoughtworks",
@@ -12108,7 +12171,7 @@
     "url": "https://www.linkedin.com/jobs/view/4446181348",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:58:58Z"
+    "scanned": "2026-07-30T01:50:54Z"
   },
   {
     "company": "TurnUp Activism",
@@ -12343,7 +12406,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-junior-illustrator-twine-1133039",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "Two Six Technologies",
@@ -12352,7 +12415,7 @@
     "url": "https://www.linkedin.com/jobs/view/4436458193",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:56:29Z"
+    "scanned": "2026-07-30T01:53:00Z"
   },
   {
     "company": "U.S. Bank",
@@ -14457,7 +14520,7 @@
     "url": "https://www.linkedin.com/jobs/view/4444078982",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:57:47Z"
+    "scanned": "2026-07-30T01:49:38Z"
   },
   {
     "company": "Virtual IP",
@@ -14502,7 +14565,7 @@
     "url": "https://jobs.lever.co/voltus/b7833dd8-d742-44d8-aae2-2e7de7541ce4",
     "applied": false,
     "source": "lever",
-    "scanned": "2026-07-29T23:55:02Z"
+    "scanned": "2026-07-30T01:44:30Z"
   },
   {
     "company": "Voltus",
@@ -14545,7 +14608,7 @@
     "url": "https://www.linkedin.com/jobs/view/4442315252",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:58:36Z"
+    "scanned": "2026-07-30T01:50:32Z"
   },
   {
     "company": "Wall Street Oasis",
@@ -14680,7 +14743,7 @@
     "url": "https://www.themuse.com/jobs/walmart/pharmacy-pregrad-intern-wm-d66173",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-07-29T23:55:55Z"
+    "scanned": "2026-07-30T01:45:14Z"
   },
   {
     "company": "Walmart",
@@ -14689,7 +14752,7 @@
     "url": "https://www.themuse.com/jobs/walmart/pharmacy-pregrad-intern-wm-927cb8",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-07-29T23:55:56Z"
+    "scanned": "2026-07-30T01:45:16Z"
   },
   {
     "company": "Walmart",
@@ -14698,7 +14761,7 @@
     "url": "https://www.themuse.com/jobs/walmart/pharmacy-pregrad-intern-wm-75f90f",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-07-29T23:55:58Z"
+    "scanned": "2026-07-30T01:45:18Z"
   },
   {
     "company": "Walmart",
@@ -14707,7 +14770,7 @@
     "url": "https://www.themuse.com/jobs/walmart/pharmacy-pregrad-intern-wm-772451",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-07-29T23:55:58Z"
+    "scanned": "2026-07-30T01:45:18Z"
   },
   {
     "company": "Walmart",
@@ -14716,7 +14779,7 @@
     "url": "https://www.themuse.com/jobs/walmart/pharmacy-pregrad-intern-wm-ea8949",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-07-29T23:55:59Z"
+    "scanned": "2026-07-30T01:45:19Z"
   },
   {
     "company": "Walmart",
@@ -14725,7 +14788,7 @@
     "url": "https://www.themuse.com/jobs/walmart/pharmacy-pregrad-intern-wm-8f5b30",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-07-29T23:55:59Z"
+    "scanned": "2026-07-30T01:45:19Z"
   },
   {
     "company": "Walmart",
@@ -14743,7 +14806,7 @@
     "url": "https://www.linkedin.com/jobs/view/4441935237",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:55:06Z"
+    "scanned": "2026-07-30T01:47:01Z"
   },
   {
     "company": "Wayzata Public Schools",
@@ -14815,7 +14878,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-junior-product-designer-wealthcounsel-llc-1134407",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-07-29T23:55:53Z"
+    "scanned": "2026-07-30T01:45:12Z"
   },
   {
     "company": "WellDyne",
@@ -15022,7 +15085,7 @@
     "url": "https://www.linkedin.com/jobs/view/4436817041",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:58:58Z"
+    "scanned": "2026-07-30T01:50:54Z"
   },
   {
     "company": "Zscaler",
@@ -15031,7 +15094,7 @@
     "url": "https://www.linkedin.com/jobs/view/4404543443",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:58:11Z"
+    "scanned": "2026-07-30T01:50:06Z"
   },
   {
     "company": "Zscaler",
@@ -15040,7 +15103,7 @@
     "url": "https://www.linkedin.com/jobs/view/4389259217",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:58:09Z"
+    "scanned": "2026-07-30T01:50:04Z"
   },
   {
     "company": "Zscaler",
@@ -15049,7 +15112,7 @@
     "url": "https://www.linkedin.com/jobs/view/4398579989",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:58:09Z"
+    "scanned": "2026-07-30T01:50:04Z"
   },
   {
     "company": "Zscaler",
@@ -15058,7 +15121,7 @@
     "url": "https://www.linkedin.com/jobs/view/4409136259",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:58:09Z"
+    "scanned": "2026-07-30T01:50:04Z"
   },
   {
     "company": "Zscaler",
@@ -15067,7 +15130,7 @@
     "url": "https://www.linkedin.com/jobs/view/4389250553",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-07-29T21:58:33Z"
+    "scanned": "2026-07-30T01:50:28Z"
   },
   {
     "company": "Zscaler",
