@@ -474,7 +474,7 @@
     "url": "https://www.linkedin.com/jobs/view/4457007778",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-29T18:07:45Z"
+    "scanned": "2026-08-30T18:26:20Z"
   },
   {
     "company": "ALLETE",
@@ -710,21 +710,21 @@
   },
   {
     "company": "Andersen Corporation",
+    "role": "IT Intern",
+    "location": "Oak Park Heights, MN",
+    "url": "https://www.linkedin.com/jobs/view/4458673774",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-08-30T18:27:05Z"
+  },
+  {
+    "company": "Andersen Corporation",
     "role": "Customer Experience Intern",
     "location": "Oak Park Heights, MN",
     "url": "https://www.linkedin.com/jobs/view/4458680625",
     "applied": false,
     "source": "linkedin",
     "scanned": "2026-08-30T14:11:53Z"
-  },
-  {
-    "company": "Andersen Corporation",
-    "role": "IT Intern",
-    "location": "Oak Park Heights, MN",
-    "url": "https://www.linkedin.com/jobs/view/4458673774",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-08-30T14:14:01Z"
   },
   {
     "company": "Andersen Corporation",
@@ -2271,7 +2271,7 @@
     "url": "https://www.linkedin.com/jobs/view/4457365737",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-30T14:11:52Z"
+    "scanned": "2026-08-30T18:26:20Z"
   },
   {
     "company": "BTG",
@@ -3003,7 +3003,7 @@
     "url": "https://www.linkedin.com/jobs/view/4450787417",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-29T18:07:45Z"
+    "scanned": "2026-08-30T18:26:20Z"
   },
   {
     "company": "Clinote",
@@ -3490,7 +3490,16 @@
     "url": "https://www.linkedin.com/jobs/view/4459601471",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-30T14:13:42Z"
+    "scanned": "2026-08-30T18:19:19Z"
+  },
+  {
+    "company": "Compeer Financial",
+    "role": "Intern Engineering",
+    "location": "Mankato, MN",
+    "url": "https://www.linkedin.com/jobs/view/4458780518",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-08-30T18:21:24Z"
   },
   {
     "company": "Compeer Financial",
@@ -3500,15 +3509,6 @@
     "applied": false,
     "source": "linkedin",
     "scanned": "2026-08-30T14:11:39Z"
-  },
-  {
-    "company": "Compeer Financial",
-    "role": "Intern Engineering",
-    "location": "Mankato, MN",
-    "url": "https://www.linkedin.com/jobs/view/4458780518",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-08-30T14:14:01Z"
   },
   {
     "company": "Compeer Financial",
@@ -3835,7 +3835,7 @@
     "url": "https://jobicy.com/jobs/150863-data-science-intern-customer-success",
     "applied": false,
     "source": "jobicy",
-    "scanned": "2026-08-30T14:10:30Z"
+    "scanned": "2026-08-30T18:19:05Z"
   },
   {
     "company": "Cresta",
@@ -3898,7 +3898,7 @@
     "url": "https://www.themuse.com/jobs/crowdstrike/intelligence-automation-launch-intern-remote",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-08-30T14:10:33Z"
+    "scanned": "2026-08-30T18:19:09Z"
   },
   {
     "company": "CrowdStrike",
@@ -3934,7 +3934,7 @@
     "url": "https://www.themuse.com/jobs/cvshealth/pharmacy-intern-grad-5e3fd5",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-08-30T14:10:35Z"
+    "scanned": "2026-08-30T18:19:11Z"
   },
   {
     "company": "CVS Health",
@@ -4563,7 +4563,7 @@
     "url": "https://jobicy.com/jobs/142689-new-business-development-intern",
     "applied": false,
     "source": "jobicy",
-    "scanned": "2026-08-30T14:10:30Z"
+    "scanned": "2026-08-30T18:19:05Z"
   },
   {
     "company": "Datadog",
@@ -4572,7 +4572,7 @@
     "url": "https://careers.datadoghq.com/detail/8108241/?gh_jid=8108241",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-08-30T14:09:45Z"
+    "scanned": "2026-08-30T18:18:24Z"
   },
   {
     "company": "Datadog",
@@ -4581,7 +4581,7 @@
     "url": "https://careers.datadoghq.com/detail/8052095/?gh_jid=8052095",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-08-30T14:09:45Z"
+    "scanned": "2026-08-30T18:18:24Z"
   },
   {
     "company": "Datasite",
@@ -4935,20 +4935,20 @@
   {
     "company": "Ecolab",
     "role": "Digital &amp; AI Technology Intern",
-    "location": "St Paul, MN",
-    "url": "https://www.linkedin.com/jobs/view/4457568686",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-08-30T14:14:01Z"
-  },
-  {
-    "company": "Ecolab",
-    "role": "Digital &amp; AI Technology Intern",
     "location": "Eagan, MN",
     "url": "https://www.linkedin.com/jobs/view/4457553889",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-30T14:14:01Z"
+    "scanned": "2026-08-30T18:21:24Z"
+  },
+  {
+    "company": "Ecolab",
+    "role": "Digital &amp; AI Technology Intern",
+    "location": "St Paul, MN",
+    "url": "https://www.linkedin.com/jobs/view/4457568686",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-08-30T18:21:24Z"
   },
   {
     "company": "Ecolab",
@@ -4985,24 +4985,6 @@
     "applied": false,
     "source": "linkedin",
     "scanned": "2026-08-26T16:13:15Z"
-  },
-  {
-    "company": "Ecolab",
-    "role": "Food, Beverage, Dairy Plant Sanitation - Technical Sales Intern",
-    "location": "St Paul, MN",
-    "url": "https://www.linkedin.com/jobs/view/4457565751",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-08-30T14:15:10Z"
-  },
-  {
-    "company": "Ecolab",
-    "role": "Engineering Technical Sales Intern",
-    "location": "Minneapolis, MN",
-    "url": "https://www.linkedin.com/jobs/view/4457553890",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-08-30T14:15:10Z"
   },
   {
     "company": "effaced",
@@ -5209,7 +5191,7 @@
     "url": "https://www.linkedin.com/jobs/view/4460527431",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-30T14:14:22Z"
+    "scanned": "2026-08-30T18:19:19Z"
   },
   {
     "company": "Elire",
@@ -5218,7 +5200,7 @@
     "url": "https://www.linkedin.com/jobs/view/4460525482",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-30T14:14:01Z"
+    "scanned": "2026-08-30T18:27:05Z"
   },
   {
     "company": "Elire",
@@ -5344,7 +5326,7 @@
     "url": "https://www.themuse.com/jobs/equinixinc/intern-ibx-operations-1514a9",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-08-30T14:10:34Z"
+    "scanned": "2026-08-30T18:19:10Z"
   },
   {
     "company": "Escape\u2122 App AI",
@@ -5795,7 +5777,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-brand-content-communications-associate-manager-fuseglobal-1135387",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-08-30T14:10:31Z"
+    "scanned": "2026-08-30T18:19:06Z"
   },
   {
     "company": "FutureSelf\u2122",
@@ -6297,7 +6279,7 @@
     "url": "https://www.linkedin.com/jobs/view/4457976052",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-30T14:13:45Z"
+    "scanned": "2026-08-30T18:26:20Z"
   },
   {
     "company": "hackajob",
@@ -6360,7 +6342,7 @@
     "url": "https://www.linkedin.com/jobs/view/4446119040",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-30T14:11:22Z"
+    "scanned": "2026-08-30T18:19:19Z"
   },
   {
     "company": "Harris Computer",
@@ -6396,7 +6378,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-human-resources-specialist-harvey-nash-1135675",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-08-30T14:10:31Z"
+    "scanned": "2026-08-30T18:19:06Z"
   },
   {
     "company": "HealthPartners",
@@ -6454,6 +6436,24 @@
   },
   {
     "company": "Hewlett Packard Enterprise",
+    "role": "Cloud Engineer Intern",
+    "location": "Bloomington, MN",
+    "url": "https://www.linkedin.com/jobs/view/4460538248",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-08-30T18:27:05Z"
+  },
+  {
+    "company": "Hewlett Packard Enterprise",
+    "role": "Software Engineer Intern",
+    "location": "Bloomington, MN",
+    "url": "https://www.linkedin.com/jobs/view/4460529376",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-08-30T18:21:24Z"
+  },
+  {
+    "company": "Hewlett Packard Enterprise",
     "role": "Product Management Intern (Master's/MBA)",
     "location": "Bloomington, MN",
     "url": "https://www.linkedin.com/jobs/view/4460524466",
@@ -6463,30 +6463,12 @@
   },
   {
     "company": "Hewlett Packard Enterprise",
-    "role": "Cloud Engineer Intern",
-    "location": "Bloomington, MN",
-    "url": "https://www.linkedin.com/jobs/view/4460538248",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-08-30T14:14:01Z"
-  },
-  {
-    "company": "Hewlett Packard Enterprise",
     "role": "Firmware Engineer Intern",
     "location": "Bloomington, MN",
     "url": "https://www.linkedin.com/jobs/view/4460532358",
     "applied": false,
     "source": "linkedin",
     "scanned": "2026-08-30T14:11:07Z"
-  },
-  {
-    "company": "Hewlett Packard Enterprise",
-    "role": "Software Engineer Intern",
-    "location": "Bloomington, MN",
-    "url": "https://www.linkedin.com/jobs/view/4460529376",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-08-30T14:11:39Z"
   },
   {
     "company": "Higharc",
@@ -6666,7 +6648,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-junior-data-analyst-hiredbuddy-1135673",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-08-30T14:10:31Z"
+    "scanned": "2026-08-30T18:19:06Z"
   },
   {
     "company": "HNTB",
@@ -6826,12 +6808,57 @@
   },
   {
     "company": "IBM",
+    "role": "Software Developer Intern-Rochester, MN",
+    "location": "Rochester, MN",
+    "url": "https://www.linkedin.com/jobs/view/4456531060",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-08-30T18:21:24Z"
+  },
+  {
+    "company": "IBM",
+    "role": "Software Developer Intern",
+    "location": "Rochester, MN",
+    "url": "https://www.linkedin.com/jobs/view/4457226086",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-08-30T18:20:32Z"
+  },
+  {
+    "company": "IBM",
     "role": "Site Reliability Engineer Intern - OneIT - Rochester, MN - 2027",
     "location": "Rochester, MN",
     "url": "https://www.linkedin.com/jobs/view/4458427745",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-30T14:13:40Z"
+    "scanned": "2026-08-30T18:27:05Z"
+  },
+  {
+    "company": "IBM",
+    "role": "SW Developer Intern: Systems Assurance - Austin, TX &amp; Rochester, MN - 2027",
+    "location": "Rochester, MN",
+    "url": "https://www.linkedin.com/jobs/view/4458024524",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-08-30T18:21:24Z"
+  },
+  {
+    "company": "IBM",
+    "role": "Delivery Consultant Intern - Entry Level Sales Program 2027",
+    "location": "New York, United States",
+    "url": "https://www.linkedin.com/jobs/view/4451269829",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-08-30T18:24:58Z"
+  },
+  {
+    "company": "IBM",
+    "role": "2026 Intern Conversion: Financial Analyst \u2013 Rochester MN",
+    "location": "Rochester, MN",
+    "url": "https://www.linkedin.com/jobs/view/4372621519",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-08-30T18:26:20Z"
   },
   {
     "company": "IBM",
@@ -6844,33 +6871,6 @@
   },
   {
     "company": "IBM",
-    "role": "Software Developer Intern-Rochester, MN",
-    "location": "Rochester, MN",
-    "url": "https://www.linkedin.com/jobs/view/4456531060",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-08-30T14:11:35Z"
-  },
-  {
-    "company": "IBM",
-    "role": "Software Developer Intern",
-    "location": "Rochester, MN",
-    "url": "https://www.linkedin.com/jobs/view/4457226086",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-08-30T14:11:39Z"
-  },
-  {
-    "company": "IBM",
-    "role": "SW Developer Intern: Systems Assurance - Austin, TX &amp; Rochester, MN - 2027",
-    "location": "Rochester, MN",
-    "url": "https://www.linkedin.com/jobs/view/4458024524",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-08-30T14:13:32Z"
-  },
-  {
-    "company": "IBM",
     "role": "HW Developer Intern: Systems Assurance - Rochester, MN - 2027",
     "location": "Rochester, MN",
     "url": "https://www.linkedin.com/jobs/view/4458019583",
@@ -6880,30 +6880,12 @@
   },
   {
     "company": "IBM",
-    "role": "Delivery Consultant Intern - Entry Level Sales Program 2027",
-    "location": "New York, United States",
-    "url": "https://www.linkedin.com/jobs/view/4451269829",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-08-30T14:13:08Z"
-  },
-  {
-    "company": "IBM",
     "role": "Consultant Intern \u2013 SAP 2027",
     "location": "New York, United States",
     "url": "https://www.linkedin.com/jobs/view/4450847398",
     "applied": false,
     "source": "linkedin",
     "scanned": "2026-08-30T14:14:22Z"
-  },
-  {
-    "company": "IBM",
-    "role": "2026 Intern Conversion: Financial Analyst \u2013 Rochester MN",
-    "location": "Rochester, MN",
-    "url": "https://www.linkedin.com/jobs/view/4372621519",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-08-29T18:07:45Z"
   },
   {
     "company": "IBM",
@@ -7137,7 +7119,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-director-of-customer-success-innergy-1134738",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-08-30T14:10:31Z"
+    "scanned": "2026-08-30T18:19:06Z"
   },
   {
     "company": "Innodata Inc.",
@@ -7325,7 +7307,7 @@
     "url": "https://jobicy.com/jobs/151939-summer-intern-ecommerce-operations",
     "applied": false,
     "source": "jobicy",
-    "scanned": "2026-08-30T14:10:30Z"
+    "scanned": "2026-08-30T18:19:05Z"
   },
   {
     "company": "Intercom",
@@ -8507,7 +8489,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-kyc-compliance-analyst-kast-1134740",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-08-30T14:10:31Z"
+    "scanned": "2026-08-30T18:19:06Z"
   },
   {
     "company": "Kearney",
@@ -9289,7 +9271,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-educational-programs-administrator-lingraphica-1134741",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-08-30T14:10:31Z"
+    "scanned": "2026-08-30T18:19:06Z"
   },
   {
     "company": "Livingston International",
@@ -10100,7 +10082,7 @@
     "url": "https://www.linkedin.com/jobs/view/4458591607",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-30T14:14:01Z"
+    "scanned": "2026-08-30T18:27:05Z"
   },
   {
     "company": "Mayo Clinic",
@@ -10109,7 +10091,7 @@
     "url": "https://www.linkedin.com/jobs/view/4458599261",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-30T14:13:40Z"
+    "scanned": "2026-08-30T18:21:24Z"
   },
   {
     "company": "Mayo Clinic",
@@ -10253,7 +10235,16 @@
     "url": "https://www.linkedin.com/jobs/view/4448301265",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-30T14:14:01Z"
+    "scanned": "2026-08-30T18:27:05Z"
+  },
+  {
+    "company": "Medtronic",
+    "role": "Software Engineering Intern \u2013 Summer 2027",
+    "location": "Fridley, MN",
+    "url": "https://www.linkedin.com/jobs/view/4447803498",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-08-30T18:21:24Z"
   },
   {
     "company": "Medtronic",
@@ -10281,15 +10272,6 @@
     "applied": false,
     "source": "linkedin",
     "scanned": "2026-08-30T14:13:25Z"
-  },
-  {
-    "company": "Medtronic",
-    "role": "Software Engineering Intern \u2013 Summer 2027",
-    "location": "Fridley, MN",
-    "url": "https://www.linkedin.com/jobs/view/4447803498",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-08-30T14:11:39Z"
   },
   {
     "company": "Medtronic",
@@ -10343,7 +10325,7 @@
     "url": "https://www.linkedin.com/jobs/view/4450223888",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-29T18:07:45Z"
+    "scanned": "2026-08-30T18:26:20Z"
   },
   {
     "company": "Melissa In De Nile, LLC",
@@ -10505,7 +10487,16 @@
     "url": "https://www.linkedin.com/jobs/view/4452029630",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-30T14:13:38Z"
+    "scanned": "2026-08-30T18:19:19Z"
+  },
+  {
+    "company": "Mortenson",
+    "role": "ITS Analyst Intern",
+    "location": "Minnesota, United States",
+    "url": "https://www.linkedin.com/jobs/view/4452009942",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-08-30T18:27:05Z"
   },
   {
     "company": "Mortenson",
@@ -10515,15 +10506,6 @@
     "applied": false,
     "source": "linkedin",
     "scanned": "2026-08-30T14:10:53Z"
-  },
-  {
-    "company": "Mortenson",
-    "role": "ITS Analyst Intern",
-    "location": "Minnesota, United States",
-    "url": "https://www.linkedin.com/jobs/view/4452009942",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-08-30T14:13:53Z"
   },
   {
     "company": "Mortenson",
@@ -10703,7 +10685,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-associate-account-strategist-donut-studios-new-engen-1134405",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-08-30T14:10:31Z"
+    "scanned": "2026-08-30T18:19:06Z"
   },
   {
     "company": "NexLevr",
@@ -10739,7 +10721,7 @@
     "url": "https://www.linkedin.com/jobs/view/4457996979",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-30T14:13:43Z"
+    "scanned": "2026-08-30T18:25:20Z"
   },
   {
     "company": "Northeast Metro 916 Intermediate School District",
@@ -11693,7 +11675,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-customer-service-chat-representative-orchestrate-consulting-group-1134737",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-08-30T14:10:31Z"
+    "scanned": "2026-08-30T18:19:06Z"
   },
   {
     "company": "Outreach",
@@ -11758,7 +11740,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-business-development-executive-outsource-access-careers-1135287",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-08-30T14:10:31Z"
+    "scanned": "2026-08-30T18:19:06Z"
   },
   {
     "company": "Pacific Health Group",
@@ -11767,7 +11749,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-human-resources-coordinator-pacific-health-group-1135783",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-08-30T14:10:31Z"
+    "scanned": "2026-08-30T18:19:06Z"
   },
   {
     "company": "Packaging Corporation of America",
@@ -11776,16 +11758,7 @@
     "url": "https://www.linkedin.com/jobs/view/4459860569",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-30T14:14:01Z"
-  },
-  {
-    "company": "Packaging Corporation of America",
-    "role": "IT Co-op (January to August 2027) - International Falls",
-    "location": "International Falls, MN",
-    "url": "https://www.linkedin.com/jobs/view/4459862491",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-08-30T14:11:26Z"
+    "scanned": "2026-08-30T18:27:05Z"
   },
   {
     "company": "Packaging Corporation of America",
@@ -11794,7 +11767,16 @@
     "url": "https://www.linkedin.com/jobs/view/4459873472",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-30T14:11:35Z"
+    "scanned": "2026-08-30T18:20:39Z"
+  },
+  {
+    "company": "Packaging Corporation of America",
+    "role": "IT Co-op (January to August 2027) - International Falls",
+    "location": "International Falls, MN",
+    "url": "https://www.linkedin.com/jobs/view/4459862491",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-08-30T18:27:05Z"
   },
   {
     "company": "Packaging Corporation of America",
@@ -12034,7 +12016,7 @@
     "url": "https://www.linkedin.com/jobs/view/4448312441",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-30T14:14:01Z"
+    "scanned": "2026-08-30T18:27:05Z"
   },
   {
     "company": "Pentair",
@@ -12277,7 +12259,7 @@
     "url": "https://pipersandler.wd501.myworkdayjobs.com/Piper_Sandler_Careers/job/Minneapolis-MN---HQ/XMLNAME-2027-Campus-Recruiting---Investment-Banking-Summer-Associate---Minneapolis_R-100651",
     "applied": false,
     "source": "workday",
-    "scanned": "2026-08-30T14:09:46Z"
+    "scanned": "2026-08-30T18:18:26Z"
   },
   {
     "company": "Piper Sandler",
@@ -12286,7 +12268,7 @@
     "url": "https://pipersandler.wd501.myworkdayjobs.com/Piper_Sandler_Careers/job/Minneapolis-MN---HQ/XMLNAME-2027-Campus-Recruiting---Investment-Banking-Summer-Associate---San-Francisco_R-100655",
     "applied": false,
     "source": "workday",
-    "scanned": "2026-08-30T14:09:46Z"
+    "scanned": "2026-08-30T18:18:26Z"
   },
   {
     "company": "Piper Sandler",
@@ -12493,7 +12475,7 @@
     "url": "https://job-boards.greenhouse.io/postman/jobs/7823417003",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-08-30T14:09:45Z"
+    "scanned": "2026-08-30T18:18:24Z"
   },
   {
     "company": "Praxigen",
@@ -12729,7 +12711,7 @@
     "url": "https://www.themuse.com/jobs/pwc/management-consulting-intern-summer-2026",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-08-30T14:10:31Z"
+    "scanned": "2026-08-30T18:19:07Z"
   },
   {
     "company": "PwC",
@@ -12998,7 +12980,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-care-navigator-level-1-ready-1135674",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-08-30T14:10:31Z"
+    "scanned": "2026-08-30T18:19:06Z"
   },
   {
     "company": "Realogix",
@@ -13276,7 +13258,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-animal-cruelty-case-specialist-rose-klein-amp-marias-1135388",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-08-30T14:10:31Z"
+    "scanned": "2026-08-30T18:19:06Z"
   },
   {
     "company": "Rundoo",
@@ -13303,7 +13285,7 @@
     "url": "https://www.linkedin.com/jobs/view/4454406649",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-30T14:13:51Z"
+    "scanned": "2026-08-30T18:19:19Z"
   },
   {
     "company": "Ryan Companies US, Inc.",
@@ -14344,7 +14326,7 @@
     "url": "https://www.linkedin.com/jobs/view/4456011986",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-29T18:07:45Z"
+    "scanned": "2026-08-30T18:26:20Z"
   },
   {
     "company": "Second Harvest Heartland",
@@ -14797,7 +14779,7 @@
     "url": "https://www.linkedin.com/jobs/view/4454150319",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-08-30T14:14:26Z"
+    "scanned": "2026-08-30T18:27:59Z"
   },
   {
     "company": "Sony Music Publishing",
@@ -14986,7 +14968,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-biologists-stem-sync-ai-1133086",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-08-30T14:10:31Z"
+    "scanned": "2026-08-30T18:19:06Z"
   },
   {
     "company": "StepStone Group",
@@ -15318,7 +15300,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-business-development-manager-temu-1135291",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-08-30T14:10:31Z"
+    "scanned": "2026-08-30T18:19:06Z"
   },
   {
     "company": "Tessera Labs",
@@ -15381,7 +15363,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-human-resources-generalist-the-contractor-consultants-1133087",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-08-30T14:10:31Z"
+    "scanned": "2026-08-30T18:19:06Z"
   },
   {
     "company": "The Craft Catalyst",
@@ -15426,7 +15408,7 @@
     "url": "https://www.themuse.com/jobs/themuse/backend-developer-remote-internship",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-08-30T14:10:31Z"
+    "scanned": "2026-08-30T18:19:06Z"
   },
   {
     "company": "The Recruitment Alliance by HRKS",
@@ -18246,7 +18228,7 @@
     "url": "https://jobs.lever.co/voltus/b7833dd8-d742-44d8-aae2-2e7de7541ce4",
     "applied": false,
     "source": "lever",
-    "scanned": "2026-08-30T14:09:46Z"
+    "scanned": "2026-08-30T18:18:25Z"
   },
   {
     "company": "Voltus",
@@ -18442,7 +18424,7 @@
     "url": "https://www.themuse.com/jobs/walmart/pharmacy-pregrad-intern-wm-d66173",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-08-30T14:10:32Z"
+    "scanned": "2026-08-30T18:19:08Z"
   },
   {
     "company": "Walmart",
@@ -18451,7 +18433,7 @@
     "url": "https://www.themuse.com/jobs/walmart/pharmacy-pregrad-intern-wm-927cb8",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-08-30T14:10:33Z"
+    "scanned": "2026-08-30T18:19:09Z"
   },
   {
     "company": "Walmart",
@@ -18460,7 +18442,7 @@
     "url": "https://www.themuse.com/jobs/walmart/pharmacy-pregrad-intern-wm-75f90f",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-08-30T14:10:35Z"
+    "scanned": "2026-08-30T18:19:11Z"
   },
   {
     "company": "Walmart",
@@ -18469,7 +18451,7 @@
     "url": "https://www.themuse.com/jobs/walmart/pharmacy-pregrad-intern-wm-772451",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-08-30T14:10:35Z"
+    "scanned": "2026-08-30T18:19:12Z"
   },
   {
     "company": "Walmart",
@@ -18478,7 +18460,7 @@
     "url": "https://www.themuse.com/jobs/walmart/pharmacy-pregrad-intern-wm-ea8949",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-08-30T14:10:35Z"
+    "scanned": "2026-08-30T18:19:12Z"
   },
   {
     "company": "Walmart",
@@ -18487,7 +18469,7 @@
     "url": "https://www.themuse.com/jobs/walmart/pharmacy-pregrad-intern-wm-8f5b30",
     "applied": false,
     "source": "themuse",
-    "scanned": "2026-08-30T14:10:35Z"
+    "scanned": "2026-08-30T18:19:12Z"
   },
   {
     "company": "Walmart",
@@ -18577,7 +18559,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-junior-product-designer-wealthcounsel-llc-1134407",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-08-30T14:10:31Z"
+    "scanned": "2026-08-30T18:19:06Z"
   },
   {
     "company": "WellDyne",
