@@ -555,7 +555,7 @@
     "url": "https://job-boards.greenhouse.io/affirm/jobs/8011375003",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Affirm",
@@ -564,7 +564,7 @@
     "url": "https://job-boards.greenhouse.io/affirm/jobs/8011590003",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Affirm",
@@ -657,13 +657,22 @@
     "scanned": "2026-08-05T22:16:19Z"
   },
   {
+    "company": "AIR Control Concepts",
+    "role": "Intern - Engineered Systems Specialist",
+    "location": "Minneapolis, MN",
+    "url": "https://www.linkedin.com/jobs/view/4482233277",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-11-18T18:34:54Z"
+  },
+  {
     "company": "Airbnb",
     "role": "Social Creative Lead Real Time &amp; Reactive",
     "location": "San Francisco, San Francisco, California, United States",
     "url": "https://remoteOK.com/remote-jobs/remote-social-creative-lead-real-time-amp-reactive-airbnb-1133091",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "Akolee Fashion House",
@@ -717,7 +726,16 @@
     "url": "https://remoteOK.com/remote-jobs/remote-telehealth-endocrinologist-evenings-fridays-and-or-weekends-allara-1137709",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
+  },
+  {
+    "company": "ALLETE",
+    "role": "Internship - IT Enterprise Application Integrations",
+    "location": "Duluth, MN",
+    "url": "https://www.linkedin.com/jobs/view/4492008831",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-11-18T18:37:44Z"
   },
   {
     "company": "ALLETE",
@@ -771,7 +789,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490539846",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:32:52Z"
+    "scanned": "2026-11-18T18:32:38Z"
   },
   {
     "company": "Allianz Life",
@@ -780,7 +798,7 @@
     "url": "https://www.linkedin.com/jobs/view/4489120352",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:41:04Z"
+    "scanned": "2026-11-18T18:38:48Z"
   },
   {
     "company": "Allianz Life",
@@ -789,7 +807,7 @@
     "url": "https://www.linkedin.com/jobs/view/4484284986",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:32:52Z"
+    "scanned": "2026-11-18T18:32:38Z"
   },
   {
     "company": "Allianz Life",
@@ -798,7 +816,7 @@
     "url": "https://www.linkedin.com/jobs/view/4484290500",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:50Z"
+    "scanned": "2026-11-18T18:37:50Z"
   },
   {
     "company": "Allianz Life",
@@ -807,16 +825,7 @@
     "url": "https://www.linkedin.com/jobs/view/4491715878",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:36:10Z"
-  },
-  {
-    "company": "Allianz Life",
-    "role": "Summer 2027 AI Governance Internship | Hybrid",
-    "location": "Minneapolis, MN",
-    "url": "https://www.linkedin.com/jobs/view/4490399396",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-11-18T09:39:43Z"
+    "scanned": "2026-11-18T18:34:56Z"
   },
   {
     "company": "Allianz Life",
@@ -825,7 +834,16 @@
     "url": "https://www.linkedin.com/jobs/view/4486132200",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:31Z"
+    "scanned": "2026-11-18T18:34:32Z"
+  },
+  {
+    "company": "Allianz Life",
+    "role": "Summer 2027 Creative Services Internship | Hybrid",
+    "location": "Minneapolis, MN",
+    "url": "https://www.linkedin.com/jobs/view/4486126430",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-11-18T18:34:50Z"
   },
   {
     "company": "Allianz Life",
@@ -834,7 +852,7 @@
     "url": "https://www.linkedin.com/jobs/view/4484400187",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:36:10Z"
+    "scanned": "2026-11-18T18:34:56Z"
   },
   {
     "company": "Allianz Life",
@@ -843,7 +861,16 @@
     "url": "https://www.linkedin.com/jobs/view/4486139046",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:07Z"
+    "scanned": "2026-11-18T18:37:52Z"
+  },
+  {
+    "company": "Allianz Life",
+    "role": "Summer 2027 AI Governance Internship | Hybrid",
+    "location": "Minneapolis, MN",
+    "url": "https://www.linkedin.com/jobs/view/4490399396",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-11-18T18:37:42Z"
   },
   {
     "company": "Allianz Life",
@@ -853,15 +880,6 @@
     "applied": false,
     "source": "linkedin",
     "scanned": "2026-11-18T09:40:09Z"
-  },
-  {
-    "company": "Allianz Life",
-    "role": "Summer 2027 Creative Services Internship | Hybrid",
-    "location": "Minneapolis, MN",
-    "url": "https://www.linkedin.com/jobs/view/4486126430",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-11-18T01:29:02Z"
   },
   {
     "company": "Allianz Life",
@@ -915,7 +933,7 @@
     "url": "https://www.linkedin.com/jobs/view/4468005948",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:11Z"
+    "scanned": "2026-11-18T18:38:42Z"
   },
   {
     "company": "Allianz Technology",
@@ -937,21 +955,21 @@
   },
   {
     "company": "Allied Solutions LLC",
+    "role": "Product Management Intern - Risk Management",
+    "location": "St Paul, MN",
+    "url": "https://www.linkedin.com/jobs/view/4461328238",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-11-18T18:34:30Z"
+  },
+  {
+    "company": "Allied Solutions LLC",
     "role": "Sales Operations Intern",
     "location": "St Paul, MN",
     "url": "https://www.linkedin.com/jobs/view/4461324252",
     "applied": false,
     "source": "linkedin",
     "scanned": "2026-11-18T09:32:46Z"
-  },
-  {
-    "company": "Allied Solutions LLC",
-    "role": "Product Management Intern - Risk Management",
-    "location": "St Paul, MN",
-    "url": "https://www.linkedin.com/jobs/view/4461328238",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-11-18T09:35:29Z"
   },
   {
     "company": "Allied Solutions LLC",
@@ -978,7 +996,7 @@
     "url": "https://www.linkedin.com/jobs/view/4487030126",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-17T01:26:52Z"
+    "scanned": "2026-11-18T18:34:26Z"
   },
   {
     "company": "Alternative Access Counseling LLC",
@@ -1005,7 +1023,7 @@
     "url": "https://www.linkedin.com/jobs/view/4482732535",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:50Z"
+    "scanned": "2026-11-18T18:34:06Z"
   },
   {
     "company": "Amazon",
@@ -1228,7 +1246,7 @@
     "url": "https://www.linkedin.com/jobs/view/4487310667",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:33:11Z"
+    "scanned": "2026-11-18T18:32:42Z"
   },
   {
     "company": "Andersen Corporation",
@@ -1309,7 +1327,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490900225",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:27Z"
+    "scanned": "2026-11-18T18:34:28Z"
   },
   {
     "company": "ARCO a Family of Construction Companies",
@@ -1336,7 +1354,7 @@
     "url": "https://www.linkedin.com/jobs/view/4457294868",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:27Z"
+    "scanned": "2026-11-18T18:34:28Z"
   },
   {
     "company": "ARCO/Murray",
@@ -1623,7 +1641,7 @@
     "url": "https://www.linkedin.com/jobs/view/4466234350",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:33:18Z"
+    "scanned": "2026-11-18T18:33:04Z"
   },
   {
     "company": "Aspen Technology",
@@ -1731,7 +1749,7 @@
     "url": "https://www.linkedin.com/jobs/view/4481791507",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:44Z"
+    "scanned": "2026-11-18T18:34:00Z"
   },
   {
     "company": "AV",
@@ -1785,7 +1803,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-scrum-master-avum-inc-1133092",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "AXENTRA OS",
@@ -1920,7 +1938,7 @@
     "url": "https://www.linkedin.com/jobs/view/4476070626",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:07Z"
+    "scanned": "2026-11-18T18:37:52Z"
   },
   {
     "company": "BDO USA",
@@ -1974,7 +1992,7 @@
     "url": "https://www.linkedin.com/jobs/view/4462533638",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:41Z"
+    "scanned": "2026-11-18T18:37:40Z"
   },
   {
     "company": "Beckman Coulter Diagnostics",
@@ -2244,7 +2262,7 @@
     "url": "https://www.linkedin.com/jobs/view/4464624777",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:49Z"
+    "scanned": "2026-11-18T18:38:42Z"
   },
   {
     "company": "Bosch Group",
@@ -2257,12 +2275,12 @@
   },
   {
     "company": "Boston Scientific",
-    "role": "R&amp;D Software Design Intern",
-    "location": "Arden Hills, MN",
-    "url": "https://www.linkedin.com/jobs/view/4484759981",
+    "role": "Finance &amp; Accounting Emerging Leaders Program and Summer 2028 Finance Intern",
+    "location": "Maple Grove, MN",
+    "url": "https://www.linkedin.com/jobs/view/4485222433",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:33:37Z"
+    "scanned": "2026-11-18T18:34:24Z"
   },
   {
     "company": "Boston Scientific",
@@ -2271,7 +2289,7 @@
     "url": "https://www.linkedin.com/jobs/view/4483349108",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:33Z"
+    "scanned": "2026-11-18T18:34:30Z"
   },
   {
     "company": "Boston Scientific",
@@ -2280,16 +2298,16 @@
     "url": "https://www.linkedin.com/jobs/view/4483338673",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:33Z"
+    "scanned": "2026-11-18T18:34:30Z"
   },
   {
     "company": "Boston Scientific",
-    "role": "Finance &amp; Accounting Emerging Leaders Program and Summer 2028 Finance Intern",
-    "location": "Maple Grove, MN",
-    "url": "https://www.linkedin.com/jobs/view/4485222433",
+    "role": "R&amp;D Software Design Intern",
+    "location": "Arden Hills, MN",
+    "url": "https://www.linkedin.com/jobs/view/4484759981",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T01:28:51Z"
+    "scanned": "2026-11-18T09:33:37Z"
   },
   {
     "company": "Boston Scientific",
@@ -3277,7 +3295,7 @@
     "url": "https://www.brex.com/careers/8936403002?gh_jid=8936403002",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Brex",
@@ -3738,7 +3756,7 @@
     "url": "https://www.linkedin.com/jobs/view/4464161432",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:36:08Z"
+    "scanned": "2026-11-18T18:34:54Z"
   },
   {
     "company": "Burns &amp; McDonnell",
@@ -3819,7 +3837,7 @@
     "url": "https://www.linkedin.com/jobs/view/4481656491",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:37:57Z"
+    "scanned": "2026-11-18T18:36:12Z"
   },
   {
     "company": "C.H. Robinson",
@@ -4210,7 +4228,7 @@
     "url": "https://www.linkedin.com/jobs/view/4487436196",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:09Z"
+    "scanned": "2026-11-18T18:34:24Z"
   },
   {
     "company": "Central Minnesota Jobs and Training Services, Inc.",
@@ -4542,7 +4560,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490447311",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:25Z"
+    "scanned": "2026-11-18T18:34:26Z"
   },
   {
     "company": "CHS Inc.",
@@ -4551,7 +4569,7 @@
     "url": "https://www.linkedin.com/jobs/view/4478074249",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:32:46Z"
+    "scanned": "2026-11-18T18:32:18Z"
   },
   {
     "company": "CHS Inc.",
@@ -4686,7 +4704,7 @@
     "url": "https://www.linkedin.com/jobs/view/4489599288",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:32:52Z"
+    "scanned": "2026-11-18T18:32:38Z"
   },
   {
     "company": "Cirrus",
@@ -4920,7 +4938,7 @@
     "url": "https://boards.greenhouse.io/cloudflare/jobs/7774167?gh_jid=7774167",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Cloudflare",
@@ -5165,7 +5183,7 @@
     "url": "https://www.linkedin.com/jobs/view/4467999687",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:48Z"
+    "scanned": "2026-11-18T18:34:04Z"
   },
   {
     "company": "CoBank",
@@ -5633,7 +5651,7 @@
     "url": "https://www.coinbase.com/careers/positions/8175363?gh_jid=8175363",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5642,7 +5660,7 @@
     "url": "https://www.coinbase.com/careers/positions/8173991?gh_jid=8173991",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5651,7 +5669,7 @@
     "url": "https://www.coinbase.com/careers/positions/8175471?gh_jid=8175471",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5660,7 +5678,7 @@
     "url": "https://www.coinbase.com/careers/positions/8168322?gh_jid=8168322",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5669,7 +5687,7 @@
     "url": "https://www.coinbase.com/careers/positions/8175366?gh_jid=8175366",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5678,7 +5696,7 @@
     "url": "https://www.coinbase.com/careers/positions/8175369?gh_jid=8175369",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5687,7 +5705,7 @@
     "url": "https://www.coinbase.com/careers/positions/8175429?gh_jid=8175429",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5696,7 +5714,7 @@
     "url": "https://www.coinbase.com/careers/positions/8175510?gh_jid=8175510",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5705,7 +5723,7 @@
     "url": "https://www.coinbase.com/careers/positions/8175569?gh_jid=8175569",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5714,7 +5732,7 @@
     "url": "https://www.coinbase.com/careers/positions/8221238?gh_jid=8221238",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5723,7 +5741,7 @@
     "url": "https://www.coinbase.com/careers/positions/8175432?gh_jid=8175432",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5732,7 +5750,7 @@
     "url": "https://www.coinbase.com/careers/positions/8175441?gh_jid=8175441",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5741,7 +5759,7 @@
     "url": "https://www.coinbase.com/careers/positions/8175447?gh_jid=8175447",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5750,7 +5768,7 @@
     "url": "https://www.coinbase.com/careers/positions/8175517?gh_jid=8175517",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5759,7 +5777,7 @@
     "url": "https://www.coinbase.com/careers/positions/8175556?gh_jid=8175556",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5768,7 +5786,7 @@
     "url": "https://www.coinbase.com/careers/positions/8175339?gh_jid=8175339",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5777,7 +5795,7 @@
     "url": "https://www.coinbase.com/careers/positions/8175507?gh_jid=8175507",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5786,7 +5804,7 @@
     "url": "https://www.coinbase.com/careers/positions/8168315?gh_jid=8168315",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5795,7 +5813,7 @@
     "url": "https://www.coinbase.com/careers/positions/8376084?gh_jid=8376084",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5804,7 +5822,7 @@
     "url": "https://www.coinbase.com/careers/positions/8221241?gh_jid=8221241",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5813,7 +5831,7 @@
     "url": "https://www.coinbase.com/careers/positions/8175453?gh_jid=8175453",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Coinbase",
@@ -5894,7 +5912,7 @@
     "url": "https://www.linkedin.com/jobs/view/4488022122",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:38:28Z"
+    "scanned": "2026-11-18T18:37:38Z"
   },
   {
     "company": "Collective Measures | Media &amp; Analytics",
@@ -5929,7 +5947,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490117952",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:11Z"
+    "scanned": "2026-11-18T18:38:10Z"
   },
   {
     "company": "Colliers",
@@ -5938,7 +5956,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490116973",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:36Z"
+    "scanned": "2026-11-18T18:33:28Z"
   },
   {
     "company": "Colliers",
@@ -5974,7 +5992,7 @@
     "url": "https://www.linkedin.com/jobs/view/4485295497",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:48Z"
+    "scanned": "2026-11-18T18:34:04Z"
   },
   {
     "company": "Collins Aerospace",
@@ -6778,7 +6796,7 @@
     "url": "https://www.linkedin.com/jobs/view/4484580137",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:07Z"
+    "scanned": "2026-11-18T18:37:52Z"
   },
   {
     "company": "CTI",
@@ -6805,7 +6823,7 @@
     "url": "https://www.linkedin.com/jobs/view/4485253191",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:13Z"
+    "scanned": "2026-11-18T18:38:12Z"
   },
   {
     "company": "CVS Health",
@@ -6841,7 +6859,7 @@
     "url": "https://www.linkedin.com/jobs/view/4469959044",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:36Z"
+    "scanned": "2026-11-18T18:38:42Z"
   },
   {
     "company": "Daikin Applied Americas",
@@ -6850,7 +6868,7 @@
     "url": "https://www.linkedin.com/jobs/view/4469946701",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:25Z"
+    "scanned": "2026-11-18T18:34:26Z"
   },
   {
     "company": "Daikin Applied Americas",
@@ -6859,7 +6877,7 @@
     "url": "https://www.linkedin.com/jobs/view/4484095166",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T01:28:06Z"
+    "scanned": "2026-11-18T18:32:40Z"
   },
   {
     "company": "Daikin Applied Americas",
@@ -6931,7 +6949,7 @@
     "url": "https://www.linkedin.com/jobs/view/4483116175",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:29Z"
+    "scanned": "2026-11-18T18:34:30Z"
   },
   {
     "company": "Danfoss",
@@ -7542,7 +7560,7 @@
     "url": "https://careers.datadoghq.com/detail/8203657/?gh_jid=8203657",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Datadog",
@@ -7803,7 +7821,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490833266",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:29Z"
+    "scanned": "2026-11-18T18:34:30Z"
   },
   {
     "company": "DigiKey",
@@ -8080,7 +8098,7 @@
     "url": "https://www.linkedin.com/jobs/view/4471546242",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:36:08Z"
+    "scanned": "2026-11-18T18:34:54Z"
   },
   {
     "company": "Ecolab",
@@ -8170,7 +8188,7 @@
     "url": "https://www.linkedin.com/jobs/view/4489991344",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:36Z"
+    "scanned": "2026-11-18T18:38:42Z"
   },
   {
     "company": "Egan Company",
@@ -8179,7 +8197,7 @@
     "url": "https://www.linkedin.com/jobs/view/4488043222",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:27Z"
+    "scanned": "2026-11-18T18:34:28Z"
   },
   {
     "company": "Egan Company",
@@ -8188,7 +8206,7 @@
     "url": "https://www.linkedin.com/jobs/view/4486461045",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:27Z"
+    "scanned": "2026-11-18T18:34:28Z"
   },
   {
     "company": "Egan Company",
@@ -8197,7 +8215,7 @@
     "url": "https://www.linkedin.com/jobs/view/4485619250",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:13Z"
+    "scanned": "2026-11-18T18:38:12Z"
   },
   {
     "company": "Egan Company",
@@ -8818,7 +8836,7 @@
     "url": "https://www.linkedin.com/jobs/view/4465314411",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:49Z"
+    "scanned": "2026-11-18T18:37:48Z"
   },
   {
     "company": "Entegris",
@@ -8827,25 +8845,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490368383",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:25Z"
-  },
-  {
-    "company": "Entegris",
-    "role": "Associate Product Manager Intern",
-    "location": "Chaska, MN",
-    "url": "https://www.linkedin.com/jobs/view/4490732994",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-11-18T09:35:29Z"
-  },
-  {
-    "company": "Entegris",
-    "role": "Quality Engineering Intern",
-    "location": "Chaska, MN",
-    "url": "https://www.linkedin.com/jobs/view/4490514818",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-11-18T09:34:48Z"
+    "scanned": "2026-11-18T18:34:26Z"
   },
   {
     "company": "Entegris",
@@ -8854,7 +8854,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490732995",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T01:28:06Z"
+    "scanned": "2026-11-18T18:32:40Z"
   },
   {
     "company": "Entegris",
@@ -8863,7 +8863,25 @@
     "url": "https://www.linkedin.com/jobs/view/4490531135",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T01:28:06Z"
+    "scanned": "2026-11-18T18:32:40Z"
+  },
+  {
+    "company": "Entegris",
+    "role": "Associate Product Manager Intern",
+    "location": "Chaska, MN",
+    "url": "https://www.linkedin.com/jobs/view/4490732994",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-11-18T18:34:30Z"
+  },
+  {
+    "company": "Entegris",
+    "role": "Quality Engineering Intern",
+    "location": "Chaska, MN",
+    "url": "https://www.linkedin.com/jobs/view/4490514818",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-11-18T18:34:04Z"
   },
   {
     "company": "Entegris",
@@ -8944,7 +8962,7 @@
     "url": "https://www.linkedin.com/jobs/view/4486199630",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:33:39Z"
+    "scanned": "2026-11-18T18:33:55Z"
   },
   {
     "company": "Entrust",
@@ -8953,7 +8971,7 @@
     "url": "https://www.linkedin.com/jobs/view/4480553742",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:50Z"
+    "scanned": "2026-11-18T18:34:06Z"
   },
   {
     "company": "Epic",
@@ -8962,7 +8980,7 @@
     "url": "https://www.linkedin.com/jobs/view/4489016610",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:33:41Z"
+    "scanned": "2026-11-18T18:33:08Z"
   },
   {
     "company": "Epic",
@@ -8971,7 +8989,7 @@
     "url": "https://www.linkedin.com/jobs/view/4489018485",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:33:41Z"
+    "scanned": "2026-11-18T18:33:28Z"
   },
   {
     "company": "Epic",
@@ -8980,7 +8998,7 @@
     "url": "https://www.linkedin.com/jobs/view/4466657093",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T01:29:02Z"
+    "scanned": "2026-11-18T18:34:50Z"
   },
   {
     "company": "Epic",
@@ -9151,7 +9169,7 @@
     "url": "https://www.linkedin.com/jobs/view/4485999675",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:07Z"
+    "scanned": "2026-11-18T18:37:52Z"
   },
   {
     "company": "Federal Reserve Bank of Minneapolis",
@@ -9160,7 +9178,7 @@
     "url": "https://www.linkedin.com/jobs/view/4486115287",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:36Z"
+    "scanned": "2026-11-18T18:38:42Z"
   },
   {
     "company": "Federal Reserve Bank of Minneapolis",
@@ -9169,7 +9187,7 @@
     "url": "https://www.linkedin.com/jobs/view/4489194214",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:32:48Z"
+    "scanned": "2026-11-18T18:34:24Z"
   },
   {
     "company": "Federal Reserve Bank of Minneapolis",
@@ -9620,7 +9638,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-brand-content-communications-associate-manager-fuseglobal-1135387",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "FutureSelf\u2122",
@@ -9674,7 +9692,7 @@
     "url": "https://www.linkedin.com/jobs/view/4485628329",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:47Z"
+    "scanned": "2026-11-18T18:37:46Z"
   },
   {
     "company": "Garda Capital Partners",
@@ -9683,7 +9701,7 @@
     "url": "https://www.linkedin.com/jobs/view/4485251560",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:44Z"
+    "scanned": "2026-11-18T18:34:24Z"
   },
   {
     "company": "Garmin",
@@ -9692,7 +9710,7 @@
     "url": "https://www.linkedin.com/jobs/view/4491746317",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:44Z"
+    "scanned": "2026-11-18T18:34:00Z"
   },
   {
     "company": "Garmin",
@@ -9737,7 +9755,7 @@
     "url": "https://www.linkedin.com/jobs/view/4491438667",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:25Z"
+    "scanned": "2026-11-18T18:34:26Z"
   },
   {
     "company": "General Dynamics Mission Systems",
@@ -9746,7 +9764,7 @@
     "url": "https://www.linkedin.com/jobs/view/4489044774",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:48Z"
+    "scanned": "2026-11-18T18:34:04Z"
   },
   {
     "company": "General Dynamics Mission Systems",
@@ -9755,7 +9773,7 @@
     "url": "https://www.linkedin.com/jobs/view/4486079021",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:45Z"
+    "scanned": "2026-11-18T18:37:44Z"
   },
   {
     "company": "General Dynamics Mission Systems",
@@ -9827,7 +9845,7 @@
     "url": "https://www.linkedin.com/jobs/view/4448962050",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:20Z"
+    "scanned": "2026-11-18T18:37:34Z"
   },
   {
     "company": "General Mills",
@@ -9917,7 +9935,7 @@
     "url": "https://www.linkedin.com/jobs/view/4488255732",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:48Z"
+    "scanned": "2026-11-18T18:34:04Z"
   },
   {
     "company": "Geosyntec Consultants",
@@ -9926,7 +9944,7 @@
     "url": "https://www.linkedin.com/jobs/view/4489285924",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:36:08Z"
+    "scanned": "2026-11-18T18:34:54Z"
   },
   {
     "company": "Gilbane Building",
@@ -10052,7 +10070,7 @@
     "url": "https://www.linkedin.com/jobs/view/4465911072",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:33Z"
+    "scanned": "2026-11-18T18:34:32Z"
   },
   {
     "company": "Graco",
@@ -10061,25 +10079,7 @@
     "url": "https://www.linkedin.com/jobs/view/4463493696",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:11Z"
-  },
-  {
-    "company": "Graco",
-    "role": "Accounting Intern",
-    "location": "Anoka, MN",
-    "url": "https://www.linkedin.com/jobs/view/4466934118",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-11-18T09:39:20Z"
-  },
-  {
-    "company": "Graco",
-    "role": "Cybersecurity Intern",
-    "location": "French Lake, MN",
-    "url": "https://www.linkedin.com/jobs/view/4474003313",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-11-18T09:40:07Z"
+    "scanned": "2026-11-18T18:38:10Z"
   },
   {
     "company": "Graco",
@@ -10088,7 +10088,25 @@
     "url": "https://www.linkedin.com/jobs/view/4463055746",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:48Z"
+    "scanned": "2026-11-18T18:34:04Z"
+  },
+  {
+    "company": "Graco",
+    "role": "Accounting Intern",
+    "location": "Anoka, MN",
+    "url": "https://www.linkedin.com/jobs/view/4466934118",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-11-18T18:37:34Z"
+  },
+  {
+    "company": "Graco",
+    "role": "Cybersecurity Intern",
+    "location": "French Lake, MN",
+    "url": "https://www.linkedin.com/jobs/view/4474003313",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-11-18T18:37:52Z"
   },
   {
     "company": "Graco",
@@ -10097,7 +10115,7 @@
     "url": "https://www.linkedin.com/jobs/view/4463068662",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T01:28:36Z"
+    "scanned": "2026-11-18T18:33:55Z"
   },
   {
     "company": "Graco",
@@ -10401,7 +10419,7 @@
     "url": "https://www.linkedin.com/jobs/view/4489898756",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T01:28:06Z"
+    "scanned": "2026-11-18T18:32:40Z"
   },
   {
     "company": "H.B. Fuller",
@@ -10536,7 +10554,7 @@
     "url": "https://www.linkedin.com/jobs/view/4475981758",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:37:32Z"
+    "scanned": "2026-11-18T18:36:02Z"
   },
   {
     "company": "Harris",
@@ -10608,7 +10626,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-human-resources-specialist-harvey-nash-1135675",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "HealthPartners",
@@ -10644,7 +10662,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490390486",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T01:28:06Z"
+    "scanned": "2026-11-18T18:32:40Z"
   },
   {
     "company": "Hennepin County",
@@ -10698,7 +10716,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490601879",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:32:50Z"
+    "scanned": "2026-11-18T18:37:34Z"
   },
   {
     "company": "Hewlett Packard Enterprise",
@@ -10707,7 +10725,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490602723",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:50Z"
+    "scanned": "2026-11-18T18:34:06Z"
   },
   {
     "company": "Hewlett Packard Enterprise",
@@ -10716,7 +10734,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490603557",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:33:37Z"
+    "scanned": "2026-11-18T18:33:08Z"
   },
   {
     "company": "Hewlett Packard Enterprise",
@@ -10725,7 +10743,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490614335",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:47Z"
+    "scanned": "2026-11-18T18:38:42Z"
   },
   {
     "company": "Hewlett Packard Enterprise",
@@ -10734,7 +10752,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490622029",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:46Z"
+    "scanned": "2026-11-18T18:34:02Z"
   },
   {
     "company": "Hewlett Packard Enterprise",
@@ -10743,7 +10761,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490612386",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:45Z"
+    "scanned": "2026-11-18T18:37:44Z"
   },
   {
     "company": "Hewlett Packard Enterprise",
@@ -10752,7 +10770,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490608325",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:22Z"
+    "scanned": "2026-11-18T18:37:36Z"
   },
   {
     "company": "Hewlett Packard Enterprise",
@@ -11004,7 +11022,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-junior-data-analyst-hiredbuddy-1135673",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "Hitachi Energy",
@@ -11040,7 +11058,7 @@
     "url": "https://www.linkedin.com/jobs/view/4489282373",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:36:10Z"
+    "scanned": "2026-11-18T18:34:56Z"
   },
   {
     "company": "Holmes Murphy",
@@ -11205,7 +11223,7 @@
     "url": "https://www.linkedin.com/jobs/view/4483181936",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:13Z"
+    "scanned": "2026-11-18T18:38:12Z"
   },
   {
     "company": "Huntington National Bank",
@@ -11214,7 +11232,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490177916",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:07Z"
+    "scanned": "2026-11-18T18:37:52Z"
   },
   {
     "company": "Huntington National Bank",
@@ -11322,7 +11340,7 @@
     "url": "https://www.linkedin.com/jobs/view/4456531060",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:50Z"
+    "scanned": "2026-11-18T18:34:06Z"
   },
   {
     "company": "IBM",
@@ -11331,7 +11349,7 @@
     "url": "https://www.linkedin.com/jobs/view/4466298969",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:45Z"
+    "scanned": "2026-11-18T18:37:44Z"
   },
   {
     "company": "IBM",
@@ -11340,7 +11358,7 @@
     "url": "https://www.linkedin.com/jobs/view/4451269829",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:38:50Z"
+    "scanned": "2026-11-18T18:36:50Z"
   },
   {
     "company": "IBM",
@@ -11529,7 +11547,7 @@
     "url": "https://www.linkedin.com/jobs/view/4480733477",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:27Z"
+    "scanned": "2026-11-18T18:34:28Z"
   },
   {
     "company": "IDEAS",
@@ -11619,16 +11637,7 @@
     "url": "https://www.linkedin.com/jobs/view/4480471514",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:36Z"
-  },
-  {
-    "company": "IDEMIA Public Security",
-    "role": "Business Operations and Leadership Internship",
-    "location": "Eden Prairie, MN",
-    "url": "https://www.linkedin.com/jobs/view/4477579429",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-11-18T09:39:22Z"
+    "scanned": "2026-11-18T18:34:02Z"
   },
   {
     "company": "IDEMIA Public Security",
@@ -11637,7 +11646,7 @@
     "url": "https://www.linkedin.com/jobs/view/4489830316",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:50Z"
+    "scanned": "2026-11-18T18:34:06Z"
   },
   {
     "company": "IDEMIA Public Security",
@@ -11646,7 +11655,7 @@
     "url": "https://www.linkedin.com/jobs/view/4489581566",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:03Z"
+    "scanned": "2026-11-18T18:33:34Z"
   },
   {
     "company": "IDEMIA Public Security",
@@ -11655,7 +11664,16 @@
     "url": "https://www.linkedin.com/jobs/view/4476244440",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:03Z"
+    "scanned": "2026-11-18T18:33:34Z"
+  },
+  {
+    "company": "IDEMIA Public Security",
+    "role": "Business Operations and Leadership Internship",
+    "location": "Eden Prairie, MN",
+    "url": "https://www.linkedin.com/jobs/view/4477579429",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-11-18T18:37:38Z"
   },
   {
     "company": "IDEMIA Public Security",
@@ -11709,7 +11727,7 @@
     "url": "https://www.linkedin.com/jobs/view/4468696212",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:33:41Z"
+    "scanned": "2026-11-18T18:33:28Z"
   },
   {
     "company": "Imagine",
@@ -11817,7 +11835,7 @@
     "url": "https://www.linkedin.com/jobs/view/4463144284",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:41:27Z"
+    "scanned": "2026-11-18T18:39:10Z"
   },
   {
     "company": "Impiricus",
@@ -11862,7 +11880,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-director-of-customer-success-innergy-1134738",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "Innodata Inc.",
@@ -13195,7 +13213,7 @@
     "url": "https://www.linkedin.com/jobs/view/4484744578",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:48Z"
+    "scanned": "2026-11-18T18:34:04Z"
   },
   {
     "company": "JonnyPops",
@@ -13394,7 +13412,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-kyc-compliance-analyst-kast-1134740",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "Kearney",
@@ -13448,7 +13466,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-executive-assistant-kforce-inc-1133088",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "Kiewit",
@@ -13457,7 +13475,7 @@
     "url": "https://www.linkedin.com/jobs/view/4463186861",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:09Z"
+    "scanned": "2026-11-18T18:32:44Z"
   },
   {
     "company": "Kiewit",
@@ -13979,7 +13997,16 @@
     "url": "https://www.linkedin.com/jobs/view/4490144299",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:49Z"
+    "scanned": "2026-11-18T18:38:42Z"
+  },
+  {
+    "company": "Knobelsdorff",
+    "role": "Operational Excellence Intern",
+    "location": "Goodhue, MN",
+    "url": "https://www.linkedin.com/jobs/view/4491846497",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-11-18T18:32:40Z"
   },
   {
     "company": "Knobelsdorff",
@@ -14096,7 +14123,7 @@
     "url": "https://job-boards.greenhouse.io/knowbe4/jobs/8926721002",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Knowbe4",
@@ -14258,7 +14285,7 @@
     "url": "https://www.linkedin.com/jobs/view/4486500667",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:07Z"
+    "scanned": "2026-11-18T18:34:52Z"
   },
   {
     "company": "Lakeshirts",
@@ -14491,7 +14518,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-educational-programs-administrator-lingraphica-1134741",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "Link Snacks",
@@ -14500,7 +14527,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490908489",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:33Z"
+    "scanned": "2026-11-18T18:34:32Z"
   },
   {
     "company": "Link Snacks",
@@ -15464,16 +15491,7 @@
     "url": "https://www.linkedin.com/jobs/view/4486834675",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:03Z"
-  },
-  {
-    "company": "Mayo Clinic",
-    "role": "Strategy Intern",
-    "location": "Rochester, MN",
-    "url": "https://www.linkedin.com/jobs/view/4489992293",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-11-18T09:39:22Z"
+    "scanned": "2026-11-18T18:36:34Z"
   },
   {
     "company": "Mayo Clinic",
@@ -15482,7 +15500,7 @@
     "url": "https://www.linkedin.com/jobs/view/4484211727",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:48Z"
+    "scanned": "2026-11-18T18:34:04Z"
   },
   {
     "company": "Mayo Clinic",
@@ -15491,25 +15509,7 @@
     "url": "https://www.linkedin.com/jobs/view/4484225045",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:48Z"
-  },
-  {
-    "company": "Mayo Clinic",
-    "role": "Undergraduate Engineering Intern - Project Management",
-    "location": "Rochester, MN",
-    "url": "https://www.linkedin.com/jobs/view/4484205701",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-11-18T09:39:22Z"
-  },
-  {
-    "company": "Mayo Clinic",
-    "role": "Graduate Engineering Intern - Electronics",
-    "location": "Rochester, MN",
-    "url": "https://www.linkedin.com/jobs/view/4484212591",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-11-18T09:40:13Z"
+    "scanned": "2026-11-18T18:34:04Z"
   },
   {
     "company": "Mayo Clinic",
@@ -15518,7 +15518,34 @@
     "url": "https://www.linkedin.com/jobs/view/4484205702",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T01:29:02Z"
+    "scanned": "2026-11-18T18:34:50Z"
+  },
+  {
+    "company": "Mayo Clinic",
+    "role": "Strategy Intern",
+    "location": "Rochester, MN",
+    "url": "https://www.linkedin.com/jobs/view/4489992293",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-11-18T18:37:36Z"
+  },
+  {
+    "company": "Mayo Clinic",
+    "role": "Undergraduate Engineering Intern - Project Management",
+    "location": "Rochester, MN",
+    "url": "https://www.linkedin.com/jobs/view/4484205701",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-11-18T18:37:38Z"
+  },
+  {
+    "company": "Mayo Clinic",
+    "role": "Graduate Engineering Intern - Electronics",
+    "location": "Rochester, MN",
+    "url": "https://www.linkedin.com/jobs/view/4484212591",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-11-18T18:38:12Z"
   },
   {
     "company": "Mayo Clinic",
@@ -15707,7 +15734,7 @@
     "url": "https://www.linkedin.com/jobs/view/4473016615",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:27Z"
+    "scanned": "2026-11-18T18:34:28Z"
   },
   {
     "company": "McGough",
@@ -16148,7 +16175,7 @@
     "url": "https://www.linkedin.com/jobs/view/4484754859",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:32:52Z"
+    "scanned": "2026-11-18T18:37:12Z"
   },
   {
     "company": "Minnesota Power",
@@ -16184,7 +16211,7 @@
     "url": "https://www.linkedin.com/jobs/view/4473186826",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:11Z"
+    "scanned": "2026-11-18T18:38:10Z"
   },
   {
     "company": "Molex",
@@ -16211,7 +16238,7 @@
     "url": "https://www.linkedin.com/jobs/view/4452009942",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:11Z"
+    "scanned": "2026-11-18T18:38:10Z"
   },
   {
     "company": "Mortenson",
@@ -16220,7 +16247,7 @@
     "url": "https://www.linkedin.com/jobs/view/4477820335",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:36:10Z"
+    "scanned": "2026-11-18T18:34:56Z"
   },
   {
     "company": "Mortenson",
@@ -16373,7 +16400,7 @@
     "url": "https://www.linkedin.com/jobs/view/4472081272",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:37:55Z"
+    "scanned": "2026-11-18T18:36:10Z"
   },
   {
     "company": "Motorola Solutions",
@@ -16463,7 +16490,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-associate-account-strategist-donut-studios-new-engen-1134405",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "NexLevr",
@@ -16517,7 +16544,7 @@
     "url": "https://www.linkedin.com/jobs/view/4484476726",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:45Z"
+    "scanned": "2026-11-18T18:37:44Z"
   },
   {
     "company": "North Wind",
@@ -17579,7 +17606,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-customer-service-chat-representative-orchestrate-consulting-group-1134737",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "Organic Valley",
@@ -17653,7 +17680,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-business-development-executive-outsource-access-careers-1135287",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "Ovative Group",
@@ -17671,7 +17698,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-human-resources-coordinator-pacific-health-group-1135783",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "Packaging Corporation of America",
@@ -17680,7 +17707,7 @@
     "url": "https://www.linkedin.com/jobs/view/4459862491",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:01Z"
+    "scanned": "2026-11-18T18:33:32Z"
   },
   {
     "company": "Packaging Corporation of America",
@@ -17689,7 +17716,7 @@
     "url": "https://www.linkedin.com/jobs/view/4459873472",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:01Z"
+    "scanned": "2026-11-18T18:33:32Z"
   },
   {
     "company": "Packaging Corporation of America",
@@ -17902,7 +17929,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-human-resources-coordinator-peace-through-trade-ptt-coin-layer-1-pow-blockchain-1133084",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "Peakflo (YC W22)",
@@ -17965,7 +17992,7 @@
     "url": "https://www.linkedin.com/jobs/view/4448312441",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:36Z"
+    "scanned": "2026-11-18T18:38:42Z"
   },
   {
     "company": "Pentair",
@@ -17974,7 +18001,7 @@
     "url": "https://www.linkedin.com/jobs/view/4448194872",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:22Z"
+    "scanned": "2026-11-18T18:37:36Z"
   },
   {
     "company": "Pentair",
@@ -18109,7 +18136,7 @@
     "url": "https://www.linkedin.com/jobs/view/4489295072",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:27Z"
+    "scanned": "2026-11-18T18:37:38Z"
   },
   {
     "company": "Philips",
@@ -18262,7 +18289,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490539817",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T01:29:38Z"
+    "scanned": "2026-11-18T18:35:56Z"
   },
   {
     "company": "Piper Sandler",
@@ -18271,7 +18298,7 @@
     "url": "https://pipersandler.wd501.myworkdayjobs.com/Piper_Sandler_Careers/job/Minneapolis-MN---HQ/XMLNAME-2027-Summer-Internship-Program---Technology--Employee-Access-_R-100717",
     "applied": false,
     "source": "workday",
-    "scanned": "2026-11-18T09:31:36Z"
+    "scanned": "2026-11-18T18:31:03Z"
   },
   {
     "company": "Piper Sandler",
@@ -18280,7 +18307,7 @@
     "url": "https://pipersandler.wd501.myworkdayjobs.com/Piper_Sandler_Careers/job/Minneapolis-MN---HQ/XMLNAME-2027-Campus-Recruiting---Investment-Banking-Summer-Associate---Minneapolis_R-100651",
     "applied": false,
     "source": "workday",
-    "scanned": "2026-11-18T09:31:36Z"
+    "scanned": "2026-11-18T18:31:03Z"
   },
   {
     "company": "Piper Sandler",
@@ -18289,7 +18316,7 @@
     "url": "https://pipersandler.wd501.myworkdayjobs.com/Piper_Sandler_Careers/job/Minneapolis-MN---HQ/XMLNAME-2027-Campus-Recruiting---Investment-Banking-Summer-Associate---San-Francisco_R-100655",
     "applied": false,
     "source": "workday",
-    "scanned": "2026-11-18T09:31:36Z"
+    "scanned": "2026-11-18T18:31:03Z"
   },
   {
     "company": "Piper Sandler",
@@ -18298,7 +18325,7 @@
     "url": "https://www.linkedin.com/jobs/view/4468928711",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:49Z"
+    "scanned": "2026-11-18T18:37:48Z"
   },
   {
     "company": "Piper Sandler",
@@ -18793,7 +18820,7 @@
     "url": "https://www.linkedin.com/jobs/view/4472962646",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:20Z"
+    "scanned": "2026-11-18T18:37:34Z"
   },
   {
     "company": "Product Manager Accelerator",
@@ -19613,7 +19640,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-forecast-analyst-rei-1132861",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "Relativity",
@@ -19622,7 +19649,7 @@
     "url": "https://boards.greenhouse.io/relativity/jobs/8756352002?gh_jid=8756352002",
     "applied": false,
     "source": "greenhouse",
-    "scanned": "2026-11-18T09:31:34Z"
+    "scanned": "2026-11-18T18:31:02Z"
   },
   {
     "company": "Relativity",
@@ -19810,7 +19837,7 @@
     "url": "https://www.linkedin.com/jobs/view/4465865416",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T01:28:06Z"
+    "scanned": "2026-11-18T18:32:40Z"
   },
   {
     "company": "Ria Money Transfer",
@@ -20017,7 +20044,7 @@
     "url": "https://www.linkedin.com/jobs/view/4486797370",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:13Z"
+    "scanned": "2026-11-18T18:38:12Z"
   },
   {
     "company": "Ryan Companies US, Inc.",
@@ -21139,7 +21166,7 @@
     "url": "https://www.linkedin.com/jobs/view/4461794696",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:25Z"
+    "scanned": "2026-11-18T18:34:26Z"
   },
   {
     "company": "Scyntic",
@@ -21157,7 +21184,7 @@
     "url": "https://www.linkedin.com/jobs/view/4490160168",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:32:50Z"
+    "scanned": "2026-11-18T18:37:50Z"
   },
   {
     "company": "Seagate Technology",
@@ -21166,7 +21193,7 @@
     "url": "https://www.linkedin.com/jobs/view/4486298190",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:33:18Z"
+    "scanned": "2026-11-18T18:33:04Z"
   },
   {
     "company": "Seagate Technology",
@@ -21175,7 +21202,7 @@
     "url": "https://www.linkedin.com/jobs/view/4483083953",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:13Z"
+    "scanned": "2026-11-18T18:38:12Z"
   },
   {
     "company": "Seagate Technology",
@@ -21184,7 +21211,7 @@
     "url": "https://www.linkedin.com/jobs/view/4483478574",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:33:15Z"
+    "scanned": "2026-11-18T18:32:40Z"
   },
   {
     "company": "Seagate Technology",
@@ -21193,7 +21220,7 @@
     "url": "https://www.linkedin.com/jobs/view/4485553741",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:13Z"
+    "scanned": "2026-11-18T18:38:12Z"
   },
   {
     "company": "Seagate Technology",
@@ -21202,7 +21229,7 @@
     "url": "https://www.linkedin.com/jobs/view/4487854368",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:44Z"
+    "scanned": "2026-11-18T18:34:00Z"
   },
   {
     "company": "Seagate Technology",
@@ -21211,7 +21238,7 @@
     "url": "https://www.linkedin.com/jobs/view/4488957229",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:45Z"
+    "scanned": "2026-11-18T18:37:44Z"
   },
   {
     "company": "Seagate Technology",
@@ -21517,7 +21544,7 @@
     "url": "https://www.linkedin.com/jobs/view/4482371641",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:27Z"
+    "scanned": "2026-11-18T18:37:38Z"
   },
   {
     "company": "Siemens",
@@ -21526,7 +21553,7 @@
     "url": "https://www.linkedin.com/jobs/view/4466874922",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:13Z"
+    "scanned": "2026-11-18T18:38:12Z"
   },
   {
     "company": "Siemens",
@@ -21535,7 +21562,7 @@
     "url": "https://www.linkedin.com/jobs/view/4466879758",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:13Z"
+    "scanned": "2026-11-18T18:38:12Z"
   },
   {
     "company": "Siemens",
@@ -21589,7 +21616,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-director-of-total-rewards-skims-1133085",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "SkipQ",
@@ -21997,7 +22024,16 @@
     "url": "https://www.linkedin.com/jobs/view/4487079124",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:32:48Z"
+    "scanned": "2026-11-18T18:32:20Z"
+  },
+  {
+    "company": "Starkey Hearing",
+    "role": "Advanced Development Intern",
+    "location": "Eden Prairie, MN",
+    "url": "https://www.linkedin.com/jobs/view/4492045943",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-11-18T18:34:50Z"
   },
   {
     "company": "Starkey Hearing",
@@ -22006,7 +22042,7 @@
     "url": "https://www.linkedin.com/jobs/view/4487778182",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:45Z"
+    "scanned": "2026-11-18T18:37:44Z"
   },
   {
     "company": "Starkey Hearing",
@@ -22087,7 +22123,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-biologists-stem-sync-ai-1133086",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "StepStone Group",
@@ -22662,7 +22698,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-business-development-manager-temu-1135291",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "Tennant Company",
@@ -22725,7 +22761,7 @@
     "url": "https://www.linkedin.com/jobs/view/4484557594",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:42Z"
+    "scanned": "2026-11-18T18:37:50Z"
   },
   {
     "company": "The Bernard Group, Inc.",
@@ -22734,7 +22770,7 @@
     "url": "https://www.linkedin.com/jobs/view/4484566214",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:37:55Z"
+    "scanned": "2026-11-18T18:36:10Z"
   },
   {
     "company": "The Bernard Group, Inc.",
@@ -22815,7 +22851,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-human-resources-generalist-the-contractor-consultants-1133087",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "The Craft Catalyst",
@@ -22855,12 +22891,21 @@
   },
   {
     "company": "The Minnesota Star Tribune",
+    "role": "Data, Graphics &amp; Design Internship \u2013 Summer 2027",
+    "location": "Minneapolis, MN",
+    "url": "https://www.linkedin.com/jobs/view/4472995325",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-11-18T18:32:14Z"
+  },
+  {
+    "company": "The Minnesota Star Tribune",
     "role": "Advertising Internship",
     "location": "Minneapolis, MN",
     "url": "https://www.linkedin.com/jobs/view/4481895823",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:31Z"
+    "scanned": "2026-11-18T18:34:32Z"
   },
   {
     "company": "The Minnesota Star Tribune",
@@ -22869,16 +22914,7 @@
     "url": "https://www.linkedin.com/jobs/view/4466954132",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:13Z"
-  },
-  {
-    "company": "The Minnesota Star Tribune",
-    "role": "Data, Graphics &amp; Design Internship \u2013 Summer 2027",
-    "location": "Minneapolis, MN",
-    "url": "https://www.linkedin.com/jobs/view/4472995325",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-11-18T01:27:55Z"
+    "scanned": "2026-11-18T18:38:12Z"
   },
   {
     "company": "The Minnesota Star Tribune",
@@ -22927,12 +22963,12 @@
   },
   {
     "company": "The Toro Company",
-    "role": "ISC Analytics Intern - The Toro Company",
+    "role": "IBP ISC Data Management Intern - The Toro Company",
     "location": "Hennepin County, MN",
-    "url": "https://www.linkedin.com/jobs/view/4468822768",
+    "url": "https://www.linkedin.com/jobs/view/4479816269",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:20Z"
+    "scanned": "2026-11-18T18:37:34Z"
   },
   {
     "company": "The Toro Company",
@@ -22941,16 +22977,7 @@
     "url": "https://www.linkedin.com/jobs/view/4469731539",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:11Z"
-  },
-  {
-    "company": "The Toro Company",
-    "role": "IBP ISC Data Management Intern - The Toro Company",
-    "location": "Hennepin County, MN",
-    "url": "https://www.linkedin.com/jobs/view/4479816269",
-    "applied": false,
-    "source": "linkedin",
-    "scanned": "2026-11-18T09:39:20Z"
+    "scanned": "2026-11-18T18:38:10Z"
   },
   {
     "company": "The Toro Company",
@@ -22959,7 +22986,7 @@
     "url": "https://www.linkedin.com/jobs/view/4485949394",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:36Z"
+    "scanned": "2026-11-18T18:38:42Z"
   },
   {
     "company": "The Toro Company",
@@ -22968,7 +22995,7 @@
     "url": "https://www.linkedin.com/jobs/view/4467217620",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:32:48Z"
+    "scanned": "2026-11-18T18:32:20Z"
   },
   {
     "company": "The Toro Company",
@@ -22977,7 +23004,7 @@
     "url": "https://www.linkedin.com/jobs/view/4477146699",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:09Z"
+    "scanned": "2026-11-18T18:37:34Z"
   },
   {
     "company": "The Toro Company",
@@ -22986,7 +23013,7 @@
     "url": "https://www.linkedin.com/jobs/view/4477137940",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:33:18Z"
+    "scanned": "2026-11-18T18:33:04Z"
   },
   {
     "company": "The Toro Company",
@@ -22995,7 +23022,7 @@
     "url": "https://www.linkedin.com/jobs/view/4468832521",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:48Z"
+    "scanned": "2026-11-18T18:34:04Z"
   },
   {
     "company": "The Toro Company",
@@ -23004,7 +23031,7 @@
     "url": "https://www.linkedin.com/jobs/view/4471897006",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:33Z"
+    "scanned": "2026-11-18T18:34:32Z"
   },
   {
     "company": "The Toro Company",
@@ -23013,13 +23040,22 @@
     "url": "https://www.linkedin.com/jobs/view/4485948521",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:33Z"
+    "scanned": "2026-11-18T18:34:32Z"
   },
   {
     "company": "The Toro Company",
     "role": "Materials Management Intern - The Toro Company",
     "location": "Shakopee, MN",
     "url": "https://www.linkedin.com/jobs/view/4480570625",
+    "applied": false,
+    "source": "linkedin",
+    "scanned": "2026-11-18T18:37:34Z"
+  },
+  {
+    "company": "The Toro Company",
+    "role": "ISC Analytics Intern - The Toro Company",
+    "location": "Hennepin County, MN",
+    "url": "https://www.linkedin.com/jobs/view/4468822768",
     "applied": false,
     "source": "linkedin",
     "scanned": "2026-11-18T09:39:20Z"
@@ -23175,7 +23211,7 @@
     "url": "https://www.linkedin.com/jobs/view/4461901475",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:32:48Z"
+    "scanned": "2026-11-18T18:32:20Z"
   },
   {
     "company": "Thomson Reuters",
@@ -23184,7 +23220,7 @@
     "url": "https://www.linkedin.com/jobs/view/4486550129",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:32:48Z"
+    "scanned": "2026-11-18T18:32:20Z"
   },
   {
     "company": "Thought Logic Consulting",
@@ -23386,7 +23422,7 @@
     "url": "https://www.linkedin.com/jobs/view/4473218357",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:40:36Z"
+    "scanned": "2026-11-18T18:37:46Z"
   },
   {
     "company": "Thrivent",
@@ -23475,7 +23511,7 @@
     "url": "https://www.linkedin.com/jobs/view/4489057143",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:36:10Z"
+    "scanned": "2026-11-18T18:34:56Z"
   },
   {
     "company": "Tokyo Electron US",
@@ -23538,7 +23574,7 @@
     "url": "https://www.linkedin.com/jobs/view/4484862941",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:36:10Z"
+    "scanned": "2026-11-18T18:34:56Z"
   },
   {
     "company": "Travelers",
@@ -23574,7 +23610,7 @@
     "url": "https://www.linkedin.com/jobs/view/4484166656",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T01:28:06Z"
+    "scanned": "2026-11-18T18:32:40Z"
   },
   {
     "company": "Tru Vue",
@@ -23899,7 +23935,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-junior-illustrator-twine-1133039",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "Two Six Technologies",
@@ -24322,7 +24358,7 @@
     "url": "https://www.linkedin.com/jobs/view/4489543063",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:25Z"
+    "scanned": "2026-11-18T18:34:26Z"
   },
   {
     "company": "Van Meter Inc.",
@@ -26283,7 +26319,7 @@
     "url": "https://www.linkedin.com/jobs/view/4472069713",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:33:18Z"
+    "scanned": "2026-11-18T18:33:04Z"
   },
   {
     "company": "Vervint",
@@ -26292,7 +26328,7 @@
     "url": "https://www.linkedin.com/jobs/view/4488620471",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:33:16Z"
+    "scanned": "2026-11-18T18:33:02Z"
   },
   {
     "company": "Vervint",
@@ -26391,7 +26427,7 @@
     "url": "https://www.linkedin.com/jobs/view/4486910545",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:25Z"
+    "scanned": "2026-11-18T18:34:26Z"
   },
   {
     "company": "Vocalbeats",
@@ -26461,7 +26497,7 @@
     "url": "https://www.linkedin.com/jobs/view/4467281558",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:32:52Z"
+    "scanned": "2026-11-18T18:32:38Z"
   },
   {
     "company": "Wall Street Oasis",
@@ -26713,7 +26749,7 @@
     "url": "https://www.linkedin.com/jobs/view/4464240131",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:45Z"
+    "scanned": "2026-11-18T18:37:44Z"
   },
   {
     "company": "WD",
@@ -26722,7 +26758,7 @@
     "url": "https://www.linkedin.com/jobs/view/4470896760",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:45Z"
+    "scanned": "2026-11-18T18:37:44Z"
   },
   {
     "company": "WD",
@@ -26803,7 +26839,7 @@
     "url": "https://remoteOK.com/remote-jobs/remote-junior-product-designer-wealthcounsel-llc-1134407",
     "applied": false,
     "source": "remoteok",
-    "scanned": "2026-11-18T09:32:17Z"
+    "scanned": "2026-11-18T18:32:04Z"
   },
   {
     "company": "WEG Electric Corp. (USA)",
@@ -26974,7 +27010,7 @@
     "url": "https://www.linkedin.com/jobs/view/4475036418",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:35:29Z"
+    "scanned": "2026-11-18T18:34:30Z"
   },
   {
     "company": "Western National Insurance",
@@ -26983,7 +27019,7 @@
     "url": "https://www.linkedin.com/jobs/view/4475041158",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:34:03Z"
+    "scanned": "2026-11-18T18:38:42Z"
   },
   {
     "company": "Western National Insurance",
@@ -26992,7 +27028,7 @@
     "url": "https://www.linkedin.com/jobs/view/4474534112",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:38:48Z"
+    "scanned": "2026-11-18T18:36:48Z"
   },
   {
     "company": "Western National Insurance",
@@ -27208,7 +27244,7 @@
     "url": "https://www.linkedin.com/jobs/view/4487823791",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:39:43Z"
+    "scanned": "2026-11-18T18:37:42Z"
   },
   {
     "company": "WSB",
@@ -27226,7 +27262,7 @@
     "url": "https://www.linkedin.com/jobs/view/4491535454",
     "applied": false,
     "source": "linkedin",
-    "scanned": "2026-11-18T09:36:10Z"
+    "scanned": "2026-11-18T18:34:56Z"
   },
   {
     "company": "WTW",
